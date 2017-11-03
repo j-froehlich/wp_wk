@@ -2014,6 +2014,8 @@ class WilokePublic
 
         if ( function_exists('is_shop') && is_shop() ){
             $postID = get_option('woocommerce_shop_page_id');
+        }else if(!is_front_page()&&is_home()){
+            $postID = get_option('page_for_posts');
         }else{
             $postID = $post->ID;
         }

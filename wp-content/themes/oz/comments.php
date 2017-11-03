@@ -39,7 +39,7 @@
         </div>
     </div>
 <?php endif; ?>
-<?php if ( !comments_open() &&  post_type_supports( get_post_type(), 'comments' ) ) : ?>
+<?php if ( !comments_open() ||  !post_type_supports( get_post_type(), 'comments' ) ) : ?>
     </div>
 <?php else : ?>
     </div>

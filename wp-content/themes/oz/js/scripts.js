@@ -1820,9 +1820,8 @@
                                     needRecheck = true;
                                 }
                             }
+                            $this.addClass('still-waiting-for-you hidden');
                         }
-
-                        $this.addClass('still-waiting-for-you hidden');
                     }else{
                         if ( $this.prev('.wiloke-image__placeholder').length ){
                             $this.prev().fadeOut(200, function(){
@@ -2087,6 +2086,9 @@
                    // console.log($carousel.data(''));
                    $carousel.carousel($carousel.data()).Constructor;
                 });
+
+
+                $(document).trigger("ready.vc.accordion");
             })
         },
         enqueueLoading: function(pageLink){

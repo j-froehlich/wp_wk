@@ -1,0 +1,31 @@
+.wiloke-portfolio-edit.dashicons{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 9999;
+    color: #fff;
+    display: none;
+    cursor: pointer;
+    text-decoration: none;
+    width: 30px; height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #000;
+}
+
+.grid-item:hover .wiloke-portfolio-edit.dashicons{
+    display: block;
+}
+
+#wiloke-portfolio-settings .get-code-window{
+    position: relative;
+    background: #FFF;
+    padding: 2em 3em;
+    width: auto;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+#wiloke-portfolio-settings a{
+    color: #000;
+}

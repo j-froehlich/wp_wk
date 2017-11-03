@@ -39,10 +39,17 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 		$this->customers_only					= $this->get_option( 'customers_only', 'no' );
 		$this->customers_completed				= $this->get_option( 'customers_completed', 'no' );
 
+		$this->supports = array(
+			'products',
+		);
+
 		// Actions
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
     	add_action( 'woocommerce_thankyou_invoice', array( $this, 'thankyou_page' ) );
+    	add_action( 'woocommerce_scheduled_subscription_payment'. $this->id, array( $this, 'process_admin_options' ) );
 
+    	// Customer Emails
+		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
     }
 
     public function admin_options() { ?>
@@ -144,7 +151,9 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
      * @param bool $plain_text
      */
 	public function email_instructions( $order, $sent_to_admin, $plain_text = false ) {
-        if ( $this->instructions && ! $sent_to_admin && 'invoice' === wc_gzd_get_crud_data( $order, 'payment_method' ) && $order->has_status( 'on-hold' ) ) {
+	    $status = str_replace( 'wc-', '', $this->default_order_status );
+
+	    if ( $this->instructions && ! $sent_to_admin && 'invoice' === wc_gzd_get_crud_data( $order, 'payment_method' ) && $order->has_status( $status ) ) {
 			echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
 		}
 	}
@@ -179,11 +188,14 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 
 		$order->update_status( $this->default_order_status );
 
-		// Reduce stock levels
-		$order->reduce_order_stock();
+		// Reduce stock level
+		wc_gzd_reduce_order_stock( $order_id );
 
-		// Remove cart
-		WC()->cart->empty_cart();
+		// Check if cart instance exists (frontend request only)
+		if ( WC()->cart ) {
+			// Remove cart
+			WC()->cart->empty_cart();
+		}
 
 		// Return thankyou redirect
 		return array(

@@ -41,11 +41,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 		/**
 		 * Listen to product updates to actually transform term meta data to term relationships e.g. for product delivery time.
 		 */
-		add_action( 'woocommerce_update_product', array( __CLASS__, 'update_terms' ), 10, 1 );
-		add_action( 'woocommerce_create_product', array( __CLASS__, 'update_terms' ), 10, 1 );
+		add_action( 'woocommerce_update_product', array( __CLASS__, 'update_after_save' ), 10, 1 );
+		add_action( 'woocommerce_create_product', array( __CLASS__, 'update_after_save' ), 10, 1 );
 
-		add_action( 'woocommerce_update_product_variation', array( __CLASS__, 'update_terms' ), 10, 1 );
-		add_action( 'woocommerce_create_product_variation', array( __CLASS__, 'update_terms' ), 10, 1 );
+		add_action( 'woocommerce_update_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
+		add_action( 'woocommerce_create_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
 	}
 
 	/**
@@ -56,7 +56,7 @@ class WC_Germanized_Meta_Box_Product_Data {
      *
 	 * @param $product_id
 	 */
-	public static function update_terms( $product_id ) {
+	public static function update_after_save( $product_id ) {
 
 		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() )
 		    return;
@@ -64,6 +64,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 	    $product = wc_get_product( $product_id );
 
 	    if ( $product->get_id() > 0 ) {
+
 	        $taxonomies = array( 'product_delivery_time' );
 
 	        foreach( $taxonomies as $taxonomy ) {
@@ -79,6 +80,27 @@ class WC_Germanized_Meta_Box_Product_Data {
 		            delete_post_meta( $product->get_id(), '_delete_' . $taxonomy );
 	            }
             }
+
+            // Update unit price based on whether the product is on sale or not
+            if ( wc_gzd_get_gzd_product( $product )->has_unit() ) {
+
+	            // Let pro version filter prices
+	            $data = apply_filters( 'woocommerce_gzd_save_display_unit_price_data', array(
+                    '_unit_price_regular' => wc_gzd_get_gzd_product( $product )->get_unit_regular_price(),
+                    '_unit_price_sale' => wc_gzd_get_gzd_product( $product )->get_unit_sale_price(),
+                ), $product );
+
+	            // Make sure we update automatically calculated prices
+	            update_post_meta( $product->get_id(), '_unit_price_regular', $data[ '_unit_price_regular' ] );
+	            update_post_meta( $product->get_id(), '_unit_price_sale', $data[ '_unit_price_sale' ] );
+
+	            // Lets update the display price
+	            if ( $product->is_on_sale() ) {
+		            update_post_meta( $product->get_id(), '_unit_price', $data[ '_unit_price_sale' ] );
+	            } else {
+		            update_post_meta( $product->get_id(), '_unit_price', $data[ '_unit_price_regular' ] );
+	            }
+            }
         }
     }
 
@@ -89,6 +111,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'wrapper_class' => 'show_if_simple',
 			'label'         => __( 'Service', 'woocommerce-germanized' ),
 			'description'   => __( 'Service products do not sell physical products.', 'woocommerce-germanized' ),
+			'default'       => 'no'
+		);
+
+		$types[ 'differential_taxation' ] = array(
+			'id'            => '_differential_taxation',
+			'wrapper_class' => '',
+			'label'         => __( 'Diff. Taxation', 'woocommerce-germanized' ),
+			'description'   => __( 'Product applies to differential taxation based on §25a UStG.', 'woocommerce-germanized' ),
 			'default'       => 'no'
 		);
 
@@ -215,6 +245,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_sale_price' => '',
 			'_free_shipping' => '',
 			'_service' => '',
+            '_differential_taxation' => '',
 		);
 	}
 
@@ -350,7 +381,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 		
 		if ( isset( $data[ '_mini_desc' ] ) ) {
-			$product = wc_gzd_set_crud_meta_data( $product, '_mini_desc', ( $data[ '_mini_desc' ] === '' ? '' : sanitize_text_field( esc_html( $data[ '_mini_desc' ] ) ) ) );
+			$product = wc_gzd_set_crud_meta_data( $product, '_mini_desc', ( $data[ '_mini_desc' ] === '' ? '' : wc_gzd_sanitize_html_text_field( $data[ '_mini_desc' ] ) ) );
 		}
 
 		if ( isset( $data[ 'delivery_time' ] ) && ! empty( $data[ 'delivery_time' ] ) ) {
@@ -362,8 +393,15 @@ class WC_Germanized_Meta_Box_Product_Data {
 		// Free shipping
 		$product = wc_gzd_set_crud_meta_data( $product, '_free_shipping', ( isset( $data['_free_shipping'] ) ) ? 'yes' : '' );
 
-		// Free shipping
+		// Is a service?
 		$product = wc_gzd_set_crud_meta_data( $product, '_service', ( isset( $data['_service'] ) ) ? 'yes' : '' );
+		
+		// Applies to differential taxation?
+		$product = wc_gzd_set_crud_meta_data( $product, '_differential_taxation', ( isset( $data['_differential_taxation'] ) ) ? 'yes' : '' );
+
+		if ( isset( $data['_differential_taxation'] ) ) {
+		    $product = wc_gzd_set_crud_data( $product, 'tax_status', 'shipping' );
+        }
 
 		// Ignore variable data
 		if ( in_array( $product_type, array( 'variable', 'grouped' ) ) && ! $is_variation ) {

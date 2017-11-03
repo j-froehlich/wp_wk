@@ -1,0 +1,2 @@
+<?php
+// Configure Taxonomy here

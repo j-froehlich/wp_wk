@@ -1,0 +1,157 @@
+::-moz-selection {
+  background-color: #67dee8;
+}
+
+::selection {
+  background-color: #67dee8;
+}
+
+a,
+a:hover,
+a:focus, .input-number .btn-number:hover, .wil-icon--gradient, .wil-loader--color, .wil-spinner, .wil-btn--shadow, .wil-work-item__cat, .wil-work-item__quickview .flaticon:hover, .wil-work-item--grayscale:hover .wil-work-item__title, .wil-work-item--static:hover .wil-work-item__title, .work__loadmore-wrapper .wil-loader, .wil-work-filter--1 .wil-work-filter__list a:hover, .wil-work-filter--1 .wil-work-filter__list .current a, .post a:hover, .post__author a, .device-large .wil-blog-creative .post.active .post__title a, .woocommerce span.onsale, .product__name a:hover, .wil-work-nav-page__hover, .wil-work-nav-page__line, .wil-work-nav-page__out-icon-wrap-hover .wil-work-nav-page__out-icon-border, .widget a:hover, .widget-tweet-content .item .fa, .widget_calendar #wp-calendar th#today, .widget_calendar #wp-calendar td#today, .widget_calendar #wp-calendar tbody td a:hover, .widget_calendar #wp-calendar tfoot td a:hover, #comments #comments-title span, .tabs > ul li.active a, .accordion__header:hover, .wil-counter__number, .wil-pricing--highlight .wil-pricing__sup,
+.wil-pricing--highlight .wil-pricing__amount,
+.wil-pricing--highlight .wil-pricing__title, #wil-menu-mobile .menu-item-has-children .active, #wil-menu-mobile .menu-item-has-children .sub-menu .active, .wil-trend-search__list a, #wil-menu-mobile .wil-menu-list .current-menu-parent > a,
+#wil-menu-mobile .wil-menu-list .current-menu-item > a,
+.wil-header .wil-menu-list .current-menu-parent > a,
+.wil-header .wil-menu-list .current-menu-item > a, .wil-header .wil-menu-list li:hover > a, .wil-toggle-search i:hover, .wil-footer__text__lg a:hover, .wil-footer__text__lg [href="#wil-subscribe"], .wil-related-post__body h2 a:hover, .wil-work-detail__sup, .wil-work-detail__meta__item span:hover,
+.wil-work-detail__meta__item a:hover, .wil-blog-creative .wil-loader,
+.wil-blog-grid .wil-loader, .woocommerce table.shop_table th strong, .woocommerce table.shop_table td strong, .cart_totals table .order-total td .amount, .woocommerce-checkout #payment > ul > li label .about_paypal, .custom-tab__item.active, .woocommerce-account .woocommerce h2 a:hover, .lost_password a, .woocommerce-edit-account div.woocommerce form legend, .woocommerce-account .myaccount_user strong, .woocommerce-account .myaccount_user a:hover, .woocommerce-account .woocommerce-MyAccount-navigation-link.is-active a, .woocommerce .product .product-summary .star-rating strong, .woocommerce .product .product-summary .woocommerce-review-link, .woocommerce .product .product-summary .price, .woocommerce div.product p.stock, .product-summary-footer ul li a:hover, .product-summary-footer ul li span:hover, .woocommerce div.product .woocommerce-tabs ul.tabs.wc-tabs li:hover a, .woocommerce div.product .woocommerce-tabs ul.tabs.wc-tabs .active, .woocommerce .star-rating span {
+  color: #67dee8;
+}
+
+mark,
+.mark, .wil-ball, .wil-btn, .woocommerce a.button,
+[type="submit"], .woocommerce .product__add-to-cart .product__add-to-cart__inner, .woocommerce .widget_shopping_cart .buttons .button,
+.woocommerce.widget_shopping_cart .buttons .button, #respond .form-submit [type="submit"], .woocommerce table.shop_table td.actions .coupon + .button,
+.woocommerce table.shop_table td.actions .coupon .button, .woocommerce-cart .wc-proceed-to-checkout .button.checkout-button, .woocommerce #respond input#submit,
+.woocommerce button.button,
+.woocommerce input.button, .woocommerce form .form-row .button, .woocommerce-edit-account div.woocommerce form .button, .woocommerce-account .my_account_orders .order-actions .button, .wil-btn:focus, .woocommerce a.button:focus,
+[type="submit"]:focus, .woocommerce .product__add-to-cart .product__add-to-cart__inner:focus, .woocommerce .widget_shopping_cart .buttons .button:focus,
+.woocommerce.widget_shopping_cart .buttons .button:focus, #respond .form-submit [type="submit"]:focus, .woocommerce table.shop_table td.actions .coupon + .button:focus,
+.woocommerce table.shop_table td.actions .coupon .button:focus, .woocommerce-cart .wc-proceed-to-checkout .button.checkout-button:focus, .woocommerce #respond input#submit:focus,
+.woocommerce button.button:focus,
+.woocommerce input.button:focus, .woocommerce form .form-row .button:focus, .woocommerce-edit-account div.woocommerce form .button:focus, .woocommerce-account .my_account_orders .order-actions .button:focus, .wil-btn:hover, .woocommerce a.button:hover,
+[type="submit"]:hover, .woocommerce .product__add-to-cart .product__add-to-cart__inner:hover, .woocommerce .widget_shopping_cart .buttons .button:hover,
+.woocommerce.widget_shopping_cart .buttons .button:hover, #respond .form-submit [type="submit"]:hover, .woocommerce table.shop_table td.actions .coupon + .button:hover,
+.woocommerce table.shop_table td.actions .coupon .button:hover, .woocommerce-cart .wc-proceed-to-checkout .button.checkout-button:hover, .woocommerce #respond input#submit:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover, .woocommerce form .form-row .button:hover, .woocommerce-edit-account div.woocommerce form .button:hover, .woocommerce-account .my_account_orders .order-actions .button:hover, .wil-btn.wil-btn--gray:focus, .woocommerce a.wil-btn--gray.button:focus,
+.wil-btn--gray[type="submit"]:focus, .woocommerce .product__add-to-cart .wil-btn--gray.product__add-to-cart__inner:focus, .woocommerce .widget_shopping_cart .buttons .wil-btn--gray.button:focus, .woocommerce .widget_shopping_cart .buttons .button:focus:not(.checkout),
+.woocommerce.widget_shopping_cart .buttons .wil-btn--gray.button:focus,
+.woocommerce.widget_shopping_cart .buttons .button:focus:not(.checkout), .woocommerce .widget_shopping_cart .buttons #respond .form-submit .button[type="submit"]:focus:not(.checkout), #respond .form-submit .woocommerce .widget_shopping_cart .buttons .button[type="submit"]:focus:not(.checkout), .woocommerce .widget_shopping_cart .buttons #respond input.button#submit:focus:not(.checkout), .woocommerce #respond .widget_shopping_cart .buttons input.button#submit:focus:not(.checkout),
+.woocommerce.widget_shopping_cart .buttons #respond .form-submit .button[type="submit"]:focus:not(.checkout), #respond .form-submit
+.woocommerce.widget_shopping_cart .buttons .button[type="submit"]:focus:not(.checkout),
+.woocommerce.widget_shopping_cart .buttons #respond input.button#submit:focus:not(.checkout),
+.woocommerce.widget_shopping_cart #respond .buttons input.button#submit:focus:not(.checkout), #respond .form-submit .wil-btn--gray[type="submit"]:focus, .woocommerce table.shop_table td.actions .coupon + .wil-btn--gray.button:focus,
+.woocommerce table.shop_table td.actions .coupon .wil-btn--gray.button:focus, .woocommerce-cart .wc-proceed-to-checkout .wil-btn--gray.button.checkout-button:focus, .woocommerce #respond input.wil-btn--gray#submit:focus,
+.woocommerce button.wil-btn--gray.button:focus,
+.woocommerce input.wil-btn--gray.button:focus, .woocommerce form .form-row .wil-btn--gray.button:focus, .woocommerce-edit-account div.woocommerce form .wil-btn--gray.button:focus, .woocommerce-account .my_account_orders .order-actions .wil-btn--gray.button:focus, .wil-btn.wil-btn--gray:hover, .woocommerce a.wil-btn--gray.button:hover,
+.wil-btn--gray[type="submit"]:hover, .woocommerce .product__add-to-cart .wil-btn--gray.product__add-to-cart__inner:hover, .woocommerce .widget_shopping_cart .buttons .wil-btn--gray.button:hover, .woocommerce .widget_shopping_cart .buttons .button:hover:not(.checkout),
+.woocommerce.widget_shopping_cart .buttons .wil-btn--gray.button:hover,
+.woocommerce.widget_shopping_cart .buttons .button:hover:not(.checkout), .woocommerce .widget_shopping_cart .buttons #respond .form-submit .button[type="submit"]:hover:not(.checkout), #respond .form-submit .woocommerce .widget_shopping_cart .buttons .button[type="submit"]:hover:not(.checkout), .woocommerce .widget_shopping_cart .buttons #respond input.button#submit:hover:not(.checkout), .woocommerce #respond .widget_shopping_cart .buttons input.button#submit:hover:not(.checkout),
+.woocommerce.widget_shopping_cart .buttons #respond .form-submit .button[type="submit"]:hover:not(.checkout), #respond .form-submit
+.woocommerce.widget_shopping_cart .buttons .button[type="submit"]:hover:not(.checkout),
+.woocommerce.widget_shopping_cart .buttons #respond input.button#submit:hover:not(.checkout),
+.woocommerce.widget_shopping_cart #respond .buttons input.button#submit:hover:not(.checkout), #respond .form-submit .wil-btn--gray[type="submit"]:hover, .woocommerce table.shop_table td.actions .coupon + .wil-btn--gray.button:hover,
+.woocommerce table.shop_table td.actions .coupon .wil-btn--gray.button:hover, .woocommerce-cart .wc-proceed-to-checkout .wil-btn--gray.button.checkout-button:hover, .woocommerce #respond input.wil-btn--gray#submit:hover,
+.woocommerce button.wil-btn--gray.button:hover,
+.woocommerce input.wil-btn--gray.button:hover, .woocommerce form .form-row .wil-btn--gray.button:hover, .woocommerce-edit-account div.woocommerce form .wil-btn--gray.button:hover, .woocommerce-account .my_account_orders .order-actions .wil-btn--gray.button:hover, .wil-btn.wil-btn--dark:focus, .woocommerce a.wil-btn--dark.button:focus,
+.wil-btn--dark[type="submit"]:focus, .woocommerce .product__add-to-cart .wil-btn--dark.product__add-to-cart__inner:focus, .woocommerce .widget_shopping_cart .buttons .wil-btn--dark.button:focus,
+.woocommerce.widget_shopping_cart .buttons .wil-btn--dark.button:focus, #respond .form-submit .wil-btn--dark[type="submit"]:focus, .woocommerce table.shop_table td.actions .coupon + .wil-btn--dark.button:focus,
+.woocommerce table.shop_table td.actions .coupon .wil-btn--dark.button:focus, .woocommerce-cart .wc-proceed-to-checkout .wil-btn--dark.button.checkout-button:focus, .woocommerce #respond input.wil-btn--dark#submit:focus,
+.woocommerce button.wil-btn--dark.button:focus,
+.woocommerce input.wil-btn--dark.button:focus, .woocommerce form .form-row .wil-btn--dark.button:focus, .woocommerce-edit-account div.woocommerce form .wil-btn--dark.button:focus, .woocommerce-account .my_account_orders .order-actions .wil-btn--dark.button:focus, .wil-btn.wil-btn--dark:hover, .woocommerce a.wil-btn--dark.button:hover,
+.wil-btn--dark[type="submit"]:hover, .woocommerce .product__add-to-cart .wil-btn--dark.product__add-to-cart__inner:hover, .woocommerce .widget_shopping_cart .buttons .wil-btn--dark.button:hover,
+.woocommerce.widget_shopping_cart .buttons .wil-btn--dark.button:hover, #respond .form-submit .wil-btn--dark[type="submit"]:hover, .woocommerce table.shop_table td.actions .coupon + .wil-btn--dark.button:hover,
+.woocommerce table.shop_table td.actions .coupon .wil-btn--dark.button:hover, .woocommerce-cart .wc-proceed-to-checkout .wil-btn--dark.button.checkout-button:hover, .woocommerce #respond input.wil-btn--dark#submit:hover,
+.woocommerce button.wil-btn--dark.button:hover,
+.woocommerce input.wil-btn--dark.button:hover, .woocommerce form .form-row .wil-btn--dark.button:hover, .woocommerce-edit-account div.woocommerce form .wil-btn--dark.button:hover, .woocommerce-account .my_account_orders .order-actions .wil-btn--dark.button:hover, .wil-heading__divider, .wil-work-filter__icon, .wil-toggle-minicart i.icon, .wil-icon-box__divider, .post__more-icon, .wil-animation__item.wil-anim--product:before, .product__add-to-cart-bg .bg, .woocommerce nav.woocommerce-pagination > .page-numbers .current,
+.woocommerce nav.woocommerce-pagination > .page-numbers a:hover,
+.wil-pagination .current,
+.wil-pagination a:hover, .device-large .wil-blog-creative .wil-pagination a:hover, .wil-work-nav-page__out-icon-wrap-hover .wil-work-nav-page__out-icon-border span, .accordion__header:before, .wil-progress__bar-count, .swiper-pagination-bullet-active, .wil-swiper__button-item:hover, .wil-pricing--highlight .wil-btn, .wil-pricing--highlight .woocommerce a.button, .woocommerce .wil-pricing--highlight a.button, .wil-pricing--highlight
+[type="submit"], .wil-pricing--highlight .woocommerce .product__add-to-cart .product__add-to-cart__inner, .woocommerce .product__add-to-cart .wil-pricing--highlight .product__add-to-cart__inner, .wil-pricing--highlight .woocommerce .widget_shopping_cart .buttons .button, .woocommerce .widget_shopping_cart .buttons .wil-pricing--highlight .button, .wil-pricing--highlight
+.woocommerce.widget_shopping_cart .buttons .button,
+.woocommerce.widget_shopping_cart .buttons .wil-pricing--highlight .button, .wil-pricing--highlight #respond .form-submit [type="submit"], #respond .form-submit .wil-pricing--highlight [type="submit"], .wil-pricing--highlight .woocommerce table.shop_table td.actions .coupon + .button, .woocommerce table.shop_table td.actions .wil-pricing--highlight .coupon + .button, .wil-pricing--highlight
+.woocommerce table.shop_table td.actions .coupon .button,
+.woocommerce table.shop_table td.actions .coupon .wil-pricing--highlight .button, .wil-pricing--highlight .woocommerce-cart .wc-proceed-to-checkout .button.checkout-button, .woocommerce-cart .wc-proceed-to-checkout .wil-pricing--highlight .button.checkout-button, .wil-pricing--highlight .woocommerce #respond input#submit, .woocommerce #respond .wil-pricing--highlight input#submit, .wil-pricing--highlight
+.woocommerce button.button,
+.woocommerce .wil-pricing--highlight button.button, .wil-pricing--highlight
+.woocommerce input.button,
+.woocommerce .wil-pricing--highlight input.button, .wil-pricing--highlight .woocommerce form .form-row .button, .woocommerce form .form-row .wil-pricing--highlight .button, .wil-pricing--highlight .woocommerce-edit-account div.woocommerce form .button, .woocommerce-edit-account div.woocommerce form .wil-pricing--highlight .button, .wil-pricing--highlight .woocommerce-account .my_account_orders .order-actions .button, .woocommerce-account .my_account_orders .order-actions .wil-pricing--highlight .button, .wil-toggle-menu.active .wil-toggle-menu__item, .wil-scroll-top:hover, .woocommerce #respond input#submit.alt:hover,
+.woocommerce a.button.alt:hover,
+.woocommerce button.button.alt:hover,
+.woocommerce input.button.alt:hover, .woocommerce #respond input#submit.alt.disabled,
+.woocommerce #respond input#submit.alt.disabled:hover,
+.woocommerce #respond input#submit.alt:disabled,
+.woocommerce #respond input#submit.alt:disabled:hover,
+.woocommerce #respond input#submit.alt[disabled]:disabled,
+.woocommerce #respond input#submit.alt[disabled]:disabled:hover,
+.woocommerce a.button.alt.disabled,
+.woocommerce a.button.alt.disabled:hover,
+.woocommerce a.button.alt:disabled,
+.woocommerce a.button.alt:disabled:hover,
+.woocommerce a.button.alt[disabled]:disabled,
+.woocommerce a.button.alt[disabled]:disabled:hover,
+.woocommerce button.button.alt.disabled,
+.woocommerce button.button.alt.disabled:hover,
+.woocommerce button.button.alt:disabled,
+.woocommerce button.button.alt:disabled:hover,
+.woocommerce button.button.alt[disabled]:disabled,
+.woocommerce button.button.alt[disabled]:disabled:hover,
+.woocommerce input.button.alt.disabled,
+.woocommerce input.button.alt.disabled:hover,
+.woocommerce input.button.alt:disabled,
+.woocommerce input.button.alt:disabled:hover,
+.woocommerce input.button.alt[disabled]:disabled,
+.woocommerce input.button.alt[disabled]:disabled:hover,
+.woocommerce #respond input#submit.alt,
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt {
+  background-color: #67dee8;
+}
+
+.wil-toggle-menu.active, .woocommerce div.product .woocommerce-tabs ul.tabs.wc-tabs .active {
+  border-color: #67dee8;
+}
+
+.wil-refesh, .wil-work-filter--1 .wil-work-filter__list .current a span, .blockUI.blockOverlay:before,
+.woocommerce .loader:before {
+  border-top-color: #67dee8;
+}
+
+.wil-text-overline-anim:hover, .wil-work-filter--2 .wil-work-filter__list li.current a, .widget-tweet-content .item .item-content a:hover, .wil-navigation .wil-toggle-minicart:hover i.icon {
+  color: #67dee8 !important;
+}
+
+.woocommerce table.shop_table td.actions .coupon + .button:focus, .woocommerce table.shop_table td.actions .coupon + .button:hover,
+.woocommerce table.shop_table td.actions .coupon .button:focus,
+.woocommerce table.shop_table td.actions .coupon .button:hover, .woocommerce-cart .wc-proceed-to-checkout .button.checkout-button {
+  background-color: #67dee8 !important;
+}
+
+.wil-work-filter--2 .wil-work-filter__list li.current a {
+  border-color: #67dee8 !important;
+}
+
+.wil-text-overline-anim:after {
+  border-top-color: #67dee8 !important;
+}
+
+.wil-icon--gradient, .wil-work-detail__sup {
+  background-color: #67dee8;
+  background-image: linear-gradient(45deg, #67dee8 40%, #98e8e4 80%);
+}
+
+.wil-icon--bg-gradient {
+  background-color: #67dee8;
+  background-image: linear-gradient(45deg, #67dee8 30%, #98e8e4 90%);
+}
+
+.wil-svg .wil-svg__circle {
+  stroke: #67dee8;
+}
+
+.ie .wil-icon--gradient, .ie .wil-work-detail__sup {
+  -webkit-text-fill-color: #67dee8;
+}

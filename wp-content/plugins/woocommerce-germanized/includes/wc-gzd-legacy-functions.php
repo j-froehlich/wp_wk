@@ -10,7 +10,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-function wc_gzd_get_crud_data( $object, $key ) {
+function wc_gzd_get_crud_data( $object, $key, $suppress_suffix = false ) {
 
 	if ( is_a( $object, 'WC_GZD_Product' ) ) {
 		$object = $object->get_wc_product();
@@ -47,7 +47,8 @@ function wc_gzd_get_crud_data( $object, $key ) {
 			$value = $object->{$getter}();
 		}
 	} elseif ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-		if ( substr( $key, 0, 1 ) !== '_' )
+		// Prefix meta if suppress_suffix is not set
+		if ( substr( $key, 0, 1 ) !== '_' && ! $suppress_suffix )
 			$key = '_' . $key;
 
 		$value = $object->get_meta( $key );
@@ -59,7 +60,29 @@ function wc_gzd_get_crud_data( $object, $key ) {
 	return $value;
 }
 
+function wc_gzd_set_crud_data( $object, $key, $value ) {
+
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+
+		$key_unprefixed = substr( $key, 0, 1 ) === '_' ? substr( $key, 1 ) : $key;
+		$setter = substr( $key_unprefixed, 0, 3 ) === "set" ? $key : "set_{$key_unprefixed}";
+
+		if ( is_callable( array( $object, $setter ) ) ) {
+			$reflection = new ReflectionMethod( $object, $setter );
+			if ( $reflection->isPublic() ) {
+				$object->{$setter}( $value );
+			}
+		} else {
+			$object = wc_gzd_set_crud_meta_data( $object, $key, $value );
+		}
+	} else {
+		$object = wc_gzd_set_crud_meta_data( $object, $key, $value );
+	}
+	return $object;
+}
+
 function wc_gzd_set_crud_meta_data( $object, $key, $value ) {
+
 	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 		$object->update_meta_data( $key, $value );
 	} else {
@@ -137,4 +160,39 @@ function wc_gzd_reduce_order_stock( $order_id ) {
         $order = wc_get_order( $order_id );
         $order->reduce_order_stock();
     }
+}
+
+function wc_gzd_get_product_type( $id ) {
+	$type = false;
+
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+		$type = WC_Product_Factory::get_product_type( $id );
+	} else {
+		$post_type  = get_post_type( $id );
+		if ( 'product' === $post_type ) {
+			$terms = get_the_terms( $id, 'product_type' );
+			$type = ! empty( $terms ) ? sanitize_title( current( $terms )->name ) : 'simple';
+		} elseif( 'product_variation' === $post_type ) {
+			$type = 'variation';
+		} else {
+			$type = false;
+		}
+	}
+	return $type;
+}
+
+function wc_gzd_get_product_name( $product ) {
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+		return $product->get_name();
+	} else {
+		return $product->get_title();
+	}
+}
+
+function wc_gzd_get_cart_url() {
+	return ( function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : WC()->cart->get_cart_url() );
+}
+
+function wc_gzd_get_checkout_url() {
+	return ( function_exists( 'wc_get_checkout_url' ) ? wc_get_checkout_url() : WC()->cart->get_checkout_url() );
 }

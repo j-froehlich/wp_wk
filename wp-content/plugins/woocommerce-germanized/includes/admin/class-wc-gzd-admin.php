@@ -52,10 +52,35 @@ class WC_GZD_Admin {
 		add_action( 'admin_init', array( $this, 'check_text_options_deletion' ) );
 		add_action( 'admin_init', array( $this, 'check_complaints_shortcode_append' ) );
 		add_action( 'admin_init', array( $this, 'check_version_cache_deletion' ) );
+		add_action( 'admin_init', array( $this, 'check_insert_vat_rates' ) );
 		
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
 		add_action( 'woocommerce_admin_order_data_after_shipping_address', array( $this, 'set_order_parcel_delivery_opted_in' ), 10, 1 );
 
+		add_filter( 'woocommerce_order_actions', array( $this, 'order_actions' ), 10, 1 );
+		add_action( 'woocommerce_order_action_order_confirmation', array( $this, 'resend_order_confirmation' ), 10, 1 );
+    }
+
+    public function resend_order_confirmation( $order ) {
+
+	    // Send the customer invoice email.
+	    WC()->payment_gateways();
+	    WC()->shipping();
+
+	    $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_processing_order' );
+
+	    if ( $mail ) {
+	        $mail->trigger( $order );
+
+	        // Note the event.
+		    $order->add_order_note( __( 'Order confirmation manually sent to customer.', 'woocommerce-germanized' ), false, true );
+		    do_action( 'woocommerce_gzd_after_resend_order_confirmation_email', $order, 'customer_processing_order' );
+        }
+    }
+
+    public function order_actions( $actions ) {
+	    $actions[ 'order_confirmation' ] = __( 'Resend order confirmation', 'woocommerce-germanized' );
+	    return $actions;
     }
 
 	public function status_tab() {
@@ -143,7 +168,7 @@ class WC_GZD_Admin {
 
 		// Hide delivery time and unit tagsdiv
 		if ( version_compare( WC()->version, '2.3', '>=' ) )
-			wp_add_inline_style( 'woocommerce-gzd-admin', '#tagsdiv-product_delivery_time, #tagsdiv-product_unit {display: none}' );
+			wp_add_inline_style( 'woocommerce-gzd-admin', '#tagsdiv-product_delivery_time, #tagsdiv-product_unit, #tagsdiv-product_price_label {display: none}' );
 	}
 
 	public function add_legal_page_metabox() {
@@ -176,7 +201,7 @@ class WC_GZD_Admin {
 			return;
 
 		if ( isset( $_POST[ '_legal_text' ] ) && ! empty( $_POST[ '_legal_text' ] ) )
-			update_post_meta( $post_id, '_legal_text', sanitize_text_field( esc_html( $_POST[ '_legal_text' ] ) ) );
+			update_post_meta( $post_id, '_legal_text', wc_gzd_sanitize_html_text_field( $_POST[ '_legal_text' ] ) );
 		else
 			delete_post_meta( $post_id, '_legal_text' );
 		
@@ -332,6 +357,17 @@ class WC_GZD_Admin {
  			)
  		);
  	}
+
+	public function check_insert_vat_rates() {
+		if ( isset( $_GET[ 'insert-vat-rates' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-insert-vat-rates' ) ) {
+
+		    WC_GZD_Install::create_tax_rates();
+			WC_GZD_Install::create_virtual_tax_rates();
+
+			// Redirect to check for updates
+			wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=tax&section=standard' ) );
+		}
+	}
 
  	public function get_shipping_method_instances() {
 

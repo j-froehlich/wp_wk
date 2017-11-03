@@ -1,0 +1,255 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Wiloke OZ Widgets\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-15 10:29+0000\n"
+"PO-Revision-Date: 2017-03-15 10:30+0000\n"
+"Last-Translator: admin <phantienhien@yahoo.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: class.piwidgets.php:55 class.piwidgets.php:74 class.piwidgets.php:196
+#: class.piwidgets.php:223
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: class.piwidgets.php:159 class.piwidgets.php:159 class.piwidgets.php:184
+#: class.piwidgets.php:184
+msgid "Upload"
+msgstr ""
+
+#: class.piwidgets.php:264
+msgid "<p>There aren no posts yet</p>"
+msgstr ""
+
+#: class.piwidgets.php:301
+msgid "<p>There are no any comments yet</p>"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:24 class.wilokeWidgetOptions.php:24
+msgid "Wiloke Instagram"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:25 class.wilokeWidgetOptions.php:25
+msgid "Wiloke Twitter"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:66
+msgid "Sign in with Instagram"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:68
+msgid "Do It"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:89
+msgid "User ID"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:97
+msgid "User Name"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:105 class.wilokeWidgetOptions.php:182
+msgid "Access Token"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:115 class.wilokeWidgetOptions.php:190
+msgid "Cache Interval"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:119
+msgid "Leave empty to clear cache. Unit: mini seconds"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:127 class.wilokeWidgetOptions.php:208
+#: modules/pimailchimp/func.mailchimp.php:70
+msgid "Save"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:153
+msgid "Username"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:159
+msgid "Consumer Key"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:166
+msgid "Consumer Secret"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:174
+msgid "Secret Access Token"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:198
+msgid "Creating my twitter application."
+msgstr ""
+
+#: modules/piabout/class.piabout.php:23
+msgid "Allows the simple html tags"
+msgstr ""
+
+#: modules/piabout/class.piabout.php:24
+msgid "Go to Appearance->Asgard Options to set your social networks"
+msgstr ""
+
+#: modules/piads/class.piads.php:8
+msgid "Wiloke Content Box"
+msgstr ""
+
+#: modules/pifacebooklikebox/class.pifacebooklikebox.php:15
+#: modules/piflickrfeed/class.piflickrfeed.php:21
+#: modules/piinstagram/class.piinstagram.php:27
+msgid "Title"
+msgstr ""
+
+#: modules/pifacebooklikebox/class.pifacebooklikebox.php:16
+msgid "App ID"
+msgstr ""
+
+#: modules/pifacebooklikebox/class.pifacebooklikebox.php:19
+msgid "Find my App Id"
+msgstr ""
+
+#: modules/pifacebooklikebox/class.pifacebooklikebox.php:22
+msgid "Facebook Page URL:"
+msgstr ""
+
+#: modules/piflickrfeed/class.piflickrfeed.php:22
+msgid "Flickr ID (*)"
+msgstr ""
+
+#: modules/piflickrfeed/class.piflickrfeed.php:23
+#: modules/piinstagram/class.piinstagram.php:28
+msgid "Number Of Photos"
+msgstr ""
+
+#: modules/piinstagram/class.piinstagram.php:29
+msgid "Cache interval"
+msgstr ""
+
+#: modules/piinstagram/class.piinstagram.php:32
+msgid "Leave empty to clear cache"
+msgstr ""
+
+#: modules/piinstagram/class.piinstagram.php:80
+msgid "Please config your instagram"
+msgstr ""
+
+#: modules/pimailchimp/class.pimailchimp.php:28
+msgid "Description"
+msgstr ""
+
+#: modules/pimailchimp/class.pimailchimp.php:29
+msgid "Warning Message"
+msgstr ""
+
+#: modules/pimailchimp/class.pimailchimp.php:34
+#, php-format
+msgid ""
+"You haven't configured your mailchimp yet. Please go <a href=\"%s\" "
+"target=\"_blank\">here</a> to do it."
+msgstr ""
+
+#: modules/pimailchimp/class.pimailchimp.php:73
+#, php-format
+msgid ""
+"<p>Please <a href=\"%s\" target=\"_blank\" style=\"color:#ff0771\">config</a>"
+" your mailchimp</p>"
+msgstr ""
+
+#: modules/pimailchimp/class.pimailchimp.php:82
+msgid "Your mail..."
+msgstr ""
+
+#: modules/pimailchimp/class.pimailchimp.php:84
+msgid "Processing"
+msgstr ""
+
+#: modules/pimailchimp/class.pimailchimp.php:89
+msgid "Submit success - Bigs thank for you"
+msgstr ""
+
+#: modules/pimailchimp/func.mailchimp.php:13
+#: modules/pimailchimp/func.mailchimp.php:13
+msgid "Wiloke MailChimp"
+msgstr ""
+
+#: modules/pimailchimp/func.mailchimp.php:45
+msgid "API key"
+msgstr ""
+
+#: modules/pimailchimp/func.mailchimp.php:46
+msgid "How to get mailchimp"
+msgstr ""
+
+#: modules/pimailchimp/func.mailchimp.php:48
+msgid "Get Lists"
+msgstr ""
+
+#: modules/pimailchimp/func.mailchimp.php:51
+msgid "List ID"
+msgstr ""
+
+#: modules/pimailchimp/func.mailchimp.php:117
+#: modules/pimailchimp/func.mailchimp.php:123
+msgid "Can not get list from your MailChimp"
+msgstr ""
+
+#: modules/pimailchimp/func.mailchimp.php:120
+msgid "This api key is already exist!"
+msgstr ""
+
+#: modules/pimailchimp/func.mailchimp.php:142
+msgid "Something went wrong! Please check your email and try it again."
+msgstr ""
+
+#: modules/pimailchimp/func.mailchimp.php:151
+msgid "You haven't configured MailChimp yet!"
+msgstr ""
+
+#: modules/pimailchimp/func.mailchimp.php:178
+msgid ""
+"It's almost done, We just sent to you a confirmation email, please check "
+"your mailbox and click on verify link to complete."
+msgstr ""
+
+#: modules/pitwitterfeed/class.pitwitterfeed.php:31
+msgid "click  me"
+msgstr ""
+
+#: modules/pitwitterfeed/class.pitwitterfeed.php:60
+msgid "You haven't configured your twitter api"
+msgstr ""
+
+#: modules/pitwitterfeed/class.pitwitterfeed.php:87
+msgid "There are no tweets yet."
+msgstr ""
+
+#. Name of the plugin
+msgid "Wiloke OZ Widgets"
+msgstr ""
+
+#. Description of the plugin
+msgid "Wiloke Widgets"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://wiloke.com"
+msgstr ""
+
+#. Author of the plugin
+msgid "wiloke"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://themeforest.net/user/wiloke"
+msgstr ""

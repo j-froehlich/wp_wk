@@ -145,7 +145,7 @@ class WC_Gateway_PPEC_Checkout_Handler {
 		$require_phone_number = wc_gateway_ppec()->settings->require_phone_number;
 
 		if ( array_key_exists( 'billing_phone', $billing_fields ) ) {
-			$billing_fields['billing_phone']['required'] = 'no' !== $require_phone_number;
+			$billing_fields['billing_phone']['required'] = 'yes' === $require_phone_number;
 		};
 
 		return $billing_fields;
@@ -229,7 +229,9 @@ class WC_Gateway_PPEC_Checkout_Handler {
 			<?php endif; ?>
 
 			<?php if ( ! empty( $checkout_details->payer_details->phone_number ) ) : ?>
-				<li><strong><?php _e( 'Tel:', 'woocommerce-gateway-paypal-express-checkout' ) ?></strong> <?php echo esc_html( $checkout_details->payer_details->phone_number ); ?></li>
+				<li><strong><?php _e( 'Phone:', 'woocommerce-gateway-paypal-express-checkout' ) ?></strong> <?php echo esc_html( $checkout_details->payer_details->phone_number ); ?></li>
+			<?php elseif ( 'yes' === wc_gateway_ppec()->settings->require_phone_number ) : ?>
+				<li><?php $fields = WC()->checkout->get_checkout_fields( 'billing' ); woocommerce_form_field( 'billing_phone', $fields['billing_phone'], WC()->checkout->get_value( 'billing_phone' ) ); ?></li>
 			<?php endif; ?>
 		</ul>
 		<?php
@@ -295,6 +297,10 @@ class WC_Gateway_PPEC_Checkout_Handler {
 			return;
 		}
 
+		if ( ! WC_Gateway_PPEC_Plugin::needs_shipping() ) {
+			return;
+		}
+
 		?>
 		<h3><?php _e( 'Shipping details', 'woocommerce-gateway-paypal-express-checkout' ); ?></h3>
 		<?php
@@ -319,6 +325,14 @@ class WC_Gateway_PPEC_Checkout_Handler {
 			return array();
 		}
 
+		$phone = '';
+
+		if ( ! empty( $checkout_details->payer_details->phone_number ) ) {
+			$phone = $checkout_details->payer_details->phone_number;
+		} elseif ( 'yes' === wc_gateway_ppec()->settings->require_phone_number && ! empty( $_POST['billing_phone'] ) ) {
+			$phone = wc_clean( $_POST['billing_phone'] );
+		}
+
 		return array(
 			'first_name' => $checkout_details->payer_details->first_name,
 			'last_name'  => $checkout_details->payer_details->last_name,
@@ -329,7 +343,7 @@ class WC_Gateway_PPEC_Checkout_Handler {
 			'state'      => $checkout_details->payer_details->billing_address ? $checkout_details->payer_details->billing_address->getState() : '',
 			'postcode'   => $checkout_details->payer_details->billing_address ? $checkout_details->payer_details->billing_address->getZip() : '',
 			'country'    => $checkout_details->payer_details->billing_address ? $checkout_details->payer_details->billing_address->getCountry() : $checkout_details->payer_details->country,
-			'phone'      => $checkout_details->payer_details->phone_number,
+			'phone'      => $phone,
 			'email'      => $checkout_details->payer_details->email,
 		);
 	}
@@ -823,12 +837,8 @@ class WC_Gateway_PPEC_Checkout_Handler {
 	public function handle_payment_response( $order, $payment ) {
 		// Store meta data to order
 		$old_wc = version_compare( WC_VERSION, '3.0', '<' );
-		if ( $old_wc ) {
-			update_post_meta( $order->id, '_paypal_status', strtolower( $payment->payment_status ) );
-		} else {
-			$order->update_meta_data( '_paypal_status', strtolower( $payment->payment_status ) );
-		}
 
+		update_post_meta( $old_wc ? $order->id : $order->get_id(), '_paypal_status', strtolower( $payment->payment_status ) );
 		update_post_meta( $old_wc ? $order->id : $order->get_id(), '_transaction_id', $payment->transaction_id );
 
 		// Handle $payment response

@@ -1,0 +1,13 @@
+.wiloke-service-wrapper{
+    margin-top: 40px !important;
+    padding: 0 30px !important;
+}
+.as3cf-notice{
+    display: none;
+}
+.wiloke-service-notice.notice{
+    display: block !important;
+}
+.ui.button{
+    height: auto !important;
+}

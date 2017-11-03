@@ -1,0 +1,10 @@
+.form-table.wiloke-settings-table p{
+    margin-bottom: 8px;
+}
+.wiloke-settings-table input, .wiloke-settings-table img{
+    vertical-align: middle;
+}
+.wiloke-share-label {
+    display: block;
+    padding: 10px 0px;
+}

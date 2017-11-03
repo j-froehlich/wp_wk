@@ -1,0 +1,145 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-15 10:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: wiloke-oz-functionality.php:33
+msgctxt "post type general name"
+msgid "Portfolios"
+msgstr ""
+
+#: wiloke-oz-functionality.php:34
+msgctxt "post type singular name"
+msgid "Project"
+msgstr ""
+
+#: wiloke-oz-functionality.php:35
+msgctxt "admin menu"
+msgid "Portfolios"
+msgstr ""
+
+#: wiloke-oz-functionality.php:36
+msgctxt "add new on admin bar"
+msgid "Project"
+msgstr ""
+
+#: wiloke-oz-functionality.php:37
+msgctxt "book"
+msgid "Add New"
+msgstr ""
+
+#: wiloke-oz-functionality.php:38
+msgid "Add New Project"
+msgstr ""
+
+#: wiloke-oz-functionality.php:39
+msgid "New Project"
+msgstr ""
+
+#: wiloke-oz-functionality.php:40
+msgid "Edit Project"
+msgstr ""
+
+#: wiloke-oz-functionality.php:41
+msgid "View Project"
+msgstr ""
+
+#: wiloke-oz-functionality.php:42
+msgid "All Portfolios"
+msgstr ""
+
+#: wiloke-oz-functionality.php:43
+msgid "Search Portfolios"
+msgstr ""
+
+#: wiloke-oz-functionality.php:44
+msgid "Parent Portfolios:"
+msgstr ""
+
+#: wiloke-oz-functionality.php:45
+msgid "No Portfolios found."
+msgstr ""
+
+#: wiloke-oz-functionality.php:46
+msgid "No Portfolios found in Trash."
+msgstr ""
+
+#: wiloke-oz-functionality.php:51
+msgid "Description."
+msgstr ""
+
+#: wiloke-oz-functionality.php:82
+msgctxt "taxonomy general name"
+msgid "Portfolio Categories"
+msgstr ""
+
+#: wiloke-oz-functionality.php:83
+msgctxt "taxonomy singular name"
+msgid "Portfolio Category"
+msgstr ""
+
+#: wiloke-oz-functionality.php:84
+msgid "Search Portfolio Categories"
+msgstr ""
+
+#: wiloke-oz-functionality.php:85
+msgid "All Portfolio Categories"
+msgstr ""
+
+#: wiloke-oz-functionality.php:86
+msgid "Parent Portfolio Category"
+msgstr ""
+
+#: wiloke-oz-functionality.php:87
+msgid "Parent Portfolio Category:"
+msgstr ""
+
+#: wiloke-oz-functionality.php:88
+msgid "Edit Portfolio Category"
+msgstr ""
+
+#: wiloke-oz-functionality.php:89
+msgid "Update Portfolio Category"
+msgstr ""
+
+#: wiloke-oz-functionality.php:90
+msgid "Add New Portfolio Category"
+msgstr ""
+
+#: wiloke-oz-functionality.php:91
+msgid "New Portfolio Category Name"
+msgstr ""
+
+#: wiloke-oz-functionality.php:92
+msgid "Portfolio Categories"
+msgstr ""
+
+#. Name of the plugin
+msgid "Wiloke OZ Functionality"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"This guy is a part of OZ theme. Portfolio post type, widget, twitter, "
+"mailchimp and lots of other features were created by him"
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://wiloke.com"
+msgstr ""
+
+#. Author of the plugin
+msgid "Wiloke"
+msgstr ""

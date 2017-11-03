@@ -147,3 +147,16 @@ function wc_gzd_get_shipping_costs_text( $product = false ) {
 		return apply_filters( 'woocommerce_gzd_shipping_costs_cart_text', str_replace( $find, $replace, get_option( 'woocommerce_gzd_shipping_costs_text' ) ) );
 	}
 }
+
+function wc_gzd_sanitize_html_text_field( $value ) {
+	return wp_kses_post( esc_html( wp_unslash( $value ) ) );
+}
+
+function wc_gzd_convert_coupon_to_voucher( $coupon ) {
+	$coupon = new WC_Coupon( $coupon );
+	WC_GZD_Coupon_Helper::instance()->convert_coupon_to_voucher( $coupon );
+}
+
+function wc_gzd_get_differential_taxation_notice_text() {
+	return apply_filters( 'woocommerce_gzd_differential_taxation_notice_text', get_option( 'woocommerce_gzd_differential_taxation_notice_text' ) );
+}

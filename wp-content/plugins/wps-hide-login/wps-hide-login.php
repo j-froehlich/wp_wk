@@ -5,7 +5,7 @@ Plugin URI: https://github.com/Tabrisrp/wps-hide-login
 Description: Protect your website by changing the login URL and preventing access to wp-login.php page and wp-admin directory while not logged-in
 Author: Remy Perona for WPServeur
 Author URI: http://profiles.wordpress.org/tabrisrp/
-Version: 1.1.7
+Version: 1.2.1
 Text Domain: wps-hide-login
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -154,6 +154,7 @@ if ( defined( 'ABSPATH' )
 			add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 			add_action( 'network_admin_notices', array( $this, 'admin_notices' ) );
 			add_action( 'wp_loaded', array( $this, 'wp_loaded' ) );
+			add_action( 'setup_theme', array( $this, 'setup_theme' ), 1 );
 
             add_filter( 'plugin_action_links_' . $this->basename(), array( $this, 'plugin_action_links' ) );
 			add_filter( 'site_url', array( $this, 'site_url' ), 10, 4 );
@@ -362,7 +363,7 @@ if ( defined( 'ABSPATH' )
 
 			$request = parse_url( $_SERVER['REQUEST_URI'] );
 
-			if ( ( strpos( $_SERVER['REQUEST_URI'], 'wp-login.php' ) !== false
+			if ( ( strpos( rawurldecode( $_SERVER['REQUEST_URI'] ), 'wp-login.php' ) !== false
 					|| untrailingslashit( $request['path'] ) === site_url( 'wp-login', 'relative' ) )
 				&& ! is_admin() ) {
 
@@ -381,6 +382,14 @@ if ( defined( 'ABSPATH' )
 
 			}
 
+		}
+
+		public function setup_theme() {
+			global $pagenow;
+
+			if ( ! is_user_logged_in() && 'customize.php' === $pagenow ) {
+				wp_die( __( 'This has been disabled', 'wps-hide-login' ), 403 );
+			}
 		}
 
 		public function wp_loaded() {
@@ -418,8 +427,8 @@ if ( defined( 'ABSPATH' )
 							|| $result->get_error_code() === 'blog_taken' ) ) {
 
 						wp_safe_redirect( $this->new_login_url()
-							. ( ! empty( $_SERVER['QUERY_STRING'] ) ? '?' . $_SERVER['QUERY_STRING'] : '' ) );
-
+						   . ( ! empty( $_SERVER['QUERY_STRING'] ) ? '?' . $_SERVER['QUERY_STRING'] : '' ) );
+						
 						die;
 
 					}
@@ -429,8 +438,12 @@ if ( defined( 'ABSPATH' )
 				$this->wp_template_loader();
 
 			} elseif ( $pagenow === 'wp-login.php' ) {
-
 				global $error, $interim_login, $action, $user_login;
+				
+				if ( is_user_logged_in() && ! isset( $_REQUEST['action'] ) ) {
+					wp_safe_redirect( admin_url() );
+					die();
+				}
 
 				@require_once ABSPATH . 'wp-login.php';
 

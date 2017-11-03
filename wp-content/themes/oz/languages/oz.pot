@@ -1,0 +1,2377 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-15 07:35+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: comments.php:3
+msgid "Post is password protected. Enter the password to view any comments."
+msgstr ""
+
+#: comments.php:13
+msgid "No Comment"
+msgstr ""
+
+#: comments.php:16
+msgid "01 Comment"
+msgstr ""
+
+#: comments.php:18 comments.php:20
+msgid " Comments"
+msgstr ""
+
+#: comments.php:58
+msgid "Your name"
+msgstr ""
+
+#: comments.php:59
+msgid "Your Email"
+msgstr ""
+
+#: comments.php:62
+msgid "Comment"
+msgstr ""
+
+#: comments.php:66
+msgid "LEAVE A COMMENT"
+msgstr ""
+
+#: comments.php:72
+#, php-format
+msgid ""
+"Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of "
+"this account\">Log out?</a>"
+msgstr ""
+
+#: content-none.php:3
+msgid "Nothing Found"
+msgstr ""
+
+#: content-none.php:10
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: content-none.php:14 searchform.php:18
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: content-none.php:19
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: product-searchform.php:13
+msgid "Search Products&hellip;"
+msgstr ""
+
+#: product-searchform.php:13 searchform.php:12
+msgid "Search for:"
+msgstr ""
+
+#: searchform.php:12
+msgid "Search …"
+msgstr ""
+
+#: searchform.php:17
+msgid "Processing..."
+msgstr ""
+
+#: single.php:39
+msgid "Tags: "
+msgstr ""
+
+#: taxonomy-portfolio_category.php:17
+msgid "This post does not exist"
+msgstr ""
+
+#: admin/class.wiloke.php:461
+msgid "Sorry"
+msgstr ""
+
+#: admin/class.wiloke.php:461
+msgid "Class doesn't exist!"
+msgstr ""
+
+#: admin/class.wiloke.php:486
+#, php-format
+msgid ""
+"The file with name %s doesn't exist. Please open a topic via support.wiloke."
+"com to report this problem."
+msgstr ""
+
+#: admin/class.wiloke.php:1005
+msgid "Use default menu"
+msgstr ""
+
+#: admin/class.wiloke.php:1011
+msgid "There are no menus"
+msgstr ""
+
+#: configs/config.frontend.php:27 configs/config.frontend.php:33
+msgid "OZ Menu"
+msgstr ""
+
+#: configs/config.general.php:24
+msgid "Wiloke Options"
+msgstr ""
+
+#: configs/config.general.php:41
+msgid "Portfolio Permalinks"
+msgstr ""
+
+#: configs/config.install_plugins.php:9
+msgid "Redux Framework"
+msgstr ""
+
+#: configs/config.install_plugins.php:18
+msgid "Visual Composer"
+msgstr ""
+
+#: configs/config.install_plugins.php:27
+msgid "Wiloke Service"
+msgstr ""
+
+#: configs/config.install_plugins.php:36
+msgid "Wiloke OZ Functionality"
+msgstr ""
+
+#: configs/config.install_plugins.php:45
+msgid "Wiloke Sharing Post"
+msgstr ""
+
+#: configs/config.install_plugins.php:54
+msgid "Wiloke OZ Widgets"
+msgstr ""
+
+#: configs/config.install_plugins.php:63
+msgid "Contact Form 7"
+msgstr ""
+
+#: configs/config.install_plugins.php:71
+msgid "WooCommcerce"
+msgstr ""
+
+#: configs/config.metaboxes.php:7 admin/inc/class.WilokeAdminGeneral.php:113
+msgid "Settings"
+msgstr ""
+
+#: configs/config.metaboxes.php:16 configs/config.themeoptions.php:891
+#: configs/config.vc.php:43 configs/config.vc.php:873
+msgid "Description"
+msgstr ""
+
+#: configs/config.metaboxes.php:21
+msgid "Shop Settings"
+msgstr ""
+
+#: configs/config.metaboxes.php:22
+msgid "These settings is only available for the shop page."
+msgstr ""
+
+#: configs/config.metaboxes.php:33
+msgid "Using Wiloke Design Shop Page"
+msgstr ""
+
+#: configs/config.metaboxes.php:34
+msgid ""
+"As default, the content in the WordPress Editor will be displayed at the top "
+"of the page (Above the products). Checked this box combine with Design Shop "
+"shortcode to create an awesome shop layout."
+msgstr ""
+
+#: configs/config.metaboxes.php:36 configs/config.themeoptions.php:171
+#: configs/config.vc.php:1005 configs/config.vc.php:1199
+msgid "Yes"
+msgstr ""
+
+#: configs/config.metaboxes.php:37 configs/config.vc.php:1006
+msgid "No"
+msgstr ""
+
+#: configs/config.metaboxes.php:45
+msgid "Page Settings"
+msgstr ""
+
+#: configs/config.metaboxes.php:54 configs/config.themeoptions.php:129
+#: configs/config.themeoptions.php:681
+msgid "Logo"
+msgstr ""
+
+#: configs/config.metaboxes.php:55 configs/config.themeoptions.php:682
+msgid "Leave empty to use the default setting"
+msgstr ""
+
+#: configs/config.metaboxes.php:62
+msgid "Page Skin"
+msgstr ""
+
+#: configs/config.metaboxes.php:66 configs/config.themeoptions.php:631
+msgid "Theme Light"
+msgstr ""
+
+#: configs/config.metaboxes.php:67 configs/config.themeoptions.php:632
+msgid "Theme Dark"
+msgstr ""
+
+#: configs/config.metaboxes.php:73 admin/inc/class.WilokeAdminGeneral.php:67
+msgid "Override Theme Color"
+msgstr ""
+
+#: configs/config.metaboxes.php:74
+msgid "Leave empty to use the setting in the ThemeOptions."
+msgstr ""
+
+#: configs/config.metaboxes.php:79
+msgid "Page Description"
+msgstr ""
+
+#: configs/config.metaboxes.php:80
+msgid ""
+"The description will show in content of meta tag for SEO + Sharing purpose."
+msgstr ""
+
+#: configs/config.metaboxes.php:85
+msgid "Toggle Breadcrumb"
+msgstr ""
+
+#: configs/config.metaboxes.php:86
+msgid ""
+"Note that if you are using WooCommerce plugin, the mini-cart will be added "
+"to the top menu automatically."
+msgstr ""
+
+#: configs/config.metaboxes.php:88 configs/config.themeoptions.php:148
+#: configs/config.themeoptions.php:201 configs/config.themeoptions.php:213
+#: configs/config.themeoptions.php:243 configs/config.themeoptions.php:255
+#: configs/config.themeoptions.php:265 configs/config.themeoptions.php:346
+#: configs/config.themeoptions.php:550 configs/config.themeoptions.php:706
+#: configs/config.themeoptions.php:862 configs/config.themeoptions.php:912
+#: configs/config.themeoptions.php:955 configs/config.vc.php:58
+#: configs/config.vc.php:228 configs/config.vc.php:319
+#: configs/config.vc.php:330 configs/config.vc.php:1044
+#: configs/config.vc.php:1055 configs/config.vc.php:1419
+#: configs/config.vc.php:1430
+msgid "Enable"
+msgstr ""
+
+#: configs/config.metaboxes.php:89 configs/config.themeoptions.php:149
+#: configs/config.themeoptions.php:202 configs/config.themeoptions.php:212
+#: configs/config.themeoptions.php:242 configs/config.themeoptions.php:254
+#: configs/config.themeoptions.php:264 configs/config.themeoptions.php:347
+#: configs/config.themeoptions.php:551 configs/config.themeoptions.php:707
+#: configs/config.themeoptions.php:863 configs/config.themeoptions.php:913
+#: configs/config.themeoptions.php:954 configs/config.vc.php:59
+#: configs/config.vc.php:229 configs/config.vc.php:320
+#: configs/config.vc.php:331 configs/config.vc.php:1045
+#: configs/config.vc.php:1056 configs/config.vc.php:1420
+#: configs/config.vc.php:1431
+msgid "Disable"
+msgstr ""
+
+#: configs/config.metaboxes.php:96 configs/config.themeoptions.php:614
+msgid "Header Background"
+msgstr ""
+
+#: configs/config.metaboxes.php:111
+msgid "Portfolio Info Guide"
+msgstr ""
+
+#: configs/config.metaboxes.php:121
+msgid ""
+"OZ uses Custom Fields functionality to show the photo intro. If you don't "
+"see Custom Fields box on the screen, please click on Screen Options (top-"
+"right conner) then checked Custom Fields item. As default there are two "
+"default intro key that defined By and Date info. You can also add more new "
+"intro items, You should click on <code>Enter new</code> and use the "
+"structure: wiloke_project_info_My-Title. The custom intro will be displayed "
+"on front-end like this: My Title: [Value]"
+msgstr ""
+
+#: configs/config.metaboxes.php:127
+msgid "Project Intro"
+msgstr ""
+
+#: configs/config.metaboxes.php:128
+msgid "Let's talk a bit more about this project."
+msgstr ""
+
+#: configs/config.metaboxes.php:137
+msgid "Introduction"
+msgstr ""
+
+#: configs/config.metaboxes.php:142 configs/config.themeoptions.php:789
+msgid "Launch Project Type"
+msgstr ""
+
+#: configs/config.metaboxes.php:143 configs/config.themeoptions.php:790
+msgid ""
+"When a visitor click on this button, It is going to open a new tab or self-"
+"page."
+msgstr ""
+
+#: configs/config.metaboxes.php:146 admin/inc/class.WilokeMetaboxes.php:130
+msgid "Inherit Theme Options"
+msgstr ""
+
+#: configs/config.metaboxes.php:147 configs/config.themeoptions.php:793
+msgid "New Tab"
+msgstr ""
+
+#: configs/config.metaboxes.php:148 configs/config.themeoptions.php:794
+#: configs/config.vc.php:895 configs/config.vc.php:1549
+msgid "Self Page"
+msgstr ""
+
+#: configs/config.metaboxes.php:154 configs/config.metaboxes.php:155
+msgid "Project Link"
+msgstr ""
+
+#: configs/config.metaboxes.php:156
+msgid "Enter the link of the project"
+msgstr ""
+
+#: configs/config.metaboxes.php:161
+msgid "Launch Project Button Name"
+msgstr ""
+
+#: configs/config.metaboxes.php:162
+msgid "Launch Project"
+msgstr ""
+
+#: configs/config.metaboxes.php:163
+msgid "Leave empty to inherit the Theme Option's setting "
+msgstr ""
+
+#: configs/config.themeoptions.php:6 configs/config.themeoptions.php:21
+#: configs/config.themeoptions.php:22
+msgid "Theme Options"
+msgstr ""
+
+#: configs/config.themeoptions.php:120
+msgid "General"
+msgstr ""
+
+#: configs/config.themeoptions.php:130
+msgid ""
+"Upload a logo for this site. This logo will be displayed at the top right of "
+"header."
+msgstr ""
+
+#: configs/config.themeoptions.php:138
+msgid "Retina Logo"
+msgstr ""
+
+#: configs/config.themeoptions.php:139
+msgid "Upload a logo for retina-display devices."
+msgstr ""
+
+#: configs/config.themeoptions.php:145
+msgid "Toggle Logo Animation"
+msgstr ""
+
+#: configs/config.themeoptions.php:155
+msgid "Upload favicon"
+msgstr ""
+
+#: configs/config.themeoptions.php:161
+msgid "Upload Apple Touch Icon"
+msgstr ""
+
+#: configs/config.themeoptions.php:167
+msgid "Enable Pre-loader"
+msgstr ""
+
+#: configs/config.themeoptions.php:168
+msgid ""
+"This feature is automatically enabled if you are using Ajax Feature Loading."
+msgstr ""
+
+#: configs/config.themeoptions.php:172
+msgid "Thanks, but no thanks"
+msgstr ""
+
+#: configs/config.themeoptions.php:179
+msgid "Your Own Preloader"
+msgstr ""
+
+#: configs/config.themeoptions.php:180
+msgid "You can upload an another preloader for your website."
+msgstr ""
+
+#: configs/config.themeoptions.php:185
+msgid "Header"
+msgstr ""
+
+#: configs/config.themeoptions.php:191
+msgid "Breakpoint For Menu"
+msgstr ""
+
+#: configs/config.themeoptions.php:192
+msgid ""
+"If the screen width is smaller than or equal to the breakpoint, Three Line "
+"menu style will be used instead of the Horizontal menu. This is very useful "
+"in the case you have a long menu items."
+msgstr ""
+
+#: configs/config.themeoptions.php:198
+msgid "Toggle Menu Animation"
+msgstr ""
+
+#: configs/config.themeoptions.php:208
+msgid "Toggle Information Box"
+msgstr ""
+
+#: configs/config.themeoptions.php:209
+msgid "This box will be shown on the top right of the site."
+msgstr ""
+
+#: configs/config.themeoptions.php:219
+msgid "Social Following"
+msgstr ""
+
+#: configs/config.themeoptions.php:220
+msgid ""
+"Navigate to Social Networks tab to enter your social networks. Enter "
+"\"disable\" to turn off it. "
+msgstr ""
+
+#: configs/config.themeoptions.php:227
+msgid "Other information"
+msgstr ""
+
+#: configs/config.themeoptions.php:228
+msgid ""
+"For example: Title &lt;span wilokestyle>+123 987654321&lt;/span>. Note that "
+"wilokestyle is required"
+msgstr ""
+
+#: configs/config.themeoptions.php:239
+msgid "Toggle Information Box Animation"
+msgstr ""
+
+#: configs/config.themeoptions.php:250
+msgid "Toggle Search Feature"
+msgstr ""
+
+#: configs/config.themeoptions.php:251
+msgid "Enable / Disable the feature to header"
+msgstr ""
+
+#: configs/config.themeoptions.php:261
+msgid "Toggle Search Animation"
+msgstr ""
+
+#: configs/config.themeoptions.php:272
+msgid "Search Suggestion Title"
+msgstr ""
+
+#: configs/config.themeoptions.php:278 configs/config.vc.php:1385
+msgid "Number of posts"
+msgstr ""
+
+#: configs/config.themeoptions.php:284
+msgid "Search Suggestion By"
+msgstr ""
+
+#: configs/config.themeoptions.php:287
+msgid "Most of the Projects Viewed"
+msgstr ""
+
+#: configs/config.themeoptions.php:288
+msgid "Most of the Products Viewed"
+msgstr ""
+
+#: configs/config.themeoptions.php:289
+msgid "Most of the Posts Viewed"
+msgstr ""
+
+#: configs/config.themeoptions.php:295
+msgid "Updating the suggestion each x seconds"
+msgstr ""
+
+#: configs/config.themeoptions.php:302
+msgid "Disable Breadcrumb on"
+msgstr ""
+
+#: configs/config.themeoptions.php:303
+msgid ""
+"Note that if you are using WooCommerce plugin, the mini-cart will "
+"automatically be added to top if the breadcrumb is disabled"
+msgstr ""
+
+#: configs/config.themeoptions.php:306
+msgid "Single post"
+msgstr ""
+
+#: configs/config.themeoptions.php:307
+msgid "Single page"
+msgstr ""
+
+#: configs/config.themeoptions.php:308
+msgid "Home page"
+msgstr ""
+
+#: configs/config.themeoptions.php:309
+msgid "Product page"
+msgstr ""
+
+#: configs/config.themeoptions.php:310
+msgid "Portfolio Category"
+msgstr ""
+
+#: configs/config.themeoptions.php:311
+msgid "Post Category"
+msgstr ""
+
+#: configs/config.themeoptions.php:312
+msgid "Author page"
+msgstr ""
+
+#: configs/config.themeoptions.php:313
+msgid "Tag page"
+msgstr ""
+
+#: configs/config.themeoptions.php:314
+msgid "Search page"
+msgstr ""
+
+#: configs/config.themeoptions.php:315
+msgid "Product Category"
+msgstr ""
+
+#: configs/config.themeoptions.php:327
+msgid "Google Map API"
+msgstr ""
+
+#: configs/config.themeoptions.php:328
+msgid ""
+"It is required if you wanna use Google MAP. Please go to this link to "
+"generate your <a href=\"https://developers.google."
+"com/maps/documentation/javascript/get-api-key\" target=\"_blank\">Google API "
+"key</a>"
+msgstr ""
+
+#: configs/config.themeoptions.php:336
+msgid "SEO"
+msgstr ""
+
+#: configs/config.themeoptions.php:350
+msgid "Open Graph Meta"
+msgstr ""
+
+#: configs/config.themeoptions.php:351
+msgid ""
+"Elements that describe the object in different ways and are represented by "
+"meta tags included on the object page"
+msgstr ""
+
+#: configs/config.themeoptions.php:356
+msgid "Homepage custom title"
+msgstr ""
+
+#: configs/config.themeoptions.php:357
+msgid ""
+"The title will be displayed in homepage between &lt;title>&lt;/title> tags"
+msgstr ""
+
+#: configs/config.themeoptions.php:363
+msgid "Blog Name | Blog Description"
+msgstr ""
+
+#: configs/config.themeoptions.php:364
+msgid "Blog Description | Blog Name"
+msgstr ""
+
+#: configs/config.themeoptions.php:365
+msgid "Blog Name Only"
+msgstr ""
+
+#: configs/config.themeoptions.php:368
+msgid "Home Title Format"
+msgstr ""
+
+#: configs/config.themeoptions.php:369 configs/config.themeoptions.php:381
+msgid "If Homepage custom title not set"
+msgstr ""
+
+#: configs/config.themeoptions.php:375
+msgid "Category Name | Blog Name"
+msgstr ""
+
+#: configs/config.themeoptions.php:376
+msgid "Blog Name | Category Name"
+msgstr ""
+
+#: configs/config.themeoptions.php:377
+msgid "Category Name Only"
+msgstr ""
+
+#: configs/config.themeoptions.php:380
+msgid "Category Title Format"
+msgstr ""
+
+#: configs/config.themeoptions.php:387
+msgid "Post Title | Blog Name"
+msgstr ""
+
+#: configs/config.themeoptions.php:388
+msgid "Blog Name | Post Title"
+msgstr ""
+
+#: configs/config.themeoptions.php:389
+msgid "Post Title Only"
+msgstr ""
+
+#: configs/config.themeoptions.php:392
+msgid "Single Post Page Title Format"
+msgstr ""
+
+#: configs/config.themeoptions.php:397
+msgid "Home Meta Keywords"
+msgstr ""
+
+#: configs/config.themeoptions.php:398
+msgid "Add tags for the search engines and especially Google"
+msgstr ""
+
+#: configs/config.themeoptions.php:403
+msgid "Home Meta Description"
+msgstr ""
+
+#: configs/config.themeoptions.php:408
+msgid "Author Meta Description"
+msgstr ""
+
+#: configs/config.themeoptions.php:414
+msgid "Contact Meta Description"
+msgstr ""
+
+#: configs/config.themeoptions.php:420
+msgid "Other Meta Keywords"
+msgstr ""
+
+#: configs/config.themeoptions.php:426
+msgid "Other Meta Description"
+msgstr ""
+
+#: configs/config.themeoptions.php:434
+msgid "Sidebar"
+msgstr ""
+
+#: configs/config.themeoptions.php:444 configs/config.themeoptions.php:455
+#: configs/config.themeoptions.php:466 configs/config.themeoptions.php:477
+#: configs/config.themeoptions.php:488
+msgid "Left Sidebar"
+msgstr ""
+
+#: configs/config.themeoptions.php:445 configs/config.themeoptions.php:456
+#: configs/config.themeoptions.php:467 configs/config.themeoptions.php:478
+#: configs/config.themeoptions.php:489
+msgid "Right Sidebar"
+msgstr ""
+
+#: configs/config.themeoptions.php:446 configs/config.themeoptions.php:457
+#: configs/config.themeoptions.php:468 configs/config.themeoptions.php:479
+#: configs/config.themeoptions.php:490 configs/config.themeoptions.php:694
+msgid "No Sidebar"
+msgstr ""
+
+#: configs/config.themeoptions.php:449
+msgid "Post Sidebar"
+msgstr ""
+
+#: configs/config.themeoptions.php:460
+msgid "Page Sidebar"
+msgstr ""
+
+#: configs/config.themeoptions.php:471
+msgid "Archive, Home, Search "
+msgstr ""
+
+#: configs/config.themeoptions.php:482
+msgid "Shop Sidebar "
+msgstr ""
+
+#: configs/config.themeoptions.php:493
+msgid "Product Sidebar "
+msgstr ""
+
+#: configs/config.themeoptions.php:500 configs/config.vc.php:619
+#: admin/inc/class.WilokeUser.php:98
+msgid "Social Networks"
+msgstr ""
+
+#: configs/config.themeoptions.php:510
+msgid "Blog"
+msgstr ""
+
+#: configs/config.themeoptions.php:519 admin/inc/func.visualComposer.php:121
+msgid "General Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:525 configs/config.vc.php:1251
+#: configs/config.vc.php:1260
+msgid "Blog Layout"
+msgstr ""
+
+#: configs/config.themeoptions.php:527 configs/config.vc.php:370
+#: configs/config.vc.php:411 configs/config.vc.php:1106
+#: configs/config.vc.php:1147 configs/config.vc.php:1263
+msgid "Creative"
+msgstr ""
+
+#: configs/config.themeoptions.php:528 configs/config.vc.php:1264
+msgid "Alternate Grids"
+msgstr ""
+
+#: configs/config.themeoptions.php:529 configs/config.vc.php:650
+#: configs/config.vc.php:1265
+msgid "Classic"
+msgstr ""
+
+#: configs/config.themeoptions.php:542
+msgid "Article Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:548
+msgid "Related Posts"
+msgstr ""
+
+#: configs/config.themeoptions.php:558 configs/config.vc.php:292
+#: configs/config.vc.php:861 configs/config.vc.php:985
+msgid "Title"
+msgstr ""
+
+#: configs/config.themeoptions.php:564
+msgid "Number of articles"
+msgstr ""
+
+#: configs/config.themeoptions.php:566
+msgid "3 Articles"
+msgstr ""
+
+#: configs/config.themeoptions.php:567
+msgid "2 Articles"
+msgstr ""
+
+#: configs/config.themeoptions.php:576 configs/config.vc.php:1118
+#: configs/config.vc.php:1324 admin/inc/class.WilokeAdminGeneral.php:375
+msgid "Portfolio"
+msgstr ""
+
+#: configs/config.themeoptions.php:577 configs/config.themeoptions.php:608
+msgid "Project Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:591
+msgid "Portfolio Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:596 configs/config.vc.php:1234
+msgid "Project Overlay Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:615
+msgid "This setting will override the setting in the Theme Options."
+msgstr ""
+
+#: configs/config.themeoptions.php:621 configs/config.themeoptions.php:943
+msgid "Advanced Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:627
+msgid "Project Skin"
+msgstr ""
+
+#: configs/config.themeoptions.php:639
+msgid "Page Background Type"
+msgstr ""
+
+#: configs/config.themeoptions.php:640
+msgid ""
+"Choose kind of background for the page. We offer 3 types: Gradient, Color "
+"and Image."
+msgstr ""
+
+#: configs/config.themeoptions.php:642
+msgid "Gradient"
+msgstr ""
+
+#: configs/config.themeoptions.php:643
+msgid "Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:653
+msgid "Background Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:654
+msgid "You can override background color of the above skin by this setting."
+msgstr ""
+
+#: configs/config.themeoptions.php:661
+msgid "Background Gradient - Right Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:668
+msgid "Background Gradient - Left color"
+msgstr ""
+
+#: configs/config.themeoptions.php:674
+msgid "Content Background Image"
+msgstr ""
+
+#: configs/config.themeoptions.php:675
+msgid "Upload an image background for the content section."
+msgstr ""
+
+#: configs/config.themeoptions.php:689
+msgid "Portfolio Style"
+msgstr ""
+
+#: configs/config.themeoptions.php:690
+msgid "Choose a style that you want"
+msgstr ""
+
+#: configs/config.themeoptions.php:695
+msgid "Left Sidebar Info"
+msgstr ""
+
+#: configs/config.themeoptions.php:696
+msgid "Right Sidebar Info"
+msgstr ""
+
+#: configs/config.themeoptions.php:702
+msgid "Toggle Boxed layout"
+msgstr ""
+
+#: configs/config.themeoptions.php:720
+msgid "Gradient - Right Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:721 configs/config.themeoptions.php:729
+msgid "Create a linear gradient for first charater of the title."
+msgstr ""
+
+#: configs/config.themeoptions.php:728
+msgid "Gradient - Left Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:736 configs/config.vc.php:868
+msgid "Title Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:742
+msgid "By"
+msgstr ""
+
+#: configs/config.themeoptions.php:748 configs/config.vc.php:1271
+msgid "Categories"
+msgstr ""
+
+#: configs/config.themeoptions.php:750
+msgid "Leave empty if you don't want to display Categories in the intro box"
+msgstr ""
+
+#: configs/config.themeoptions.php:755 configs/config.vc.php:291
+#: configs/config.vc.php:984
+msgid "Date"
+msgstr ""
+
+#: configs/config.themeoptions.php:762
+msgid "Label Color Of Project Meta Data"
+msgstr ""
+
+#: configs/config.themeoptions.php:763
+msgid "Set color for By, Categories, Date text."
+msgstr ""
+
+#: configs/config.themeoptions.php:770
+msgid "Meta Data Text Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:777
+msgid "Text Intro Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:783
+msgid "Launch Project Button"
+msgstr ""
+
+#: configs/config.themeoptions.php:801
+msgid "Launch Button Style"
+msgstr ""
+
+#: configs/config.themeoptions.php:804
+msgid "Strong Border Button"
+msgstr ""
+
+#: configs/config.themeoptions.php:805
+msgid "A little bit border around the button"
+msgstr ""
+
+#: configs/config.themeoptions.php:806
+msgid "Square button"
+msgstr ""
+
+#: configs/config.themeoptions.php:813 configs/config.vc.php:1567
+msgid "Button Background"
+msgstr ""
+
+#: configs/config.themeoptions.php:816
+msgid "Grey Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:817
+msgid "Dark Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:818 configs/config.themeoptions.php:987
+msgid "Theme Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:825 configs/config.vc.php:1579
+msgid "Button Size"
+msgstr ""
+
+#: configs/config.themeoptions.php:828 configs/config.vc.php:1585
+msgid "Medium"
+msgstr ""
+
+#: configs/config.themeoptions.php:829 configs/config.vc.php:1586
+msgid "Large"
+msgstr ""
+
+#: configs/config.themeoptions.php:830 configs/config.vc.php:1584
+msgid "Small"
+msgstr ""
+
+#: configs/config.themeoptions.php:837
+msgid "Set Portfolio Page"
+msgstr ""
+
+#: configs/config.themeoptions.php:838
+msgid ""
+"This link will be used on the project page. When an user click on this, it "
+"will redirect to the page"
+msgstr ""
+
+#: configs/config.themeoptions.php:845
+msgid "Footer"
+msgstr ""
+
+#: configs/config.themeoptions.php:855
+msgid "Before Widget"
+msgstr ""
+
+#: configs/config.themeoptions.php:860
+msgid "Toggle Before Footer Widget"
+msgstr ""
+
+#: configs/config.themeoptions.php:868
+msgid "Boxes Content"
+msgstr ""
+
+#: configs/config.themeoptions.php:878
+msgid "Icon (*)"
+msgstr ""
+
+#: configs/config.themeoptions.php:885
+msgid "Title (*)"
+msgstr ""
+
+#: configs/config.themeoptions.php:897
+msgid "Background Image (*)"
+msgstr ""
+
+#: configs/config.themeoptions.php:903 configs/config.vc.php:885
+msgid "Link to"
+msgstr ""
+
+#: configs/config.themeoptions.php:910
+msgid "Toggle Boxes Content Animation"
+msgstr ""
+
+#: configs/config.themeoptions.php:926
+msgid "Other Information"
+msgstr ""
+
+#: configs/config.themeoptions.php:927
+msgid ""
+"<ul><li><i>OZ uses MailChimp for subscribe functionality, so you need to "
+"configure MailChimp before (To configure MailChimp, Wiloke Widget plugin "
+"must be activated). Please go to Settings->Wiloke Mailchimp to do it</i>. "
+"</li><li><i>[wiloke_social_networks] will show your social network.</i></li>"
+"</ul>"
+msgstr ""
+
+#: configs/config.themeoptions.php:934
+msgid "Copyright"
+msgstr ""
+
+#: configs/config.themeoptions.php:935
+msgid "Using [oz_apcy] to automatically print the current year"
+msgstr ""
+
+#: configs/config.themeoptions.php:952
+msgid "Toggle Ajax Loading Feature"
+msgstr ""
+
+#: configs/config.themeoptions.php:962 configs/config.themeoptions.php:973
+msgid "Google Fonts"
+msgstr ""
+
+#: configs/config.themeoptions.php:964 configs/config.themeoptions.php:989
+#: configs/config.vc.php:101 configs/config.vc.php:341
+#: configs/config.vc.php:1066
+msgid "Default"
+msgstr ""
+
+#: configs/config.themeoptions.php:965 configs/config.themeoptions.php:993
+msgid "Custom"
+msgstr ""
+
+#: configs/config.themeoptions.php:975
+msgid ""
+"The theme allows replace current Google Fonts with another Google Fonts. Go "
+"to https://fonts.google.com/specimen to get a the Font that you want. For "
+"example: https://fonts.googleapis.com/css?family=Prompt"
+msgstr ""
+
+#: configs/config.themeoptions.php:981
+msgid "Css Rules"
+msgstr ""
+
+#: configs/config.themeoptions.php:982
+msgid ""
+"This code shoule be under Google Font link. For example: font-family: "
+"'Prompt', sans-serif;"
+msgstr ""
+
+#: configs/config.themeoptions.php:990
+msgid "Blue"
+msgstr ""
+
+#: configs/config.themeoptions.php:991
+msgid "Cyan"
+msgstr ""
+
+#: configs/config.themeoptions.php:992
+msgid "Red"
+msgstr ""
+
+#: configs/config.themeoptions.php:1001
+msgid "Custom Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:1007
+msgid "Custom CSS Code"
+msgstr ""
+
+#: configs/config.themeoptions.php:1014
+msgid "Custom Javascript Code"
+msgstr ""
+
+#: configs/config.tours.php:13
+msgid ""
+"Using Custom Fields to add Portfolio Info. Look at Portfolio Info Guide to "
+"know more"
+msgstr ""
+
+#: configs/config.vc.php:6
+msgid "Heading and Description"
+msgstr ""
+
+#: configs/config.vc.php:15
+msgid "Heading Tag"
+msgstr ""
+
+#: configs/config.vc.php:16
+msgid ""
+"If you are not family with that, please visit this link: <a href=\"http:"
+"//www.w3schools.com/html/html_headings.asp\" target=\"_blank\">w3schools."
+"com</a> to know more"
+msgstr ""
+
+#: configs/config.vc.php:32 configs/config.vc.php:560
+msgid "Heading"
+msgstr ""
+
+#: configs/config.vc.php:37
+msgid "Heading Text Color"
+msgstr ""
+
+#: configs/config.vc.php:48
+msgid "Description Text Color"
+msgstr ""
+
+#: configs/config.vc.php:53
+msgid "Toggle Divider"
+msgstr ""
+
+#: configs/config.vc.php:55 configs/config.vc.php:645
+msgid "Style"
+msgstr ""
+
+#: configs/config.vc.php:64 configs/config.vc.php:553
+msgid "Divider Color"
+msgstr ""
+
+#: configs/config.vc.php:71 configs/config.vc.php:167 configs/config.vc.php:908
+msgid "Alignment"
+msgstr ""
+
+#: configs/config.vc.php:74 configs/config.vc.php:170 configs/config.vc.php:911
+msgid "Center"
+msgstr ""
+
+#: configs/config.vc.php:75 configs/config.vc.php:171 configs/config.vc.php:912
+msgid "Left"
+msgstr ""
+
+#: configs/config.vc.php:76 configs/config.vc.php:172 configs/config.vc.php:913
+msgid "Right"
+msgstr ""
+
+#: configs/config.vc.php:83
+msgid "Single Image"
+msgstr ""
+
+#: configs/config.vc.php:92
+msgid "Upload an Image"
+msgstr ""
+
+#: configs/config.vc.php:99
+msgid "Image Style"
+msgstr ""
+
+#: configs/config.vc.php:102 admin/inc/class.WilokeAdminGeneral.php:425
+msgid "Circle"
+msgstr ""
+
+#: configs/config.vc.php:110 configs/config.vc.php:1407
+msgid "Image Size"
+msgstr ""
+
+#: configs/config.vc.php:111
+msgid ""
+"Enter image size (Example: \"thumbnail\", \"medium\", \"large\", \"full\", "
+"\"wiloke_460_460\", \"wiloke_925_925\", \"wiloke_460_925\", "
+"\"wiloke_925_460\"). Alternatively enter size in pixels (Example: 200x100 "
+"(Width x Height)).\n"
+msgstr ""
+
+#: configs/config.vc.php:118
+msgid "Caption"
+msgstr ""
+
+#: configs/config.vc.php:123
+msgid "Caption Text Color"
+msgstr ""
+
+#: configs/config.vc.php:129
+msgid "On click action"
+msgstr ""
+
+#: configs/config.vc.php:133 configs/config.vc.php:971
+#: configs/config.vc.php:1283 admin/inc/class.WilokeAdminGeneral.php:407
+#: admin/inc/class.WilokeAdminGeneral.php:423
+msgid "None"
+msgstr ""
+
+#: configs/config.vc.php:134
+msgid "Link to Image"
+msgstr ""
+
+#: configs/config.vc.php:135
+msgid "Custom Image Link"
+msgstr ""
+
+#: configs/config.vc.php:141 configs/config.vc.php:809
+#: configs/config.vc.php:1529
+msgid "Button Name"
+msgstr ""
+
+#: configs/config.vc.php:149
+msgid "Image Link"
+msgstr ""
+
+#: configs/config.vc.php:156 configs/config.vc.php:891
+msgid "Target"
+msgstr ""
+
+#: configs/config.vc.php:160
+msgid "Self-Page"
+msgstr ""
+
+#: configs/config.vc.php:161
+msgid "Open in a new window"
+msgstr ""
+
+#: configs/config.vc.php:179
+msgid "Skills Bar"
+msgstr ""
+
+#: configs/config.vc.php:188
+msgid "Skills"
+msgstr ""
+
+#: configs/config.vc.php:194
+msgid "Skill"
+msgstr ""
+
+#: configs/config.vc.php:200
+msgid "Percentage"
+msgstr ""
+
+#: configs/config.vc.php:201
+msgid "Describe your skill by using percentage. Range: 0 - 100."
+msgstr ""
+
+#: configs/config.vc.php:207
+msgid "Text Color"
+msgstr ""
+
+#: configs/config.vc.php:213
+msgid "Completed Skill Background Color"
+msgstr ""
+
+#: configs/config.vc.php:220
+msgid "Uncompleted skill background"
+msgstr ""
+
+#: configs/config.vc.php:225 configs/config.vc.php:314
+#: configs/config.vc.php:1039
+msgid "Toggle Animation"
+msgstr ""
+
+#: configs/config.vc.php:237
+msgid "Design Shop"
+msgstr ""
+
+#: configs/config.vc.php:238
+msgid "WooCommerce plugin is required"
+msgstr ""
+
+#: configs/config.vc.php:249 configs/config.vc.php:931
+msgid "Source of projects"
+msgstr ""
+
+#: configs/config.vc.php:253 configs/config.vc.php:260
+#: configs/config.vc.php:934 configs/config.vc.php:941
+msgid "Pickup Categories"
+msgstr ""
+
+#: configs/config.vc.php:254 configs/config.vc.php:935
+msgid "Specify Project IDs"
+msgstr ""
+
+#: configs/config.vc.php:263
+msgid "Leave empty to get all.  Hold ctrl to select multi-categories."
+msgstr ""
+
+#: configs/config.vc.php:271
+msgid "Products"
+msgstr ""
+
+#: configs/config.vc.php:286 configs/config.vc.php:980
+msgid "Order By"
+msgstr ""
+
+#: configs/config.vc.php:293 configs/config.vc.php:986
+msgid "Author"
+msgstr ""
+
+#: configs/config.vc.php:294 configs/config.vc.php:592
+#: configs/config.vc.php:987
+msgid "Name"
+msgstr ""
+
+#: configs/config.vc.php:295 configs/config.vc.php:988
+msgid "Modified"
+msgstr ""
+
+#: configs/config.vc.php:296 configs/config.vc.php:989
+msgid "Comment Count"
+msgstr ""
+
+#: configs/config.vc.php:297
+msgid "Menu Order"
+msgstr ""
+
+#: configs/config.vc.php:302
+msgid "Sort Order"
+msgstr ""
+
+#: configs/config.vc.php:308
+msgid "Descending"
+msgstr ""
+
+#: configs/config.vc.php:309
+msgid "Ascending"
+msgstr ""
+
+#: configs/config.vc.php:315 configs/config.vc.php:326
+#: configs/config.vc.php:1040 configs/config.vc.php:1051
+msgid "Projects will be shown by animation effect on the desktop devices"
+msgstr ""
+
+#: configs/config.vc.php:325 configs/config.vc.php:1050
+msgid "Animation on Mobile"
+msgstr ""
+
+#: configs/config.vc.php:337
+msgid "Shop Animation Effect"
+msgstr ""
+
+#: configs/config.vc.php:342 configs/config.vc.php:1067
+msgid "Fade"
+msgstr ""
+
+#: configs/config.vc.php:343 configs/config.vc.php:1068
+msgid "Fade Up"
+msgstr ""
+
+#: configs/config.vc.php:344 configs/config.vc.php:1069
+msgid "Fade Down"
+msgstr ""
+
+#: configs/config.vc.php:345 configs/config.vc.php:1070
+msgid "Fade Left"
+msgstr ""
+
+#: configs/config.vc.php:346 configs/config.vc.php:1071
+msgid "Fade Right"
+msgstr ""
+
+#: configs/config.vc.php:347 configs/config.vc.php:1072
+msgid "Zoom In"
+msgstr ""
+
+#: configs/config.vc.php:358 configs/config.vc.php:1094
+msgid "Grid"
+msgstr ""
+
+#: configs/config.vc.php:364 configs/config.vc.php:1100
+msgid "Masonry"
+msgstr ""
+
+#: configs/config.vc.php:376 configs/config.vc.php:1112
+msgid "Choose Layout"
+msgstr ""
+
+#: configs/config.vc.php:382
+msgid "Products Design"
+msgstr ""
+
+#: configs/config.vc.php:419 configs/config.vc.php:1155
+msgid "Items Per Row"
+msgstr ""
+
+#: configs/config.vc.php:420 configs/config.vc.php:1156
+msgid "How many items per row?"
+msgstr ""
+
+#: configs/config.vc.php:432 configs/config.vc.php:1168
+msgid "Horizontal Spacing"
+msgstr ""
+
+#: configs/config.vc.php:438 configs/config.vc.php:1174
+msgid "Vertical Spacing"
+msgstr ""
+
+#: configs/config.vc.php:444 configs/config.vc.php:1180
+msgid "Amount of Loadmore"
+msgstr ""
+
+#: configs/config.vc.php:445 configs/config.vc.php:1181
+msgid ""
+"In the case Load more projects functionality (General Tab) to be used, this "
+"setting is effected. Leave empty means it is equal to number of posts."
+msgstr ""
+
+#: configs/config.vc.php:459 configs/config.vc.php:1279
+msgid "Pagination Type"
+msgstr ""
+
+#: configs/config.vc.php:462
+msgid "Pagination"
+msgstr ""
+
+#: configs/config.vc.php:463
+msgid "Loadmore"
+msgstr ""
+
+#: configs/config.vc.php:471 configs/config.vc.php:480
+msgid "Testimonials"
+msgstr ""
+
+#: configs/config.vc.php:485
+msgid "Client Picture"
+msgstr ""
+
+#: configs/config.vc.php:491
+msgid "Client Name"
+msgstr ""
+
+#: configs/config.vc.php:497
+msgid "Client Name Color"
+msgstr ""
+
+#: configs/config.vc.php:503
+msgid "Client Professional"
+msgstr ""
+
+#: configs/config.vc.php:509
+msgid "Client Professional Color"
+msgstr ""
+
+#: configs/config.vc.php:515
+msgid "Testimonial"
+msgstr ""
+
+#: configs/config.vc.php:521
+msgid "Testimonial Color"
+msgstr ""
+
+#: configs/config.vc.php:531
+msgid "Count To"
+msgstr ""
+
+#: configs/config.vc.php:541
+msgid "Value"
+msgstr ""
+
+#: configs/config.vc.php:547
+msgid "Value Color"
+msgstr ""
+
+#: configs/config.vc.php:566 configs/config.vc.php:752
+msgid "Heading Color"
+msgstr ""
+
+#: configs/config.vc.php:574
+msgid "Team Member"
+msgstr ""
+
+#: configs/config.vc.php:584
+msgid "Profile Picture"
+msgstr ""
+
+#: configs/config.vc.php:585
+msgid ""
+"You should consider about the image width. We strongly do not recommend "
+"using an image of 1200px in the box of 300px."
+msgstr ""
+
+#: configs/config.vc.php:599
+msgid "Name Color"
+msgstr ""
+
+#: configs/config.vc.php:606
+msgid "Position"
+msgstr ""
+
+#: configs/config.vc.php:613
+msgid "Position Color"
+msgstr ""
+
+#: configs/config.vc.php:624
+msgid "Social Icon"
+msgstr ""
+
+#: configs/config.vc.php:631
+msgid "Social Icon Color"
+msgstr ""
+
+#: configs/config.vc.php:637
+msgid "Social Link"
+msgstr ""
+
+#: configs/config.vc.php:649
+msgid "Modern"
+msgstr ""
+
+#: configs/config.vc.php:657
+msgid "Twitter Feed"
+msgstr ""
+
+#: configs/config.vc.php:667
+msgid "Number of Tweets"
+msgstr ""
+
+#: configs/config.vc.php:668
+msgid ""
+"Wiloke Widget plugin is required and Twitter Information must be configured. "
+"Please go to Settings -> Wiloke Twitter from the admin panel."
+msgstr ""
+
+#: configs/config.vc.php:674
+msgid "Content Color"
+msgstr ""
+
+#: configs/config.vc.php:679
+msgid "Link Color"
+msgstr ""
+
+#: configs/config.vc.php:680
+msgid "You can make a highlight for links in your tweets."
+msgstr ""
+
+#: configs/config.vc.php:685
+msgid "Tweet Author Color"
+msgstr ""
+
+#: configs/config.vc.php:692
+msgid "Pricing"
+msgstr ""
+
+#: configs/config.vc.php:704
+msgid "Font Icon"
+msgstr ""
+
+#: configs/config.vc.php:705
+msgid "Image Icon"
+msgstr ""
+
+#: configs/config.vc.php:707
+msgid "Icon Type"
+msgstr ""
+
+#: configs/config.vc.php:719 configs/config.vc.php:850
+msgid "Icon"
+msgstr ""
+
+#: configs/config.vc.php:723 configs/config.vc.php:856
+msgid "Icon Color"
+msgstr ""
+
+#: configs/config.vc.php:740
+msgid "Upload an image icon"
+msgstr ""
+
+#: configs/config.vc.php:748
+msgid "Package Name"
+msgstr ""
+
+#: configs/config.vc.php:761
+msgid "Currency symbols"
+msgstr ""
+
+#: configs/config.vc.php:765
+msgid "Currency Color"
+msgstr ""
+
+#: configs/config.vc.php:774
+msgid "Price"
+msgstr ""
+
+#: configs/config.vc.php:778
+msgid "Price Color"
+msgstr ""
+
+#: configs/config.vc.php:787
+msgid "Period"
+msgstr ""
+
+#: configs/config.vc.php:791
+msgid "Period Color"
+msgstr ""
+
+#: configs/config.vc.php:797
+msgid "Features"
+msgstr ""
+
+#: configs/config.vc.php:798
+msgid ""
+"Enter each feature on a line, The text after * will be displayed as its "
+"limited. For example *Free Support means the package without Free Support"
+msgstr ""
+
+#: configs/config.vc.php:802
+msgid "Features Color"
+msgstr ""
+
+#: configs/config.vc.php:814 configs/config.vc.php:1242
+msgid "Button Color"
+msgstr ""
+
+#: configs/config.vc.php:819
+msgid "Button Background Color"
+msgstr ""
+
+#: configs/config.vc.php:826 configs/config.vc.php:1536
+msgid "Button Link"
+msgstr ""
+
+#: configs/config.vc.php:833
+msgid "Highlight"
+msgstr ""
+
+#: configs/config.vc.php:840
+msgid "Content Box"
+msgstr ""
+
+#: configs/config.vc.php:880
+msgid "Description Color"
+msgstr ""
+
+#: configs/config.vc.php:892
+msgid "Action when an user click on it."
+msgstr ""
+
+#: configs/config.vc.php:896
+msgid "Open a New Window"
+msgstr ""
+
+#: configs/config.vc.php:902
+msgid "Background Image"
+msgstr ""
+
+#: configs/config.vc.php:921
+msgid "Design Portfolio"
+msgstr ""
+
+#: configs/config.vc.php:944
+msgid "Leave empty to get all. Hold ctrl to select multi-categories."
+msgstr ""
+
+#: configs/config.vc.php:952
+msgid "Projects"
+msgstr ""
+
+#: configs/config.vc.php:967
+msgid "Load more function"
+msgstr ""
+
+#: configs/config.vc.php:972
+msgid "Load More Button"
+msgstr ""
+
+#: configs/config.vc.php:973
+msgid "Infinite Scroll"
+msgstr ""
+
+#: configs/config.vc.php:974
+msgid "Mixed Load More button and Infinite Scroll"
+msgstr ""
+
+#: configs/config.vc.php:994
+msgid "Loadmore button name"
+msgstr ""
+
+#: configs/config.vc.php:1001
+msgid "Navigation Filter"
+msgstr ""
+
+#: configs/config.vc.php:1011
+msgid "Navigation Style"
+msgstr ""
+
+#: configs/config.vc.php:1016
+msgid "Style 1"
+msgstr ""
+
+#: configs/config.vc.php:1017
+msgid "Style 2"
+msgstr ""
+
+#: configs/config.vc.php:1022
+msgid "All Text"
+msgstr ""
+
+#: configs/config.vc.php:1023
+msgid ""
+"Enter a text for this link. When someone click on the link, all projects "
+"will be shown. Leave empty to remove it."
+msgstr ""
+
+#: configs/config.vc.php:1031
+msgid "Navigation Tooltip"
+msgstr ""
+
+#: configs/config.vc.php:1032
+msgid "This text will be shown when someone hover on it."
+msgstr ""
+
+#: configs/config.vc.php:1062
+msgid "Portfolio Animation Effect"
+msgstr ""
+
+#: configs/config.vc.php:1078
+msgid "Hover Effect"
+msgstr ""
+
+#: configs/config.vc.php:1079
+msgid "Choose an affect that be used when someone hover on the project item."
+msgstr ""
+
+#: configs/config.vc.php:1084
+msgid "Hover Dir"
+msgstr ""
+
+#: configs/config.vc.php:1085
+msgid "Simple Overlay"
+msgstr ""
+
+#: configs/config.vc.php:1195
+msgid "Using the design in Load More"
+msgstr ""
+
+#: configs/config.vc.php:1196
+msgid ""
+"Checked this box if you want to inherit your designs in Load more "
+"functionality. Unchecked to only display Cube style for items that be got "
+"from load more action."
+msgstr ""
+
+#: configs/config.vc.php:1206
+msgid "Navigator Item Text Color"
+msgstr ""
+
+#: configs/config.vc.php:1213
+msgid "Navigator Activated Item Color"
+msgstr ""
+
+#: configs/config.vc.php:1220
+msgid "Project Title Color"
+msgstr ""
+
+#: configs/config.vc.php:1227
+msgid "Project Category Color"
+msgstr ""
+
+#: configs/config.vc.php:1235
+msgid "Leave empty to use the setting in the ThemeOption"
+msgstr ""
+
+#: configs/config.vc.php:1274
+msgid ""
+"Choose categories that you wanna show on this shortcode. Leave empty to show "
+"the latest posts.  Hold ctrl to select multi-categories."
+msgstr ""
+
+#: configs/config.vc.php:1282
+msgid "Page numbers"
+msgstr ""
+
+#: configs/config.vc.php:1289
+msgid "Kind of pagination"
+msgstr ""
+
+#: configs/config.vc.php:1290
+msgid ""
+"Do you want to refresh the page when the user click on a new page or using "
+"ajax technology?"
+msgstr ""
+
+#: configs/config.vc.php:1293
+msgid "Refresh Page"
+msgstr ""
+
+#: configs/config.vc.php:1294
+msgid "Ajax"
+msgstr ""
+
+#: configs/config.vc.php:1301
+msgid "Posts Per Page"
+msgstr ""
+
+#: configs/config.vc.php:1310
+msgid "Swiper Slider"
+msgstr ""
+
+#: configs/config.vc.php:1320
+msgid "Data source"
+msgstr ""
+
+#: configs/config.vc.php:1323
+msgid "Product"
+msgstr ""
+
+#: configs/config.vc.php:1325
+msgid "Post"
+msgstr ""
+
+#: configs/config.vc.php:1326
+msgid "Custom IDs"
+msgstr ""
+
+#: configs/config.vc.php:1327
+msgid "Attachments"
+msgstr ""
+
+#: configs/config.vc.php:1330
+msgid "Select content type for your grid."
+msgstr ""
+
+#: configs/config.vc.php:1336
+msgid "Include only"
+msgstr ""
+
+#: configs/config.vc.php:1338
+msgid "Add posts, pages, etc. by title."
+msgstr ""
+
+#: configs/config.vc.php:1352
+msgid "Narrow data source"
+msgstr ""
+
+#: configs/config.vc.php:1364
+msgid "Enter categories, tags or custom taxonomies."
+msgstr ""
+
+#: configs/config.vc.php:1375
+msgid "Upload Images"
+msgstr ""
+
+#: configs/config.vc.php:1399
+msgid "Slides Per View"
+msgstr ""
+
+#: configs/config.vc.php:1408
+msgid ""
+"For example: large, medium, thumbnail, wiloke_460_460, wiloke_925_925, "
+"wiloke_460_925, wiloke_925_460"
+msgstr ""
+
+#: configs/config.vc.php:1414
+msgid "Toggle Pagination"
+msgstr ""
+
+#: configs/config.vc.php:1415
+msgid "Enable/Disable the pagination"
+msgstr ""
+
+#: configs/config.vc.php:1425
+msgid "Toggle Navigation"
+msgstr ""
+
+#: configs/config.vc.php:1426
+msgid "Enable/Disable the navigation"
+msgstr ""
+
+#: configs/config.vc.php:1436
+msgid "Navigation & Pagination Style"
+msgstr ""
+
+#: configs/config.vc.php:1440
+msgid "Inside Slider"
+msgstr ""
+
+#: configs/config.vc.php:1441
+msgid "Outside Slider"
+msgstr ""
+
+#: configs/config.vc.php:1446
+msgid "Swiper Width"
+msgstr ""
+
+#: configs/config.vc.php:1447
+msgid ""
+"Parameter allows to force Swiper width. Warning: Setting this parameter will "
+"make Swiper not responsive."
+msgstr ""
+
+#: configs/config.vc.php:1453
+msgid "Swiper Height"
+msgstr ""
+
+#: configs/config.vc.php:1454
+msgid ""
+"Parameter allows to force Swiper height. Warning: Setting this parameter "
+"will make Swiper not responsive."
+msgstr ""
+
+#: configs/config.vc.php:1463
+msgid "Google MAP"
+msgstr ""
+
+#: configs/config.vc.php:1472
+msgid "Latitude & Longitude"
+msgstr ""
+
+#: configs/config.vc.php:1473
+msgid ""
+"To use the shortcode, you must provided Google API ey, please go to "
+"Appearance -> Theme Options -> General Settings to enter in it. Go to this "
+"link <a href=\"http://www.latlong.net/\" target=\"_blank\">www.latlong."
+"net</a> to looking for your Latitude and Longitude. For example: 40.712784x-"
+"74.005941"
+msgstr ""
+
+#: configs/config.vc.php:1479
+msgid "Map Style"
+msgstr ""
+
+#: configs/config.vc.php:1493
+msgid "Map marker"
+msgstr ""
+
+#: configs/config.vc.php:1499
+msgid "Map Zoom"
+msgstr ""
+
+#: configs/config.vc.php:1505
+msgid "Map Height"
+msgstr ""
+
+#: configs/config.vc.php:1511
+msgid "Info"
+msgstr ""
+
+#: configs/config.vc.php:1520
+msgid "Button"
+msgstr ""
+
+#: configs/config.vc.php:1543
+msgid "Button Action"
+msgstr ""
+
+#: configs/config.vc.php:1544
+msgid "Open a new window or self-page when someone click on it"
+msgstr ""
+
+#: configs/config.vc.php:1550
+msgid "New Page"
+msgstr ""
+
+#: configs/config.vc.php:1555
+msgid "Button Style"
+msgstr ""
+
+#: configs/config.vc.php:1560
+msgid "Strong border button"
+msgstr ""
+
+#: configs/config.vc.php:1561
+msgid "A little bit border button"
+msgstr ""
+
+#: configs/config.vc.php:1562
+msgid "Square Button"
+msgstr ""
+
+#: configs/config.vc.php:1572
+msgid "Main Color"
+msgstr ""
+
+#: configs/config.vc.php:1573
+msgid "Grey"
+msgstr ""
+
+#: configs/config.vc.php:1574
+msgid "Black"
+msgstr ""
+
+#: configs/config.widgets.php:5
+msgid "Main Sidebar"
+msgstr ""
+
+#: configs/config.widgets.php:7
+msgid ""
+"Widgets in this area will be shown on Blog, Archive, Search and Single page."
+msgstr ""
+
+#: woocommerce/related.php:51
+msgid "Related Products"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminBar.php:32
+msgid "Theme Support"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminBar.php:44
+msgid "Browse Our Products"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:34
+msgid "Live Editor"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:36
+msgid "Live editor"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:37
+msgid "Choosing this mode to build your project as visual way (recommended)"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:41
+msgid "Classic Editor"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:43
+msgid "Classic editor"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:44
+msgid "Choosing this mode to build your project as normal way"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:68
+msgid ""
+"Set a main color of the page. This color will be filled in Menu, Footer, "
+"Button (In the case you are selecting  Theme Color Mode), etc."
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:114
+msgid "More"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:115
+#: admin/inc/lib/custom-metaboxes/init.php:1357
+msgid "Save"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:116
+msgid "Close"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:168
+msgid "Plain"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:173
+msgid "Based on Category"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:178
+msgid "Post name"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:405
+msgid "Spacing"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:408
+msgid "0px"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:409
+msgid "5px"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:410
+msgid "10px"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:411
+msgid "15px"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:412
+msgid "20px"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:413
+msgid "25px"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:414
+msgid "30px"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:415
+msgid "35px"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:416
+msgid "40px"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:424
+msgid "Square"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:426
+msgid "High"
+msgstr ""
+
+#: admin/inc/class.WilokeAjax.php:81
+msgid "There are no contact forms"
+msgstr ""
+
+#: admin/inc/class.WilokeAjax.php:693
+msgid "Sorry, your nonce did not verify"
+msgstr ""
+
+#: admin/inc/class.WilokeContactForm.php:38
+msgid "Contact form 7 Option"
+msgstr ""
+
+#: admin/inc/class.WilokeContactForm.php:40
+msgid "Click Import button make this contact form look like demo."
+msgstr ""
+
+#: admin/inc/class.WilokeContactForm.php:51
+#: admin/inc/class.WilokeContactForm.php:51
+msgid "Import"
+msgstr ""
+
+#: admin/inc/class.WilokeHtmlHelper.php:65
+msgid "Select Image"
+msgstr ""
+
+#: admin/inc/class.WilokeHtmlHelper.php:237
+msgid "Submit"
+msgstr ""
+
+#: admin/inc/class.WilokeSocialNetworks.php:40
+msgid "Social icon will not display if you leave empty"
+msgstr ""
+
+#: admin/inc/class.WilokeTaxonomy.php:167
+msgid "Featured Image"
+msgstr ""
+
+#: admin/inc/class.WilokeThemeOptions.php:91
+msgid "Redux Framework plugin is required."
+msgstr ""
+
+#: admin/inc/class.WilokeUser.php:92
+msgid "An picture of 170x170px is recommended by your theme."
+msgstr ""
+
+#: admin/inc/class.WilokeWidget.php:33
+msgid ""
+"This is a custom sidebar, which is used in Blog Layout module of Page "
+"builder."
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:102
+msgid "Extract Class"
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:112
+msgid "Css"
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:114 admin/inc/func.visualComposer.php:123
+msgid "Design options"
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:315
+msgid "Toggle Select"
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:318
+msgid "There  are no slides"
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:339
+msgid ""
+"<p>Wiloke Service plugin is required. If the plugin doesn't install, please "
+"go to Appearance -> Install Plugins to do it. If this plugin has already "
+"been installed, please go to Plugins -> Looking for Wiloke Service and "
+"activate it.</p>"
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:345
+msgid "Refresh"
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:644
+msgid "Enter the post id that you want to use."
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:673
+msgid "There are no posts"
+msgstr ""
+
+#: admin/public/class.WilokeFrontPage.php:49
+msgctxt "Google font: on or off"
+msgid "on"
+msgstr ""
+
+#: admin/public/class.WilokeHead.php:50
+#, php-format
+msgid "Your cart is currently empty. <a href=\"%s\">Return To Shop</a>"
+msgstr ""
+
+#: admin/public/class.WilokeHead.php:52
+msgid "Work detail"
+msgstr ""
+
+#: admin/public/class.WilokeHead.php:59
+msgid "Submitting..."
+msgstr ""
+
+#: admin/public/class.WilokeHead.php:62
+msgid "Please fill all required fields"
+msgstr ""
+
+#: admin/public/class.WilokeHead.php:63
+msgid ""
+"Duplicate comment detected; it looks as though you’ve already said that!"
+msgstr ""
+
+#: admin/public/class.WilokeWooCommerce.php:83
+msgid "Sale!"
+msgstr ""
+
+#: admin/public/class.WilokeWooCommerce.php:163
+msgid "Your comment is awaiting approval"
+msgstr ""
+
+#: woocommerce/global/quantity-input.php:25
+msgctxt "Product quantity input tooltip"
+msgid "Qty"
+msgstr ""
+
+#: woocommerce/loop/pagination.php:45
+msgid "Load more"
+msgstr ""
+
+#: woocommerce/single-product/meta.php:34
+msgid "SKU:"
+msgstr ""
+
+#: woocommerce/single-product/meta.php:34
+msgid "N/A"
+msgstr ""
+
+#: woocommerce/single-product/meta.php:38
+msgid "Category:"
+msgid_plural "Categories:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: woocommerce/single-product/meta.php:40
+msgid "Tag:"
+msgid_plural "Tags:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: woocommerce/single-product/product-image.php:40
+msgid "Placeholder"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/init.php:299
+msgid "Select / Deselect All"
+msgstr ""
+
+#: admin/public/template/footer/box-fixed.php:21
+msgid "SCROLL TO TOP"
+msgstr ""
+
+#: admin/public/template/vc/wiloke_design_portfolio.php:47
+msgid "Please put some settings for this shortcode."
+msgstr ""
+
+#: admin/public/template/vc/wiloke_design_portfolio.php:237
+msgid ""
+"There are no projects. Please go to Portfolio then create some ones or "
+"recheck  the settings of the shortcode."
+msgstr ""
+
+#: admin/public/template/vc/wiloke_twitter.php:8
+msgid ""
+"Twitter Information have not configured yet. Please go to Settings -> Wiloke "
+"Twitter to do it. If you don't see the menu item, please go to Plugins -> "
+"Add New / Activate Wiloke Widget plugin."
+msgstr ""
+
+#: admin/public/template/vc/wiloke_twitter.php:80
+msgid "There are no tweets yet."
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_ajax.php:47
+msgid "Please Try Again"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_ajax.php:131
+msgid "Remove Embed"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_ajax.php:134
+#, php-format
+msgid "No oEmbed Results Found for %s. View more info at"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_field.php:470
+msgid "Add Group"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_field.php:471
+msgid "Remove Group"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:333
+msgid "Add Row"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:390
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1108
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1170
+msgid "Remove"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:548
+msgid "Upload"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:958
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1009
+msgid "No terms"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1076
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1130
+msgid "Add or Upload File"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1097
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1162
+msgid "Remove Image"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1108
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1170
+msgid "File:"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1108
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1170
+msgid "Download"
+msgstr ""
+
+#: admin/inc/redux-extensions/wiloke-pickupicon/wiloke_pickupicon_field/field_wiloke_pickupicon_field.php:86
+#: admin/inc/redux-extensions/wiloke-repeater/wiloke_repeater_field/field_wiloke_repeater_field.php:88
+msgid "Add New"
+msgstr ""
+
+#. Name of the theme
+msgid "OZ"
+msgstr ""
+
+#. Description of the theme
+msgid "Inner play of animation"
+msgstr ""
+
+#. URI of the theme
+msgid "http://oz.wiloke.com/"
+msgstr ""
+
+#. Author of the theme
+msgid "Wiloke"
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://wiloke.com"
+msgstr ""

@@ -65,7 +65,9 @@ class WC_GZD_Checkout {
 		add_action( 'woocommerce_review_order_before_shipping', array( $this, 'remove_shipping_rates' ), 0 );
 		
 		// Add better fee taxation
-		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'do_fee_tax_calculation' ), PHP_INT_MAX, 1 );
+		add_action( 'woocommerce_calculate_totals', array( $this, 'do_fee_tax_calculation' ), PHP_INT_MAX, 1 );
+		// Pre WC 3.2
+		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'do_fee_tax_calculation_legacy' ), PHP_INT_MAX, 1 );
 		
 		// Disallow user order cancellation
 		if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) == 'yes' ) {
@@ -81,8 +83,10 @@ class WC_GZD_Checkout {
 		}
 		
 		// Free Shipping auto select
-		if ( get_option( 'woocommerce_gzd_display_checkout_free_shipping_select' ) == 'yes' )
+		if ( get_option( 'woocommerce_gzd_display_checkout_free_shipping_select' ) == 'yes' ) {
+			add_action( 'woocommerce_before_calculate_totals', array( $this, 'set_free_shipping_filter' ) );
 			add_filter( 'woocommerce_package_rates', array( $this, 'free_shipping_auto_select' ) );
+		}
 
 		// Pay for order
 		add_action( 'wp', array( $this, 'force_pay_order_redirect' ), 15 );
@@ -159,9 +163,15 @@ class WC_GZD_Checkout {
 		return false;
 	}
 
+	public function set_free_shipping_filter( $cart ) {
+		$_POST[ 'update_cart' ] = true;
+	}
+
 	public function free_shipping_auto_select( $rates ) {
 
-		if ( ! is_checkout() && ! is_cart() )
+		$do_check = is_checkout() || is_cart() || ! empty( $_POST['update_cart'] );
+
+		if ( ! $do_check )
 			return $rates;
 
 		$keep = array();
@@ -223,7 +233,7 @@ class WC_GZD_Checkout {
 
 			if ( $order ) {
 				// Reduce order stock for non-cancellable orders
-				if ( apply_filters( 'woocommerce_payment_complete_reduce_order_stock', ! get_post_meta( $order->id, '_order_stock_reduced', true ), wc_gzd_get_crud_data( $order, 'id' ) ) ) {
+				if ( apply_filters( 'woocommerce_payment_complete_reduce_order_stock', ! get_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_order_stock_reduced', true ), wc_gzd_get_crud_data( $order, 'id' ) ) ) {
 					$order->reduce_order_stock();
 				}
 			}
@@ -334,22 +344,101 @@ class WC_GZD_Checkout {
 	 *  
 	 * @param  WC_Cart $cart
 	 */
-	public function do_fee_tax_calculation( WC_Cart $cart ) {
+	public function do_fee_tax_calculation( $cart ) {
+
 		if ( get_option( 'woocommerce_gzd_fee_tax' ) != 'yes' )
 			return;
-		if ( ! empty( $cart->fees ) ) {
+
+		if ( ! method_exists( $cart, 'set_fee_taxes' ) )
+			return;
+
+		$fees = $cart->get_fees();
+
+		if ( ! empty( $fees ) ) {
+
 			$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
-			foreach ( $cart->fees as $key => $fee ) {
-				if ( ! $fee->taxable && get_option( 'woocommerce_gzd_fee_tax_force' ) != 'yes' )
-					continue;	
+			$fee_tax_total = 0;
+			$fee_tax_data = array();
+			$new_fees = array();
+
+			foreach ( $cart->get_fees() as $key => $fee ) {
+
+				if ( ! $fee->taxable && get_option( 'woocommerce_gzd_fee_tax_force' ) !== 'yes' )
+					continue;
+
 				// Calculate gross price if necessary
 				if ( $fee->taxable ) {
 					$fee_tax_rates = WC_Tax::get_rates( $fee->tax_class );
 					$fee_tax = WC_Tax::calc_tax( $fee->amount, $fee_tax_rates, false );
 					$fee->amount += array_sum( $fee_tax );
 				}
+
 				// Set fee to nontaxable to avoid WooCommerce default tax calculation
 				$fee->taxable = false;
+
+				// Calculate tax class share
+				if ( ! empty( $tax_shares ) ) {
+					$fee_taxes = array();
+
+					foreach ( $tax_shares as $rate => $class ) {
+						$tax_rates = WC_Tax::get_rates( $rate );
+						$tax_shares[ $rate ][ 'fee_tax_share' ] = $fee->amount * $class[ 'share' ];
+						$tax_shares[ $rate ][ 'fee_tax' ] = WC_Tax::calc_tax( ( $fee->amount * $class[ 'share' ] ), $tax_rates, true );
+						$fee_taxes += $tax_shares[ $rate ][ 'fee_tax' ];
+					}
+
+					foreach ( $tax_shares as $rate => $class ) {
+
+						foreach ( $class['fee_tax'] as $rate_id => $tax ) {
+							if ( ! array_key_exists( $rate_id, $fee_tax_data ) ) {
+								$fee_tax_data[ $rate_id ] = 0;
+							}
+							$fee_tax_data[ $rate_id ] += $tax;
+						}
+
+						$fee_tax_total += array_sum( $class['fee_tax'] );
+					}
+
+					$fee->tax_data = $fee_taxes;
+					$fee->tax = $fee_tax_total;
+					$fee->amount = $fee->amount - $fee->tax;
+					$fee->total = $fee->amount;
+
+					$new_fees[ $key ] = $fee;
+				}
+			}
+
+			$cart->fees_api()->set_fees( $new_fees );
+			$cart->set_fee_tax( array_sum( $fee_tax_data ) );
+			$cart->set_fee_taxes( $fee_tax_data );
+		}
+	}
+
+	public function do_fee_tax_calculation_legacy( $cart ) {
+
+		if ( get_option( 'woocommerce_gzd_fee_tax' ) != 'yes' )
+			return;
+
+		if ( method_exists( $cart, 'set_fee_taxes' ) )
+			return;
+
+		if ( ! empty( $cart->fees ) ) {
+			$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
+			foreach ( $cart->fees as $key => $fee ) {
+
+				if ( ! $fee->taxable && get_option( 'woocommerce_gzd_fee_tax_force' ) != 'yes' )
+					continue;
+
+				// Calculate gross price if necessary
+				if ( $fee->taxable ) {
+					$fee_tax_rates = WC_Tax::get_rates( $fee->tax_class );
+					$fee_tax = WC_Tax::calc_tax( $fee->amount, $fee_tax_rates, false );
+					$fee->amount += array_sum( $fee_tax );
+				}
+
+				// Set fee to nontaxable to avoid WooCommerce default tax calculation
+				$fee->taxable = false;
+
 				// Calculate tax class share
 				if ( ! empty( $tax_shares ) ) {
 					$fee_taxes = array();
@@ -414,12 +503,16 @@ class WC_GZD_Checkout {
 
 	public function set_order_item_meta_crud( $item, $cart_item_key, $values, $order ) {
 		if ( is_a( $item, 'WC_Order_Item' ) && $item->get_product() ) {
-			$product = $item->get_product();
 
-			$item = wc_gzd_set_crud_meta_data( $item, '_units', wc_gzd_get_gzd_product( $product )->get_product_units_html() );
-			$item = wc_gzd_set_crud_meta_data( $item, '_delivery_time', wc_gzd_get_gzd_product( $product )->get_delivery_time_html() );
-			$item = wc_gzd_set_crud_meta_data( $item, '_item_desc', wc_gzd_get_gzd_product( $product )->get_mini_desc() );
-			$item = wc_gzd_set_crud_meta_data( $item, '_unit_price', wc_gzd_get_gzd_product( $product )->get_unit_html( false ) );
+			$product = $item->get_product();
+			$gzd_product = wc_gzd_get_gzd_product( $product );
+
+			do_action( 'woocommerce_gzd_add_order_item_meta', $item, $order, $gzd_product );
+
+			$item = wc_gzd_set_crud_meta_data( $item, '_units', $gzd_product->get_product_units_html() );
+			$item = wc_gzd_set_crud_meta_data( $item, '_delivery_time', $gzd_product->get_delivery_time_html() );
+			$item = wc_gzd_set_crud_meta_data( $item, '_item_desc', $gzd_product->get_mini_desc() );
+			$item = wc_gzd_set_crud_meta_data( $item, '_unit_price', apply_filters( 'woocommerce_gzd_order_item_unit_price', $gzd_product->get_unit_html( false ), $gzd_product, $item, $order ) );
 		}
 	}
 
@@ -458,7 +551,16 @@ class WC_GZD_Checkout {
 	}
 
 	public function get_customer_title( $option = 1 ) {
-		return ( 1 == $option ? __( 'Mr.', 'woocommerce-germanized' ) : __( 'Ms.', 'woocommerce-germanized' ) );
+
+		$option = absint( $option );
+
+		$titles = apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) );
+
+		if ( array_key_exists( $option, $titles ) ) {
+			return $titles[ $option ];
+		} else {
+			return __( 'Ms.', 'woocommerce-germanized' );
+		}
 	}
 
 	public function set_formatted_address( $placeholder, $args ) {

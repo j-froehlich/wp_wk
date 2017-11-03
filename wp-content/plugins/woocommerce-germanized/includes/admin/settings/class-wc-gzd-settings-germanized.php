@@ -356,7 +356,38 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'css' 		=> 'width:100%; height: 50px;',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'small_business_options' ),
+			array( 'type' => 'sectionend', 'id' => 'differential_taxation_options' ),
+
+			array( 'title' => __( 'Differential Taxation', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => '', 'id' => 'differential_taxation_options' ),
+
+			array(
+				'title' 	=> __( 'Taxation Notice', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Enable differential taxation text notice beneath product price.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_differential_taxation_show_notice',
+				'desc_tip'  => __( 'If you have disabled this option, a normal VAT notice will be displayed, which is sufficient as Trusted Shops states. To further inform your customers you may enable this notice.', 'woocommerce-germanized' ),
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+			),
+
+			array(
+				'title' 	=> __( 'Notice Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'This text will be shown as a further notice for the customer to inform him about differential taxation.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'id' 		=> 'woocommerce_gzd_differential_taxation_notice_text',
+				'type' 		=> 'textarea',
+				'css' 		=> 'width:100%; height: 50px;',
+				'default'	=> __( 'incl. VAT (differential taxation according to §25a UStG.)', 'woocommerce-germanized' ),
+			),
+
+			array(
+				'title' 	=> __( 'Checkout Notice', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Enable differential taxation notice during checkout and in emails.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_differential_taxation_checkout_notices',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'differential_taxation_options' ),
 
 			array( 'title' => __( 'Delivery Times', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => '', 'id' => 'delivery_times_options' ),
 
@@ -646,6 +677,46 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		$settings = array_merge( $settings, array(
 
+			array( 'type' => 'sectionend', 'id' => 'email_options' ),
+
+			array(	'title' => __( 'Email Display Options', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'email_display_options' ),
+
+			array(
+				'title' 	=> __( 'Show within Emails', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Base Price', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_emails_unit_price',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
+				'checkboxgroup'	=> 'start',
+			),
+
+			array(
+				'desc' 		=> __( 'Product Units', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_emails_product_units',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
+				'checkboxgroup'		=> '',
+			),
+
+			array(
+				'desc' 		=> __( 'Delivery Time Notice', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_emails_delivery_time',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
+				'checkboxgroup'		=> '',
+			),
+
+			array(
+				'desc' 		=> __( 'Short Description', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_emails_product_item_desc',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
+				'checkboxgroup'		=> '',
+			),
+        ) );
+
+		$settings = array_merge( $settings, array(
+
 			array(
 				'title' 	=> __( 'Hide Username', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Hide username from email content if password or password reset link is embedded.', 'woocommerce-germanized' ),
@@ -655,7 +726,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'type' 		=> 'checkbox',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'email_options' ),
+			array( 'type' => 'sectionend', 'id' => 'email_display_options' ),
 
 			array(	'title' => __( 'Email Attachment Options', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'email_attachment_options', 'desc' => '<div class="notice inline notice-warning"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %sUpgrade to %spro%s%s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' ),
 

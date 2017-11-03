@@ -66,23 +66,11 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 		return false;
 	}
 
-    public function get_price_html( $price = '' ) {
-        $prices = $this->get_variation_prices( true );
-
-        if ( empty( $prices['price'] ) ) {
-            return apply_filters( 'woocommerce_variable_empty_price_html', '', $this );
-        }
-
-        $min_price = current( $prices['price'] );
-        $max_price = end( $prices['price'] );
-
-        if ( $min_price !== $max_price ) {
-            $price = apply_filters( 'woocommerce_variable_price_html', wc_format_price_range( $min_price, $max_price ), $this );
-        } else {
-            $price = apply_filters( 'woocommerce_variable_price_html', wc_price( $min_price ) . $this->get_price_suffix(), $this );
-        }
-        return apply_filters( 'woocommerce_get_price_html', $price, $this );
-    }
+	public function has_unit_fields() {
+		if ( $this->unit && $this->unit_base )
+			return true;
+		return false;
+	}
 
 	public function get_price_html_from_to( $from, $to, $show_labels = true ) {
 
@@ -119,7 +107,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
                 if ( $min_price !== $max_price ) {
                     $price = apply_filters( 'woocommerce_gzd_variable_unit_price_html', wc_format_price_range( $min_price, $max_price ), $this );
                 } else {
-                    $price = apply_filters( 'woocommerce_gzd_variable_unit_price_html', wc_price( $min_price ) . $this->get_price_suffix(), $this );
+                    $price = apply_filters( 'woocommerce_gzd_variable_unit_price_html', wc_price( $min_price ), $this );
                 }
 
             } else {
@@ -158,7 +146,11 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 	public function get_variation_unit_prices( $display = false ) {
 
 		if ( ! $this->is_type( 'variable' ) )
-			return false; 
+			return false;
+
+		// Product doesn't apply for unit pricing
+		if ( ! $this->has_unit_fields() )
+			return false;
 
 		global $wp_filter;
 

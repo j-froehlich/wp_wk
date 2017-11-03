@@ -37,6 +37,8 @@ class WC_GZD_Customer_Helper {
 		// Add Title to user profile
 		add_filter( 'woocommerce_customer_meta_fields', array( $this, 'profile_field_title' ), 10, 1 );
 
+		add_filter( 'woocommerce_ajax_get_customer_details', array( $this, 'load_customer_fields' ), 10, 3 );
+
 		if ( $this->is_double_opt_in_enabled() ) {
 
 			// Check for customer activation
@@ -69,6 +71,30 @@ class WC_GZD_Customer_Helper {
 
 	}
 
+	public function load_customer_fields( $data, $customer, $user_id ) {
+
+		$fields = WC_GZD_Checkout::instance()->custom_fields_admin;
+
+		if ( is_array( $fields ) ) {
+			foreach( $fields as $key => $field ) {
+
+				$types = array( 'shipping', 'billing' );
+
+				if ( isset( $field[ 'address_type' ] ) ) {
+					$types = array( $field[ 'address_type' ] );
+				}
+
+				foreach( $types as $type ) {
+					if ( ! isset( $data[ $type ] ) )
+						continue;
+
+					$data[ $type ][ $key ] = get_user_meta( $user_id,  $type . '_' . $key, true );
+				}
+			}
+		}
+		return $data;
+	}
+
 	public function social_login_activation_check( $message, $user ) {
 		$user_id = $user->ID;
 		if ( ! wc_gzd_is_customer_activated( $user_id ) ) {
@@ -86,14 +112,16 @@ class WC_GZD_Customer_Helper {
 			'label'       => __( 'Title', 'woocommerce-germanized' ),
 			'type'		  => 'select',
 			'options'	  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) ),
-			'description' => ''
+			'description' => '',
+			'class'       => '',
 		);
 
 		$fields[ 'shipping' ][ 'fields' ][ 'shipping_title' ] = array(
 			'label'       => __( 'Title', 'woocommerce-germanized' ),
 			'type'		  => 'select',
 			'options'	  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) ),
-			'description' => ''
+			'description' => '',
+			'class'       => '',
 		);
 
 		return $fields;
@@ -309,6 +337,8 @@ class WC_GZD_Customer_Helper {
 
 				if ( apply_filters( 'woocommerce_gzd_user_activation_auto_login', $login, $user ) && ! is_user_logged_in() )
 					wc_set_customer_auth_cookie( $user->ID );
+
+				do_action( 'woocommerce_gzd_customer_opt_in_finished', $user );
 
 				return true;
 			}

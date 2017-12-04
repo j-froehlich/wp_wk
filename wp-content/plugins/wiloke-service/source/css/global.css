@@ -11,3 +11,107 @@
 .ui.button{
     height: auto !important;
 }
+.wiloke-announcement {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 90%;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.wiloke-announcement {
+    position: relative;
+    min-height: 1em;
+    margin: 1em 0;
+    background: #f8f8f9;
+    padding: 1em 1.5em;
+    line-height: 1.4285em;
+    color: rgba(0,0,0,.87);
+    -webkit-transition: opacity .1s ease,color .1s ease,background .1s ease,box-shadow .1s ease;
+    transition: opacity .1s ease,color .1s ease,background .1s ease,box-shadow .1s ease;
+    border-radius: .28571429rem;
+    box-shadow: 0 0 0 1px rgba(34,36,38,.22) inset, 0 0 0 0 transparent;
+    margin-top: 30px;
+}
+
+.wiloke-announcement i.icon {
+    display: inline-block;
+    opacity: 1;
+    margin: 0 .25rem 0 0;
+    width: 1.18em;
+    height: 1em;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: inherit;
+    text-align: center;
+    speak: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.wiloke-announcement  > .icon:not(.close) {
+    display: block;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+    line-height: 1;
+    vertical-align: middle;
+    font-size: 3em;
+    opacity: .8;
+}
+
+.wiloke-announcement > :first-child {
+    margin-top: 0;
+}
+
+.wiloke-announcement > .icon {
+    margin-right: .6em;
+}
+
+.wiloke-announcement .icon:not(.close)+.content {
+    padding-left: 0;
+}
+
+.wiloke-announcement>.content {
+    display: block;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    vertical-align: middle;
+}
+
+.wiloke-announcement>:last-child {
+    margin-bottom: 0;
+}
+
+.wiloke-announcement .header:not(.ui) {
+    font-size: 1.14285714em;
+}
+
+.wiloke-announcement .header {
+    display: block;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-weight: 700;
+    margin: -.14285714em 0 0 0;
+}
+
+.wiloke-announcement .header+p {
+    margin-top: .25em;
+}
+
+.wiloke-announcement p:first-child {
+    margin-top: 10px;
+}
+.wiloke-announcement p:last-child {
+    margin-bottom: 0;
+}
+
+.wiloke-announcement p {
+    opacity: .85;
+    margin: .75em 0;
+}

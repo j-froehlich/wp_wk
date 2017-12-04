@@ -1,4 +1,4 @@
-<div class="wiloke-service-wrapper ui two column centered grid">
+<div class="wiloke-service-wrapper ui column centered grid">
     <div class="column">
         <div class="panel panel-primary">
             <div class="panel-heading">

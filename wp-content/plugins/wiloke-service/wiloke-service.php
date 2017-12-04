@@ -5,7 +5,7 @@ Plugin URI: http://wiloke.com
 Author URI: wiloke
 Author URI: http://wiloke.com
 Description: Automatically Update Wiloke's Products
-Version: 0.9.7
+Version: 0.9.9
 */
 
 if ( !defined('ABSPATH') )

@@ -16,6 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 
+    public static $has_loaded = false;
+
     public $admin_fields = array();
 
 	/**
@@ -80,14 +82,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		$this->supports = array(
 			'products',
-			'subscriptions',
-			'subscription_cancellation',
-			'subscription_suspension',
-			'subscription_reactivation',
-			'subscription_amount_changes',
-			'subscription_date_changes',
-			'subscription_payment_method_change',
-            'gateway_scheduled_payments'
 		);
 
 		if ( $this->get_option( 'enabled' ) === 'yes' && ! $this->supports_encryption() ) {
@@ -105,49 +99,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			$this->remember = 'no';
 		}
 
-		// Actions
-		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
-		add_action( 'woocommerce_thankyou_direct-debit', array( $this, 'thankyou_page' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'payment_scripts' ) );
-		add_action( 'woocommerce_review_order_after_payment', array( $this, 'checkbox' ), wc_gzd_get_hook_priority( 'checkout_direct_debit' ) );
-		add_action( 'wp_ajax_show_direct_debit', array( $this, 'generate_mandate' ) );
-		add_action( 'wp_ajax_nopriv_show_direct_debit', array( $this, 'generate_mandate' ) );
-		add_filter( 'woocommerce_email_classes', array( $this, 'add_email_template' ) );
-
-		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_checkbox' ) );
-
-		// Pay for Order
-		add_action( 'woocommerce_pay_order_before_submit', array( $this, 'checkbox' ) );
-
-		// Order Meta
-		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'set_order_meta' ), 10, 2 );
-		add_action( 'woocommerce_scheduled_subscription_payment', array( $this, 'set_order_meta' ), 10, 2 );
-
-		// User Meta
-		add_action( 'woocommerce_subscription_payment_complete', array( $this, 'set_mandate_seqType_to_RCUR_for_user' ), 10, 2 );
-		add_action( 'woocommerce_order_status_completed', array( $this, 'set_mandate_seqType_to_RCUR_for_user' ), 10, 2 );
-
-		// Customer Emails
-		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
-		add_action( 'woocommerce_germanized_order_confirmation_sent', array( $this, 'send_mail' ) );
-		add_action( 'woocommerce_email_customer_details', array( $this, 'email_sepa' ), 15, 3 );
-
-		// Order admin
-		add_action( 'woocommerce_admin_order_data_after_order_details', array( $this, 'print_debit_fields' ), 10, 1 );
-
-		add_action( 'woocommerce_before_order_object_save', array( $this, 'save_debit_fields' ), 10, 1 );
-
-		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-	        add_action( 'woocommerce_process_shop_order_meta', array( $this, 'save_debit_fields' ), 10, 1 );
+		if ( ! self::$has_loaded ) {
+			$this->init();
         }
-
-		// Admin order table download actions
-		add_filter( 'woocommerce_admin_order_actions', array( $this, 'order_actions' ), 0, 2 );
-
-		// Export filters
-		add_action( 'export_filters', array( $this, 'export_view' ) );
-		add_action( 'export_wp', array( $this, 'export' ), 0, 1 );
-		add_filter( 'export_args', array( $this, 'export_args' ), 0, 1 );
 
 		$this->admin_fields = array(
 			'direct_debit_holder' => array(
@@ -177,7 +131,50 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		    ),
         );
 
+		self::$has_loaded = true;
 	}
+
+	public function init() {
+		// Actions
+		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
+		add_action( 'woocommerce_thankyou_direct-debit', array( $this, 'thankyou_page' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'payment_scripts' ) );
+		add_action( 'woocommerce_review_order_after_payment', array( $this, 'checkbox' ), wc_gzd_get_hook_priority( 'checkout_direct_debit' ) );
+		add_filter( 'woocommerce_email_classes', array( $this, 'add_email_template' ) );
+
+		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_checkbox' ) );
+
+		// Pay for Order
+		add_action( 'woocommerce_pay_order_before_submit', array( $this, 'checkbox' ) );
+
+		// Order Meta
+		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'set_order_meta' ), 10, 2 );
+		add_action( 'woocommerce_scheduled_subscription_payment', array( $this, 'set_order_meta' ), 10, 2 );
+
+		// Customer Emails
+		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
+		add_action( 'woocommerce_germanized_order_confirmation_sent', array( $this, 'send_mail' ) );
+		add_action( 'woocommerce_email_customer_details', array( $this, 'email_sepa' ), 15, 3 );
+
+		// Order admin
+		add_action( 'woocommerce_admin_order_data_after_order_details', array( $this, 'print_debit_fields' ), 10, 1 );
+		add_action( 'woocommerce_before_order_object_save', array( $this, 'save_debit_fields' ), 10, 1 );
+
+		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+			add_action( 'woocommerce_process_shop_order_meta', array( $this, 'save_debit_fields' ), 10, 1 );
+		}
+
+		add_action( 'wp_ajax_show_direct_debit', array( $this, 'generate_mandate' ) );
+		add_action( 'wp_ajax_nopriv_show_direct_debit', array( $this, 'generate_mandate' ) );
+
+		// Admin order table download actions
+		add_filter( 'woocommerce_admin_order_actions', array( $this, 'order_actions' ), 0, 2 );
+
+		// Export filters
+		add_action( 'export_filters', array( $this, 'export_view' ) );
+		add_action( 'export_wp', array( $this, 'export' ), 0, 1 );
+		add_filter( 'export_args', array( $this, 'export_args' ), 0, 1 );
+    }
 
 	public function print_debit_fields( $order ) {
 
@@ -334,33 +331,53 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			$directDebit = Digitick\Sepa\TransferFile\Factory\TransferFileFacadeFactory::createDirectDebit( $msg_id, $this->company_account_holder, $this->pain_format );
 			$directDebit = apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter', $directDebit );
 
+			// Group orders by their mandate type to only add one payment per mandate type group.
+			$mandate_type_groups = array();
+
 			while ( $order_query->have_posts() ) {
 
 				$order_query->next_post();
 				$order = wc_get_order( $order_query->post->ID );
 
-				$payment_id = 'PMT-ID-' . wc_gzd_get_crud_data( $order, 'id' );
+				if ( ! $order ) {
+				    continue;
+                }
+
+				$mandate_type = $this->get_mandate_type( $order );
+
+				if ( ! array_key_exists( $mandate_type, $mandate_type_groups ) ) {
+				    $mandate_type_groups[ $mandate_type ] = array();
+                }
+
+				array_push( $mandate_type_groups[ $mandate_type ], $order );
+			}
+
+			foreach( $mandate_type_groups as $mandate_type => $orders ) {
+
+			    $payment_id = 'PMT-ID-' . date( 'YmdHis', time() ) . '-' . strtolower( $mandate_type );
 
 				$directDebit->addPaymentInfo( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_payment_args', array(
 					'id'                    => $payment_id,
 					'creditorName'          => $this->company_account_holder,
 					'creditorAccountIBAN'   => $this->clean_whitespaces( $this->company_account_iban ),
 					'creditorAgentBIC'      => $this->clean_whitespaces( $this->company_account_bic ),
-					'seqType'               => $this->get_mandate_type( $order ),
+					'seqType'               => $mandate_type,
 					'creditorId'            => $this->clean_whitespaces( $this->company_identification_number ),
-                    'dueDate'               => date_i18n( 'Y-m-d', $this->get_debit_date( $order ) ),
-				), $this, $order ) );
+					'dueDate'               => date_i18n( 'Y-m-d', $this->get_debit_date( $order ) ),
+				), $this, $mandate_type ) );
 
-				$directDebit->addTransfer( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args', array(
-					'amount'                => $order->get_total(),
-					'debtorIban'            => $this->clean_whitespaces( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_iban' ) ) ),
-					'debtorBic'             => $this->clean_whitespaces( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_bic' ) ) ),
-					'debtorName'            => wc_gzd_get_crud_data( $order, 'direct_debit_holder' ),
-					'debtorMandate'         => $this->get_mandate_id( $order ),
-					'debtorMandateSignDate' => date_i18n( 'Y-m-d', $this->get_mandate_sign_date( $order ) ),
-					'remittanceInformation' => apply_filters( 'woocommerce_germanized_direct_debit_purpose', sprintf( __( 'Order %s', 'woocommerce-germanized' ), $order->get_order_number() ), $order ),
-				), $this, $order ) );
-			}
+				foreach( $orders as $order ) {
+					$directDebit->addTransfer( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args', array(
+						'amount'                => $order->get_total(),
+						'debtorIban'            => $this->clean_whitespaces( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_iban' ) ) ),
+						'debtorBic'             => $this->clean_whitespaces( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_bic' ) ) ),
+						'debtorName'            => wc_gzd_get_crud_data( $order, 'direct_debit_holder' ),
+						'debtorMandate'         => $this->get_mandate_id( $order ),
+						'debtorMandateSignDate' => date_i18n( 'Y-m-d', $this->get_mandate_sign_date( $order ) ),
+						'remittanceInformation' => apply_filters( 'woocommerce_germanized_direct_debit_purpose', sprintf( __( 'Order %s', 'woocommerce-germanized' ), $order->get_order_number() ), $order ),
+					), $this, $order ) );
+                }
+            }
 
 			header( 'Content-Description: File Transfer' );
 			header( 'Content-Disposition: attachment; filename=' . $filename );

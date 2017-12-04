@@ -47,13 +47,11 @@ class WC_GZD_Compatibility_Woocommerce_Dynamic_Pricing extends WC_GZD_Compatibil
 	}
 
 	public function set_unit_price_filter() {
-		add_filter( 'woocommerce_gzd_unit_price_including_tax', array( $this, 'calculate_unit_price' ), 10, 4 );
-		add_filter( 'woocommerce_gzd_unit_price_excluding_tax', array( $this, 'calculate_unit_price' ), 10, 4 );
+		add_action( 'woocommerce_gzd_before_get_unit_price', array( $this, 'calculate_unit_price' ), 10, 2 );
 	}
 
-	public function calculate_unit_price( $price, $single_price, $qty, $product ) {
+	public function calculate_unit_price( $product, $price ) {
 		$product->recalculate_unit_price();
-		return $price;
 	}
 
 }

@@ -35,6 +35,22 @@
             </div>
         </div>
         <div class="field">
+            <div class="ui toggle checkbox">
+                <div class="checkbox">
+                    <input id="toggle-add-additional-scripts" type="checkbox" name="wiloke_minify[toggle_custom_scripts]" value="1" <?php checked($aData['toggle_custom_scripts'], 1); ?> />
+                    <label for="toggle-add-additional-scripts">Add Additional Scripts</label>
+                </div>
+            </div>
+        </div>
+        <div id="add-custom-js-wrapper" class="field hidden">
+            <label for="add-more-js">Add Additional Scripts</label>
+            <textarea id="add-more-js" name="wiloke_minify[additional_js]"><?php echo is_array($aData['additional_js']) ? implode("\n", $aData['additional_js']) : esc_html($aData['additional_js']); ?></textarea>
+        </div>
+        <div id="add-custom-css-wrapper" class="field hidden">
+            <label for="add-more-js">Add Additional CSS</label>
+            <textarea id="add-more-js" name="wiloke_minify[additional_css]"><?php echo is_array($aData['additional_css']) ? implode("\n", $aData['additional_css']) : esc_html($aData['additional_css']); ?></textarea>
+        </div>
+        <div class="field">
             <button type="submit" class="ui button green button-save inverted"><?php esc_html_e('Compress', 'wiloke-service'); ?></button>
         </div>
     </form>

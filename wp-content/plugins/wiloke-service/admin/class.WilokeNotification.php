@@ -14,7 +14,7 @@ if ( !defined('ABSPATH') )
 {
     wp_die( esc_html__('You do not permission to access to this page', 'wiloke-service') );
 }
-
+// dadaxxasazzdad11xxdadadad))##1 vedauser veda_demo
 if ( !class_exists('WilokeNotification') )
 {
     class WilokeNotification{
@@ -34,19 +34,17 @@ if ( !class_exists('WilokeNotification') )
                 return false;
             }
 
-            $aPlugins = get_plugin_updates();
-            $aThemes  = get_theme_updates();
-            if ( empty($aPlugins) && empty($aThemes) ){
+            if ( isset( $_GET['action'] ) && ('do-plugin-upgrade' === $_GET['action']) ){
                 delete_transient(WilokeService::$hasUpdateKey);
             }
         }
 
         public function announcingHasAnUpdate(){
             if ( get_transient(WilokeService::$hasUpdateKey) ){
-                $class = 'notice notice-success';
-                $message = sprintf( __('We have an update for the theme. Please click on <a href="%s">View Changelog</a> to check what new in this version or click on <a href="%s">Go to Updates area</a> to install it.', 'wiloke-service'), esc_url(admin_url('admin.php?page='.WilokeService::$aSlug['notification'])), esc_url(admin_url('update-core.php')) );
+                $class = 'wiloke-announcement';
+                $message = sprintf( __('You have the latest version of %s. Please click on <a href="%s">View Changelog</a> to check what new in this version or click on <a href="%s">Go to Updates area</a> to update it.', 'wiloke-service'), WilokeService::$aThemeInfo['name'], esc_url(admin_url('admin.php?page='.WilokeService::$aSlug['notification'])), esc_url(admin_url('update-core.php')) );
 
-                printf( '<div style="padding: 10px; margin-top: 20px;" class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), wp_kses($message, array(
+                printf( '<div class="%1$s"><i class="icon fa fa-pied-piper-alt"></i><div class="content"><div class="header">Wiloke Announcement</div><p>%2$s</p></div></div>', esc_attr( $class ), wp_kses($message, array(
                     'a' => array('href'=>array(), 'class'=>array())
                 )) );
             }

@@ -9,7 +9,7 @@
 					  <label for="token-secret" class="col-lg-2 control-label"><?php esc_html('Access Token', 'wiloke-service'); ?></label>
 					  <div class="col-lg-10">
 					    <textarea class="form-control" rows="20" id="token-secret" name="wiloke_update[secret_token]"><?php echo esc_textarea($secretToken); ?></textarea>
-					    <span class="help-block">Following this tutorial to create one <a href="http://wiloke.net/" target="_blank">http://wiloke.net/</a></span>
+					    <span class="help-block">Following this tutorial to create one <a href="https://wiloke.net/" target="_blank">https://wiloke.net/</a></span>
 					  </div>
 					</div>
 

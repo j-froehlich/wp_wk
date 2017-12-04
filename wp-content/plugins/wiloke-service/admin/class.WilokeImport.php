@@ -22,13 +22,13 @@ class WilokeImport
      * @since 0.2
      */
     // private $wilokeAPIURL = 'http://localhost:8000/demo/request';
-    private $wilokeAPIURL = 'http://wiloke.net/demo/request';
+    private $wilokeAPIURL = 'https://wiloke.net/demo/request';
 
     /**
      * VC Portfolio Demos End Point
      * @since 0.3
      */
-    private $_wilokePortfolioDemoURL = 'http://wiloke.net/vc-portfolio-demos/request';
+    private $_wilokePortfolioDemoURL = 'https://wiloke.net/vc-portfolio-demos/request';
 
     /**
      * Transient Store
@@ -98,9 +98,14 @@ class WilokeImport
         wp_die();
     }
 
-    public function importXML($aFiles, $isLocal, $isAttachment=true){
+    public function importXML($aFiles, $isAttachment=true){
+	    if ( !class_exists('WP_Import') ){
+		    include plugin_dir_path(__FILE__) . 'wordpress-importer/wordpress-importer.php';
+	    }
+
 	    $oWPImport = new WP_Import;
 	    $message = '';
+
 	    if ( !empty($aFiles) ) {
 		    foreach ( $aFiles as $file )
 		    {
@@ -116,8 +121,8 @@ class WilokeImport
 				    $message .= sprintf(  esc_html__('%s has been imported', 'wiloke-service'), basename($file) );
 				    $message .= '<br />';
 
-				    if ( !$isLocal ){
-					    $this->deleteFile($file);
+				    if ( strpos($aFiles, 'wiloke-service') !== false ){
+					    wp_delete_file($file);
                     }
 
 			    }
@@ -125,6 +130,36 @@ class WilokeImport
 
 		    wp_send_json_success(array('message'=>$message, 'keep_alive'=>true));
 	    }
+    }
+
+	/**
+	 * Retrieve the download URL for a WP repo package.
+	 *
+	 * @since 2.5.0
+	 *
+	 * @param string $slug Plugin slug.
+	 * @return string Plugin download URL.
+	 */
+	protected function unZipFile($package, $isLive=false){
+		WP_Filesystem();
+		$status = unzip_file( $package,  plugin_dir_path(__FILE__) . 'export-demo/');
+		if ( $isLive ){
+			@unlink($package);
+		}
+		if ( $status ){
+			return true;
+		}
+
+		return false;
+	}
+
+	protected function downloadDemo($downloadLink){
+		$package = download_url( $downloadLink, 18000 );
+		if (is_wp_error($package)){
+			return false;
+		}
+
+		return $this->unZipFile($package, true);
     }
 
     /**
@@ -142,50 +177,32 @@ class WilokeImport
             wp_send_json_error();
         }
 
-        $file = urldecode($aSettings['file']);
-        $file = WilokeService::$awsUrl . $file;
+        $fileName = urldecode($aSettings['file']);
+        $demoUrl = WilokeService::$awsUrl . $fileName;
+
         $isContinueImport = isset($_POST['keep_alive']) && $_POST['keep_alive'] ? true : false;
         $isAttachment     = isset($aSettings['attachment']) && $aSettings['attachment'] == 'yes' ? true : false;
         
         $target  = plugin_dir_path(__FILE__) . 'export-demo/';
-        $newfile = plugin_dir_path(__FILE__) . 'export-demo/demo.zip';
 
-        $folder = str_replace('.zip', '', basename($file));
+        $folder = str_replace('.zip', '', basename($fileName));
 
-        if ( isset($aSettings['demodata']) && ($aSettings['demodata'] === 'yes') && !$isContinueImport ){
-	        if ( !class_exists('WP_Import') ){
-		        include plugin_dir_path(__FILE__) . 'wordpress-importer/wordpress-importer.php';
-	        }
+        if ( isset($aSettings['demodata']) && ($aSettings['demodata'] === 'yes') && !isset($_POST['isDownloadedDemos']) ){
+	        $aXml = glob($target . '*.xml');
 
-	        $demoDir = $target.$folder;
-	        $aXml = glob(get_template_directory() . '/demos/'.$folder.'/*.xml');
-            $isLocal = true;
             if (empty($aXml)){
-	            $aXml = glob($demoDir.'/*.xml');
-	            $test['copy'] = function_exists('copy') ? 'yes' : 'no';
-	            $test['ZipArchive'] = class_exists('ZipArchive') ? 'yes' : 'no';
-
-                if ( copy($file, $newfile) ) {
-                    $zip    = new ZipArchive();
-                    $zip->open($newfile);
-                    $zip->extractTo($target);
-                    $zip->close();
-                    unlink($file);
-                    $zip->close();
-                }elseif( is_dir(get_template_directory() . '/dummy/') ){
-                    wp_send_json_error();
+	            $downloadStatus = $this->downloadDemo($demoUrl);
+	            if ( !$downloadStatus ){
+		            wp_send_json_error(array('message'=>esc_html__('Our hosting provider do not allow import the demo from our server, please contact '.WilokeService::$emailContact.' to solve this issue.', 'wiloke-service'), 'keep_alive'=>true));
                 }
-
-                wp_send_json_success(array( 'message' => esc_html__('The demo data has been downloaded from our server. The import process is starting! ', 'wiloke-service'), 'keep_alive'=>true));
-	            $isLocal = true;
             }
 
-            if ( !empty($aXml) ){
-	            $this->importXML($aXml, $isLocal, $isAttachment);
-            }else{
-	            wp_send_json_error(array('message'=>esc_html__('Our hosting provider do not allow import the demo from our server, please contact '.WilokeService::$emailContact.' to solve this issue.', 'wiloke-service'), 'keep_alive'=>true));
-            }
+	        wp_send_json_success(array( 'message' => esc_html__('The demo data has been downloaded from our server. The import process is starting! ', 'wiloke-service'), 'keep_alive'=>true, 'start_importing_demos'=>true));
+        }
 
+        if ( isset($_POST['start_importing_demos']) ){
+	        $aXml = glob($target . '*.xml');
+	        $this->importXML($aXml);
         }
 
         if ( isset($aSettings['themeoptions']) && ($aSettings['themeoptions'] === 'yes') ){
@@ -196,8 +213,8 @@ class WilokeImport
                 $aConfig = json_decode($content, true);
                 $optionKey = $aConfig['themeoptions']['key'];
                 $target = get_template_directory() . '/demos/';
-            }elseif ( is_file($target . $folder . '/wiloke.json') ){
-	            $content = file_get_contents($target . $folder . '/wiloke.json');
+            }elseif ( is_file($target . 'wiloke.json') ){
+	            $content = file_get_contents($target . 'wiloke.json');
 	            $aConfig = json_decode($content, true);
 	            $optionKey = $aConfig['themeoptions']['key'];
             }
@@ -220,8 +237,8 @@ class WilokeImport
                     update_option('page_on_front', $oPosts[0]->ID);
                 }
             }
-
-	        $isContinueImport = false;
+            wp_delete_file($target.'themeoptions.json');
+            wp_delete_file($target.'wiloke.json');
             wp_send_json_success(array('message'=>esc_html__('Theme Options has been updated', 'wiloke-service'), 'keep_alive'=>false));
         }
 
@@ -293,8 +310,8 @@ class WilokeImport
         }
 
         if (!is_dir($dir)){
-           return unlink($dir); 
-        } 
+           return unlink($dir);
+        }
 
         foreach (scandir($dir) as $item) {
             if ($item == '.' || $item == '..'){

@@ -104,16 +104,15 @@
                 }
 
                 $importing.removeClass('hidden');
-
                 var xhr = $.ajax({
                     type: "POST",
-                    data: {action: 'wiloke_import', security: WILOKE_SERIVCE_NONCE, settings: $this.closest('form').serialize(), keep_alive: $this.data('keep_alive')},
+                    data: {action: 'wiloke_import', security: WILOKE_SERIVCE_NONCE, settings: $this.closest('form').serialize(), keep_alive: $this.data('keep_alive'), start_importing_demos: $this.data('start_importing_demos'), isDownloadedDemos:$this.data('isDownloadedDemos')},
                     url: ajaxurl,
                     success: function(response){
                         $this.prop('disabled', false);
                         if ( response.success ){
                             $this.data('importing', false);
-
+	                        $this.data('isDownloadedDemos', true);
                             if ( typeof response.data !== 'undefined' ) {
 
                                 if ( typeof response.data.message !== 'undefined' ) {
@@ -122,12 +121,18 @@
 
                                 if ( typeof response.data.keep_alive !== 'undefined' && response.data.keep_alive ) {
                                     $this.data('keep_alive', true);
+                                    if ( typeof response.data.start_importing_demos !== 'undefined' ){
+	                                    $this.data('start_importing_demos', true);
+                                    }else{
+	                                    $this.data('start_importing_demos', false);
+                                    }
                                     $this.trigger('click');
                                 }else{
                                     $popup.find('.message p:last').css({'color': 'green'});
                                     $form.find('.wil-library__cancel').html('Back');
                                     $form.slideDown();
 	                                $this.removeData('keep_alive');
+	                                $this.removeData('start_importing_demos');
                                     $importing.addClass('hidden');
                                 }
                             }
@@ -135,6 +140,7 @@
 	                        $this.data('keep_alive', false);
                             $popup.find('.message').html('<p style="color: red;">Import Failure</p>');
                             $importing.addClass('hidden');
+	                        $this.data('isDownloadedDemos', false);
                         }                        
                     },
                     error: function(){
@@ -427,6 +433,14 @@
             })
         },
         compress: function () {
+            $('#toggle-add-additional-scripts').on('change', function () {
+                if ( $(this).is(':checked') ){
+                    $('#add-custom-js-wrapper, #add-custom-css-wrapper').removeClass('hidden');
+                }else{
+	                $('#add-custom-js-wrapper, #add-custom-css-wrapper').addClass('hidden');
+                }
+            }).trigger('change');
+
             $('#wiloke-compress-settings').submit(function (event) {
                 event.preventDefault();
                 var $form = $(this),

@@ -1,13 +1,13 @@
 <?php
 /**
- * Wiloke Update 
+ * Wiloke Update
  * Automatically Update Theme and Plugins
  *
  * @link        https://wiloke.com
  * @since       1.0
  * @package     WilokeService
  * @subpackage  WilokeService/admin
- * @author      Wiloke 
+ * @author      Wiloke
  */
 
 if ( !defined('ABSPATH') )
@@ -27,8 +27,8 @@ if ( !class_exists('WilokeUpdate') )
 		 * Defines Wiloke's URLs
 		 * @since 1.0
 		 */
-		public $wilokeAPIURL = 'http://wiloke.net/client-update/';
-		public $wilokeStore  = 'http://wiloke.net/storage/';
+		public $wilokeAPIURL = 'https://wiloke.net/client-update/';
+		public $wilokeStore  = 'https://wiloke.net/storage/';
 
 		// private $wilokeAPIURL = 'http://localhost:8000/client-update';
 		// private $wilokeStore  = 'http://localhost:8000/storage/';
@@ -44,8 +44,9 @@ if ( !class_exists('WilokeUpdate') )
 		 * @since 1.0
 		 */
 		private $temporaryDisableCheck = '_wiloke_service_temporary_disable_check';
+		private $disFocusCheckKey = '_wiloke_service_focus_request_in_update_core_page';
 
-		/** 
+		/**
 		 * Put all themes and plugins into guys
 		 * @since 1.0
 		 */
@@ -63,6 +64,14 @@ if ( !class_exists('WilokeUpdate') )
 		 * @since 1.0
 		 */
 		private static $wp_plugins = array();
+
+		public function insideUpdateCorePage(){
+			global $pagenow;
+			if ( $pagenow === 'update-core.php' && ( !isset($_REQUEST['action']) || ('do-plugin-upgrade' !== $_REQUEST['action'])) && !get_transient($this->disFocusCheckKey) ){
+				$this->refreshUpdate();
+				set_transient($this->disFocusCheckKey, 'yes', 300);
+			}
+		}
 
 		public function refreshUpdate(){
 			delete_transient($this->temporaryDisableCheck);
@@ -85,9 +94,9 @@ if ( !class_exists('WilokeUpdate') )
 			{
 				// send purchased code
 				$this->set_plugins();
-				
+
 				self::$wp_plugins = self::wp_plugins();
-				
+
 				if ( empty($this->aPlugins) || is_wp_error($this->aPlugins) )
 				{
 					return false;
@@ -120,18 +129,18 @@ if ( !class_exists('WilokeUpdate') )
 		{
 			// Process premium theme updates.
 			if ( isset( $transient->checked ) || $isDebug = true ) {
-				
+
 				$this->set_plugins();
-				
+
 				if ( is_wp_error($this->aThemes) || empty($this->aThemes) )
 				{
 					return false;
 				}
-				
+
 				foreach ( $this->aThemes as $slug => $premium ) {
 					$theme = wp_get_theme( $slug );
-				
-					if ( $theme->exists() && version_compare( $theme->get( 'Version' ), $premium['version'], '<' ) ) 
+
+					if ( $theme->exists() && version_compare( $theme->get( 'Version' ), $premium['version'], '<' ) )
 					{
 						$transient->response[ $slug ] = array(
 							'theme'       => $slug,
@@ -139,7 +148,7 @@ if ( !class_exists('WilokeUpdate') )
 							'url'         => $premium['url'],
 							'package'     => $premium['package']
 						);
-                        set_transient(WilokeService::$hasUpdateKey, true, 86400);
+						set_transient(WilokeService::$hasUpdateKey, true, 86400);
 					}
 				}
 
@@ -175,18 +184,19 @@ if ( !class_exists('WilokeUpdate') )
 		public function set_plugins() {
 			$this->_set_plugins();
 		}
-		
+
 		protected function _set_plugins()
 		{
-			if ( empty(WilokeService::$wilokeApiKey) || empty(WilokeService::$aThemeInfo) || ( WilokeService::$aThemeInfo == 'notwiloke' ) || is_wp_error(WilokeService::$aThemeInfo) || get_transient($this->temporaryDisableCheck) )
+			global $pagenow;
+
+			if ( (empty(WilokeService::$wilokeApiKey) || empty(WilokeService::$aThemeInfo) || ( WilokeService::$aThemeInfo == 'notwiloke' ) || is_wp_error(WilokeService::$aThemeInfo) || get_transient($this->temporaryDisableCheck)) && $pagenow !== 'update-core.php' )
 			{
 				return false;
 			}
 
 			$this->aPlugins = get_transient($this->get_option_name('wiloke_update_plugins'));
-			$oInfo = false;
 			$this->aThemes  = get_transient($this->get_option_name('wiloke_update_themes'));
-
+			$oInfo = null;
 			if ( (false === $this->aPlugins) ||  ( false === $this->aThemes ) )
 			{
 				$oInfo  = WilokeService::request($this->wilokeAPIURL);
@@ -194,7 +204,7 @@ if ( !class_exists('WilokeUpdate') )
 					set_transient($this->temporaryDisableCheck, true, $this->cacheIterval);
 					return false;
 				}else{
-            		delete_transient($this->temporaryDisableCheck);
+					delete_transient($this->temporaryDisableCheck);
 				}
 			}
 
@@ -204,10 +214,10 @@ if ( !class_exists('WilokeUpdate') )
 				return false;
 			}
 
-			if ( false === $this->aPlugins )
+			if ( empty($this->aPlugins) )
 			{
 				$oPlugins = isset($oInfo->plugins) ? $oInfo->plugins : '';
-				
+
 				if ( !empty($oPlugins) )
 				{
 					foreach ( $oPlugins as $oPlugin )
@@ -216,20 +226,20 @@ if ( !class_exists('WilokeUpdate') )
 						$aPlugin['plugin']  =  $oPlugin->name;
 						$aPlugin['version'] =  $oPlugin->version;
 						$aPlugin['url'] 	 =  $this->wilokeStore;
-						$aPlugin['package'] =  WilokeService::$awsUrl . 'plugins/' . $oPlugin->slug . '.zip';
+						$aPlugin['package'] =  WilokeService::$awsUrl . 'plugins/' . $oPlugin->slug . '/' . $oPlugin->slug . '.zip';
 						$aPlugin['description'] =  $oPlugin->description;
 						$this->aPlugins[$oPlugin->slug . '/' . $oPlugin->file_init] = $aPlugin;
 					}
 
 					delete_transient($this->get_option_name('wiloke_update_plugins'));
 					set_transient($this->get_option_name('wiloke_update_plugins'), $this->aPlugins, $this->cacheIterval);
-                    update_option('wiloke_plugins_changelog', $this->aPlugins);
+					update_option('wiloke_plugins_changelog', $this->aPlugins);
 				}else{
 					set_transient($this->temporaryDisableCheck, true, $this->cacheIterval);
 				}
 			}
 
-			if ( false ===  $this->aThemes ) {
+			if ( empty($this->aThemes) ) {
 				$oThemes  = isset($oInfo->themes) ? $oInfo->themes : '';
 
 				if ( !empty($oThemes) )
@@ -239,7 +249,7 @@ if ( !class_exists('WilokeUpdate') )
 						$this->aThemes[$oTheme->slug]['slug']        =  $oTheme->slug;
 						$this->aThemes[$oTheme->slug]['version']     =  $oTheme->version;
 						$this->aThemes[$oTheme->slug]['url'] 	     =  'https://wiloke.com';
-						$this->aThemes[$oTheme->slug]['package']     =   WilokeService::$awsUrl . 'themes/' . $oTheme->slug . '.zip';
+						$this->aThemes[$oTheme->slug]['package']     =   WilokeService::$awsUrl . 'themes/' . $oTheme->slug . '/' . $oTheme->slug . '.zip';
 						$this->aThemes[$oTheme->slug]['description'] =  $oTheme->description;
 					}
 
@@ -251,7 +261,7 @@ if ( !class_exists('WilokeUpdate') )
 				}
 			}
 
-            set_transient($this->temporaryDisableCheck, true, $this->cacheIterval);
+			set_transient($this->temporaryDisableCheck, true, $this->cacheIterval);
 		}
 
 		/**
@@ -263,7 +273,7 @@ if ( !class_exists('WilokeUpdate') )
 		 * @param string $url The request URL.
 		 * @return array
 		 */
-		public function update_check( $request, $url ) 
+		public function update_check( $request, $url )
 		{
 			// Theme update request.
 			if ( false !== strpos( $url, '//api.wordpress.org/themes/update-check/1.1/' ) ) {
@@ -278,7 +288,7 @@ if ( !class_exists('WilokeUpdate') )
 				{
 					return array();
 				}
-				
+
 				// Decode JSON so we can manipulate the array.
 				$data = json_decode( $request['body']['themes'] );
 
@@ -297,7 +307,7 @@ if ( !class_exists('WilokeUpdate') )
 				 * Excluded theme slugs that should never ping the WordPress API.
 				 * We don't need the extra http requests for themes we know are premium.
 				 */
-				
+
 				if ( empty($this->aPlugins) || is_wp_error($this->aPlugins) )
 				{
 					$this->set_plugins();
@@ -307,7 +317,7 @@ if ( !class_exists('WilokeUpdate') )
 						return array();
 					}
 				}
-				
+
 				// Decode JSON so we can manipulate the array.
 				$data = json_decode( $request['body']['plugins'] );
 
@@ -345,6 +355,7 @@ if ( !class_exists('WilokeUpdate') )
 					{
 						$secretToken = filter_var($_POST['wiloke_update']['secret_token'], FILTER_SANITIZE_STRING);
 						update_option('_wiloke_service_client_token', $secretToken);
+						$this->refreshUpdate();
 					}
 				}
 			}else{

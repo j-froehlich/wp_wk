@@ -217,10 +217,12 @@ class WilokeService
      * @since 1.0
      * @static
      */
-    public static $version = '1.0';
+    public static $version = '0.9.9';
 
 
     public static $emailContact = 'sale@wiloke.com';
+
+    public static $oThemeInfo = null;
 
     /**
      * Run as soon as plugin init. The function load all front end and backend files, functions.
@@ -239,6 +241,16 @@ class WilokeService
 
         add_action('admin_menu', array($this, 'register_menu'));
         add_action('admin_enqueue_scripts', array($this, 'register_scripts'));
+    }
+
+    public static function getThemeVersion(){
+		if ( !empty(self::$oThemeInfo) ){
+			return self::$oThemeInfo;
+		}
+
+	    self::$oThemeInfo = wp_get_theme(get_template());
+
+		return self::$oThemeInfo;
     }
 
     public function admin_init(){
@@ -266,6 +278,7 @@ class WilokeService
                 {
                     $secretToken = filter_var($_POST['wiloke_update']['secret_token'], FILTER_SANITIZE_STRING);
                     update_option('_wiloke_service_client_token', $secretToken);
+                    update_site_option('_wiloke_service_client_token', $secretToken);
                     delete_transient(self::$temporaryDisableRequest);
                     delete_option(self::$wilokeServiceError);
                     $this->_WilokeUpdate->refreshUpdate();
@@ -329,13 +342,13 @@ class WilokeService
     {
         $this->_WilokeUpdate = new WilokeUpdate();
         self::$WilokeUpdate = $this->_WilokeUpdate;
-
 	    if ( !$this->accessToken ){
 		    return;
 	    }
 
         if ( is_admin() ){
             if ( !defined('WILOKE_DISABLE_REQUEST') || !WILOKE_DISABLE_REQUEST ) {
+            	$this->_oLoader->add_action('admin_init', $this->_WilokeUpdate, 'insideUpdateCorePage');
                 $this->_oLoader->add_action('http_request_args', $this->_WilokeUpdate, 'update_check', 5, 2);
                 // $this->_oLoader->add_action('admin_menu', $this->_WilokeUpdate, 'register_submenu');
                 $this->_oLoader->add_filter('pre_set_site_transient_update_plugins', $this->_WilokeUpdate, 'update_plugins');
@@ -382,8 +395,10 @@ class WilokeService
             $this->_oLoader->add_action('init', $this->_WilokeMinifyScripts, 'init');
             $this->_oLoader->add_action('wp_ajax_save_settings', $this->_WilokeMinifyScripts, 'save_settings');
             $this->_oLoader->add_action('wp_enqueue_scripts', $this->_WilokeMinifyScripts, 'wp_enqueue_scripts', 9999);
+            $this->_oLoader->add_filter('script_loader_tag', $this->_WilokeMinifyScripts, 'addAttributeToScripts', 10, 3);
+            $this->_oLoader->add_filter('style_loader_tag', $this->_WilokeMinifyScripts, 'addAttributeToScripts', 10, 3);
             $this->_oLoader->add_action('admin_menu', $this->_WilokeMinifyScripts, 'register_submenu');
-            $this->_oLoader->add_action('upgrader_process_complete', $this->_WilokeMinifyScripts, 'createMinifier');
+            $this->_oLoader->add_action('upgrader_process_complete', $this->_WilokeMinifyScripts, 'reCompressAfterUpgraded');
         }
 
         //Comingsoon
@@ -400,6 +415,22 @@ class WilokeService
     /**
      * Get Theme Info
      *
+     * @since 0.9.2
+     */
+    public static function findWilokeThemeInMultisite(){
+        $oThemes  = wp_get_themes();
+        foreach ($oThemes as $oTheme){
+            if ( strtolower($oTheme->get('Author')) == 'wiloke' ){
+                return $oTheme;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Get Theme Info
+     *
      * @since 0.1
      */
     public static function get_theme_info($isFocus = false)
@@ -409,24 +440,39 @@ class WilokeService
 
         if ( !empty(self::$aThemeInfo['email']) && !$isFocus )
         {
-            return;
+            return false;
         }
 
-        $oTheme  = wp_get_theme();
-        $oParent = $oTheme->parent();
+        if ( is_multisite() ){
+            $oTheme = self::findWilokeThemeInMultisite();
+            if ( !$oTheme ){
+                update_option(self::$currentThemeInfo, 'notwiloke');
+                return false;
+            }
+	        $oParent = $oTheme->parent;
+        }else{
+            $oTheme  = wp_get_theme();
+	        $oParent = $oTheme->parent();
+        }
+
         if ( isset($oParent) && !empty($oParent) )
         {
             $oTheme = $oParent;
         }
 
-        $userInfo       = wp_get_current_user();
-        $userName       = $userInfo->user_firstname . ' ' . $userInfo->user_lastname;
-        $slug = get_template();
+        $userInfo = wp_get_current_user();
+        
+        if ( is_multisite() ){
+            $userName = $userInfo->data->display_name;
+	        $slug = $oTheme->__get('template');
+        }else{
+            $userName = $userInfo->user_firstname . ' ' . $userInfo->user_lastname;
+	        $slug = get_template();
+        }
         
         if ( strtolower($oTheme->get('Author')) == 'wiloke' )
         {
             self::$aThemeInfo = array('name'=>$oTheme->get('Name'),'author'=>$oTheme->get('Author'), 'version'=>$oTheme->get('Version'), 'email'=>get_option('admin_email'), 'siteurl'=>get_option('home'), 'username'=>$userName, 'slug'=>$slug);
-
             if ( empty(self::$aThemeInfo['email']) ){
                 $oUser = wp_get_current_user();
                 if ( in_array( 'administrator', (array) $oUser->roles ) ) {
@@ -518,7 +564,6 @@ class WilokeService
             'body' => self::$aThemeInfo
         );
         $args = wp_parse_args( $args, $defaults );
-
         // Make an API request.
         $response = wp_remote_get( esc_url_raw( $url ), $args );
 

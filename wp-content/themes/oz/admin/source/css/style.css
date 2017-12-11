@@ -1,5 +1,5 @@
 .redux-notice{
-    display: none !important; 
+    display: none !important;
 }
 
 .icon-list li{
@@ -170,7 +170,7 @@
 }
 .sp-container button,
 .sp-container button:hover {
-    background-color: #ba93ef;
+    background-color: #337ab7;
 }
 .sp-slider, .sp-alpha .sp-alpha-handle {
     opacity: 1;

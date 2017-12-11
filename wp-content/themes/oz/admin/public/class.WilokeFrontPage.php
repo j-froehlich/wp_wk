@@ -169,7 +169,7 @@ class WilokeFrontPage
                 $aPortfolioSettings = Wiloke::getPostMetaCaching($post->ID, 'project_general_settings');
 
                 if ( isset($aPortfolioSettings['theme_color']) && !empty($aPortfolioSettings['theme_color']) ){
-                    $color = str_replace('#ba93ef', $aPortfolioSettings['theme_color'], $color);
+                    $color = str_replace('#337ab7', $aPortfolioSettings['theme_color'], $color);
                     wp_add_inline_style($themeSlug, $color);
                     $generalCustomColor = false;
                 }
@@ -185,7 +185,7 @@ class WilokeFrontPage
             if ( isset($postID) ){
                 $aPageSettings = Wiloke::getPostMetaCaching($postID, 'single_page_settings');
                 if ( isset($aPageSettings['theme_color']) && !empty($aPageSettings['theme_color']) ){
-                    $color = str_replace('#ba93ef', $aPageSettings['theme_color'], $color);
+                    $color = str_replace('#337ab7', $aPageSettings['theme_color'], $color);
                     wp_add_inline_style($themeSlug, $color);
                     $generalCustomColor = false;
                 }
@@ -200,7 +200,7 @@ class WilokeFrontPage
                     if ( !empty($wiloke->aThemeOptions) && !isset($wiloke->aThemeOptions['advanced_main_color']['rgba']) ) {
                         $customColor = !empty($wiloke->aThemeOptions['advanced_main_color']['rgba']) ? $wiloke->aThemeOptions['advanced_custom_main_color']['rgba'] : $wiloke->aThemeOptions['advanced_custom_main_color']['color'];
 
-                        $color = str_replace('#ba93ef', $customColor, $color);
+                        $color = str_replace('#337ab7', $customColor, $color);
 
                         wp_add_inline_style($themeSlug, $color);
                     }

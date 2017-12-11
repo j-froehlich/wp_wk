@@ -17,3 +17,6 @@ wp-content/plugins/hello.php
 /sitemap.xml.gz
 
 apple-developer-merchantid-domain-association
+node_modules
+googledd4dfe6091d0dd0c.html
+package-lock.json

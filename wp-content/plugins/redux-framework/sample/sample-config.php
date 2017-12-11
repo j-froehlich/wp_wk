@@ -34,7 +34,7 @@
     $sample_patterns_path = ReduxFramework::$_dir . '../sample/patterns/';
     $sample_patterns_url  = ReduxFramework::$_url . '../sample/patterns/';
     $sample_patterns      = array();
-    
+
     if ( is_dir( $sample_patterns_path ) ) {
 
         if ( $sample_patterns_dir = opendir( $sample_patterns_path ) ) {
@@ -78,7 +78,7 @@
         'page_title'           => __( 'Sample Options', 'redux-framework-demo' ),
         // You will need to generate a Google API key to use this feature.
         // Please visit: https://developers.google.com/fonts/docs/developer_api#Auth
-        'google_api_key'       => '',
+        'google_api_key'       => 'AIzaSyCs5zKAqNXxYZQnMe0i49UBMIzVjGZZiNg',
         // Set it you want google fonts to update weekly. A google_api_key value is required.
         'google_update_weekly' => false,
         // Must be defined to add google fonts to the typography module
@@ -1573,7 +1573,7 @@
             ),
         )
     ) );
-    
+
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Select Image', 'redux-framework-demo' ),
         'id'         => 'select-select_image',
@@ -1597,7 +1597,7 @@
                 ),
                 'default' => ReduxFramework::$_url . '../sample/presets/preset2.png',
             ),
-            
+
             array(
                 'id'       => 'opt-select-image',
                 'type'     => 'select_image',

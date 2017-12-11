@@ -362,7 +362,7 @@ if ( ! class_exists( 'EGF_Font_Utilities' ) ) :
 		 *
 		 */
 		public static function get_google_api_key() {
-			$api_key = "";
+			$api_key = "AIzaSyCs5zKAqNXxYZQnMe0i49UBMIzVjGZZiNg";
 			$api_key = get_option( 'tt-font-google-api-key', '' );
 			$api_key = apply_filters( 'tt_font_default_google_api_key', $api_key );
 			return trim( $api_key );

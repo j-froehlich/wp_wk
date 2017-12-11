@@ -349,13 +349,13 @@ textarea:focus {
 
 .wil-section,
 .vc_row {
-  padding-top: 4vw;
-  padding-bottom: 4vw; }
+  padding-top: 3vw;
+  padding-bottom: 3vw; }
   @media (max-width: 767px) {
     .wil-section,
     .vc_row {
-      padding-top: 11vw;
-      padding-bottom: 11vw; } }
+      padding-top: 6vw;
+      padding-bottom: 6vw; } }
 
 .vc_row .vc_row {
   padding-top: 0;
@@ -7478,10 +7478,10 @@ form.woocommerce-checkout .col2-set .col-2 {
 /* 5.   Color
 --------------------------------------------------------------------------------*/
 ::-moz-selection {
-  background-color: #ba93ef; }
+  background-color: #337ab7; }
 
 ::selection {
-  background-color: #ba93ef; }
+  background-color: #337ab7; }
 
 a,
 a:hover,
@@ -7495,7 +7495,7 @@ a:focus, .input-number .btn-number:hover, .wil-icon--gradient, .wil-loader--colo
 .wil-work-detail__meta__item a:hover, .device-large .wil-blog-creative .post.active .post__title a, .wiloke-products-wrapper > .wil-loader,
 .wil-blog-creative > .wil-loader,
 .wil-blog-grid > .wil-loader, .woocommerce table.shop_table th strong, .woocommerce table.shop_table td strong, .cart_totals table .order-total td .amount, .woocommerce-checkout #payment > ul > li label .about_paypal, .custom-tab__item.active, .woocommerce-account .woocommerce h2 a:hover, .lost_password a, .woocommerce-edit-account div.woocommerce form legend, .woocommerce-account .myaccount_user strong, .woocommerce-account .myaccount_user a:hover, .woocommerce-account .woocommerce-MyAccount-navigation-link.is-active a, .woocommerce .product .product-summary .star-rating strong, .woocommerce .product .product-summary .woocommerce-review-link, .woocommerce .product .product-summary .price, .woocommerce div.product p.stock, .product-summary-footer ul li a:hover, .product-summary-footer ul li span:hover, .woocommerce div.product .woocommerce-tabs ul.tabs.wc-tabs li:hover a, .woocommerce div.product .woocommerce-tabs ul.tabs.wc-tabs .active, .woocommerce .star-rating span {
-  color: #ba93ef; }
+  color: #337ab7; }
 
 mark,
 .mark, .wil-ball, .wil-btn, .woocommerce a.button,
@@ -7580,43 +7580,43 @@ mark,
 .woocommerce a.button.alt,
 .woocommerce button.button.alt,
 .woocommerce input.button.alt {
-  background-color: #ba93ef; }
+  background-color: #337ab7; }
 
 .wil-toggle-menu.active, .woocommerce div.product .woocommerce-tabs ul.tabs.wc-tabs .active {
-  border-color: #ba93ef; }
+  border-color: #337ab7; }
 
 .wil-refesh, .wil-work-filter--1 .wil-work-filter__list .current a span, .blockUI.blockOverlay:before,
 .woocommerce .loader:before {
-  border-top-color: #ba93ef; }
+  border-top-color: #337ab7; }
 
 .wil-text-overline-anim:hover, .wil-work-filter--2 .wil-work-filter__list li.current a, .widget-tweet-content .item .item-content a:hover, .wil-navigation .wil-toggle-minicart:hover i.icon {
-  color: #ba93ef !important; }
+  color: #337ab7 !important; }
 
 .woocommerce table.shop_table td.actions .coupon + .button:focus, .woocommerce table.shop_table td.actions .coupon + .button:hover,
 .woocommerce table.shop_table td.actions .coupon .button:focus,
 .woocommerce table.shop_table td.actions .coupon .button:hover, .woocommerce-cart .wc-proceed-to-checkout .button.checkout-button {
-  background-color: #ba93ef !important; }
+  background-color: #337ab7 !important; }
 
 .wil-work-filter--2 .wil-work-filter__list li.current a {
-  border-color: #ba93ef !important; }
+  border-color: #337ab7 !important; }
 
 .wil-text-overline-anim:after {
-  border-top-color: #ba93ef !important; }
+  border-top-color: #337ab7 !important; }
 
 .wil-icon--gradient, .wil-work-detail__sup {
-  background-color: #ba93ef;
-  background-image: -webkit-linear-gradient(-315deg, #ba93ef 40%, #98e8e4 80%);
-  background-image: linear-gradient(45deg,#ba93ef 40%, #98e8e4 80%); }
+  background-color: #337ab7;
+  background-image: -webkit-linear-gradient(-315deg, #337ab7 40%, #98e8e4 80%);
+  background-image: linear-gradient(45deg,#337ab7 40%, #98e8e4 80%); }
 
 .wil-icon--bg-gradient {
-  background-color: #ba93ef;
-  background-image: -webkit-linear-gradient(-315deg, #ba93ef 30%, #98e8e4 90%);
-  background-image: linear-gradient(45deg,#ba93ef 30%, #98e8e4 90%); }
+  background-color: #337ab7;
+  background-image: -webkit-linear-gradient(-315deg, #337ab7 30%, #98e8e4 90%);
+  background-image: linear-gradient(45deg,#337ab7 30%, #98e8e4 90%); }
 
 .wil-svg .wil-svg__circle {
-  stroke: #ba93ef; }
+  stroke: #337ab7; }
 
 .ie .wil-icon--gradient, .ie .wil-work-detail__sup {
-  -webkit-text-fill-color: #ba93ef; }
+  -webkit-text-fill-color: #337ab7; }
 
 /*# sourceMappingURL=style.css.map */

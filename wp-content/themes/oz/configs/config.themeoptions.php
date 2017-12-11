@@ -22,7 +22,7 @@ return array(
                 'page_title'           => esc_html__( 'Theme Options', 'oz' ),
                 // You will need to generate a Google API key to use this feature.
                 // Please visit: https://developers.google.com/fonts/docs/developer_api#Auth
-                'google_api_key'       => '',
+                'google_api_key'       => 'AIzaSyCs5zKAqNXxYZQnMe0i49UBMIzVjGZZiNg',
                 // Set it you want google fonts to update weekly. A google_api_key value is required.
                 'google_update_weekly' => false,
                 // Must be defined to add google fonts to the typography module

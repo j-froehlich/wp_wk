@@ -286,7 +286,7 @@
                 this.$filter.find('.current span').css({'border-top-color': 'none'});
                 this.$filter.find('.current').removeClass('current');
                 $el.parent().addClass('current');
-                
+
                 this.$masonryCaching.isotope({
                     filter: target
                 });
@@ -301,7 +301,7 @@
         animationMakeup: function(){
             this.$filterAnimation.find('a').each(function () {
                 var $el = $(this);
-                
+
                 if ( $el.hasClass('added-animation') ) {
                     return;
                 }
@@ -884,7 +884,7 @@
                 $container.find('.lazy').lazyload({
                     effect : 'fadeIn',
                     threshold : 200
-                }); 
+                });
             }
         }
     };
@@ -954,13 +954,13 @@
                 addCartHeight = $thisbutton.outerHeight(),
                 wScrollTop = $(window).scrollTop(),
                 goToCart = $('.wil-toggle-minicart__inner').offset();
-                
+
             $thisbutton.parent().addClass('wrap-added');
             $thisbutton.parent().removeClass('wrap-loading');
             $thisbutton.addClass('added');
 
             $('#cart-mini-content').html(fragments['div.widget_shopping_cart_content']);
-            
+
             setTimeout(function() {
                 $thisbutton
                     .parent().siblings('.product__add-to-cart-bg')
@@ -1784,7 +1784,7 @@
 
     function smartDisplayImageOnSinglePage(reChecked) {
         var $target = $('.wil-work-detail__content');
-        
+
         if ( $target.length ){
             var $imgs = typeof reChecked === 'undefined' ? $target.find('img') : $target.find('img.still-waiting-for-you:not(.ignore-this-image)');
             var oDateInstance = new Date(), needRecheck=false, ratio=null, parseImgW = 0;
@@ -1805,7 +1805,7 @@
                                 {
                                     $this.before('<img src="'+$this.attr('src').replace(/\.jpg|\.png|\.jpeg|\.gif$/g, ratio[0])+'" class="wiloke-image__placeholder '+addClass+'" width="'+$(this).attr('width')+'" height="'+$this.attr('height')+'">');
                                 }
-                                
+
                                 needRecheck = true;
                             }else{
                                 var img = $(this).attr('srcset').match(/(https?([^\s])*)\s?(?=20w)/g);
@@ -1976,7 +1976,7 @@
             if ( $('.shop_table_responsive.woocommerce-cart-form__contents').length ){
                 $('.shop_table_responsive.woocommerce-cart-form__contents').find('a[data-product_id="'+productId+'"]').closest('.cart_item.woocommerce-cart-form__cart-item').slideUp('slow', function(){
                     $(this).remove();
-                }); 
+                });
             }
         });
 
@@ -2030,7 +2030,7 @@
         $('.lazy').lazyload({
             effect : 'fadeIn',
             threshold : 200
-        });  
+        });
     }
 
     function callAfterWindowLoaded(){
@@ -2043,7 +2043,7 @@
         improvingPerformance();
         wilokeSearchSuggesstion();
         ozLoadPage.init();
-        lazyLoad(); 
+        lazyLoad();
     }
 
 
@@ -2076,7 +2076,7 @@
             this.aCurrentScript = typeof this.aCurrentScript != 'undefined' ? this.aCurrentScript : this.getScripts();
 
             self.listOfAutomaticLoading();
-            
+
             $(document.body).off('wiloke.renderedpage').on('wiloke.renderedpage', function(){
                 self.processEnqueueLoading();
 
@@ -2154,23 +2154,23 @@
                     t.loadPage(pageLink, $(this));
                 });
 
-                $('.grid-item').off('mouseenter').on('mouseenter', function (event) {
-                    if ( $('body').hasClass('wiloke-ajax-has-yet-finished') || $(document).data('wiloke-handling-click-event') ) {
-                        return;
-                    }
-
-                    pageLink = $(this).find('.wil-work-item__link').attr('href');
-
-                    if ( typeof pageLink == 'undefined' ){
-                        pageLink = $(this).find('.wiloke-product-link').attr('href');
-                    }
-
-                    if ( typeof pageLink === 'undefined' || $(this).data('justhovered') || !t.passConditional($(event.currentTarget), pageLink) || !t.verifyLink(pageLink) ) {
-                        return;
-                    }
-
-                    t.loadPage(pageLink, $(this));
-                }, function () {});
+                //  $('.grid-item').off('mouseenter').on('mouseenter', function (event) { 
+                //     if ( $('body').hasClass('wiloke-ajax-has-yet-finished') || $(document).data('wiloke-handling-click-event') ) {
+                //         return;
+                //     }
+                //
+                //     pageLink = $(this).find('.wil-work-item__link').attr('href');
+                //
+                //     if ( typeof pageLink == 'undefined' ){
+                //         pageLink = $(this).find('.wiloke-product-link').attr('href');
+                //     }
+                //
+                //     if ( typeof pageLink === 'undefined' || $(this).data('justhovered') || !t.passConditional($(event.currentTarget), pageLink) || !t.verifyLink(pageLink) ) {
+                //         return;
+                //     }
+                //
+                //     t.loadPage(pageLink, $(this));
+                // }, function () {});
             }
 
             $(document).off('click', t.listOfTargets).on('click', t.listOfTargets, function (event) {
@@ -2296,7 +2296,7 @@
             this.preloader(pageLink);
 
             $(document).data('wiloke-handling-click-event', true);
-            
+
             this.pageLink = pageLink;
 
             if ( typeof WILOKE_GLOBAL.siteCache[pageLink] !== 'undefined' && !this.notCachingThesePages(pageLink) ) {
@@ -2368,7 +2368,7 @@
                     }
                 },
                 error: function () {
-                    
+
                 }
             })
         },
@@ -2518,7 +2518,7 @@
             $('.wpb_animate_when_almost_visible').addClass('wpb_start_animation animated');
             $('.wil-animation__item').removeClass('done');
             $(document).data('wiloke-handling-click-event', false);
-            
+
             if ( self.isIsertPage ){
                 $(document.body).data('wiloke.singlepage.notloadfromcache', true);
                 self.isIsertPage = false;
@@ -2690,25 +2690,25 @@
                     if( self.hasClass('wil-header--responsive') ) {
 
                         if(windowWidth > 1540) {
-                            self.find('.wil-navigation').css('padding-right', '85px');  
+                            self.find('.wil-navigation').css('padding-right', '85px');
                         } else {
                             self.find('.wil-navigation').css('padding-right', '70px');
                         }
-                        
+
                     } else {
                         self.find('.wil-navigation').css('padding-right', '80px');
                     }
 
                     $('.wil-section-top .wil-minicart').css('z-index', '9999999');
                   }
-                  
+
                   setTimeout(function() {
                     self.addClass('sticky');
                   }, 300);
 
               } else {
                   $('body').find('#wil-header-fix-sticky').remove();
-                  
+
                   self.removeClass('wil-header--sticked sticky');
 
                   if( $('.wil-section-top .wil-minicart').length ) {
@@ -2732,7 +2732,7 @@
 
             var self = $(this),
                 $parent = self.closest('.wil-header');
-                
+
                 if($parent.hasClass('wil-theme-dark')) {
 
                     $('#wiloke-body-area').css({

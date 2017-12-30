@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see woocommerce_default_product_tabs()
  */
 $tabs = apply_filters( 'woocommerce_product_tabs', array() );
-
+/*
 if ( ! empty( $tabs ) ) : ?>
 <div class="wil-product__content">
     <div class="woocommerce-tabs wc-tabs-wrapper">
@@ -45,4 +45,4 @@ if ( ! empty( $tabs ) ) : ?>
         <?php endforeach; ?>
     </div>
 </div>
-<?php endif; ?>
+<?php endif;*/ ?>

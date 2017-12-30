@@ -27,11 +27,11 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 <div class="product-summary-footer">
     <ul>
     <?php do_action( 'woocommerce_product_meta_start' ); ?>
-        <?php if ( wc_product_sku_enabled() && ( $product->get_sku() || $product->is_type( 'variable' ) ) ) : ?>
+        <?php /*if ( wc_product_sku_enabled() && ( $product->get_sku() || $product->is_type( 'variable' ) ) ) : ?>
 
             <li><?php _e( 'SKU:', 'oz' ); ?> <span class="sku" itemprop="sku"><?php echo ( $sku = $product->get_sku() ) ? $sku : esc_html__( 'N/A', 'oz' ); ?></span></li>
 
-        <?php endif; ?>
+        <?php endif;*/ ?>
 
         <?php echo wc_get_product_category_list( $product->get_id(), ' ', '<li>' . _n('Category:', 'Categories:', count($product->get_category_ids()), 'oz' ) . ' ', '</li>' ); ?>
 

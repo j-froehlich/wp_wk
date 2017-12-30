@@ -72,6 +72,7 @@ class WC_Stripe_Payment_Request {
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
+		wp_enqueue_script( 'Stripe', 'https://js.stripe.com/v2/', '', '1.0' );
 		wp_enqueue_script( 'stripe', 'https://js.stripe.com/v2/', '', '1.0', true );
 		wp_enqueue_script( 'google-payment-request-shim', 'https://storage.googleapis.com/prshim/v1/payment-shim.js', '', '1.0', false );
 		wp_enqueue_script( 'wc-stripe-payment-request', plugins_url( 'assets/js/payment-request' . $suffix . '.js', WC_STRIPE_MAIN_FILE ), array( 'jquery', 'stripe' ), WC_STRIPE_VERSION, true );
@@ -307,7 +308,7 @@ class WC_Stripe_Payment_Request {
 		if ( ! defined( 'WOOCOMMERCE_CHECKOUT' ) ) {
 			define( 'WOOCOMMERCE_CHECKOUT', true );
 		}
-		
+
 		$_POST['terms'] = 1;
 		$_POST['ship_to_different_address'] = 1;
 

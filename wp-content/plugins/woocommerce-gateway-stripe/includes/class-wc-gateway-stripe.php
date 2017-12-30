@@ -556,7 +556,7 @@ class WC_Gateway_Stripe extends WC_Payment_Gateway_CC {
 			wp_enqueue_script( 'woocommerce_stripe', plugins_url( 'assets/js/stripe-checkout' . $suffix . '.js', WC_STRIPE_MAIN_FILE ), array( 'stripe_checkout' ), WC_STRIPE_VERSION, true );
 		} else {
 			wp_enqueue_script( 'Stripe', 'https://js.stripe.com/v2/', '', '2.0' );
-			wp_enqueue_script( 'stripe', 'https://js.stripe.com/v2/', '', '2.0', true );
+//			wp_enqueue_script( 'stripe', 'https://js.stripe.com/v2/', '', '2.0', true );
 			wp_enqueue_script( 'woocommerce_stripe', plugins_url( 'assets/js/stripe' . $suffix . '.js', WC_STRIPE_MAIN_FILE ), array( 'jquery-payment', 'stripe' ), WC_STRIPE_VERSION, true );
 		}
 

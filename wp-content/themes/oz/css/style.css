@@ -3711,6 +3711,7 @@ img {
   font-weight   : 400;
   margin-top    : 0;
   margin-bottom : 5px;
+  display: inline-block;
 }
 
 .product__name a {
@@ -4443,7 +4444,7 @@ img {
 
 /* Widget */
 .widget {
-  margin-bottom : 70px;
+  margin-bottom : 20px;
 }
 
 .widget a {

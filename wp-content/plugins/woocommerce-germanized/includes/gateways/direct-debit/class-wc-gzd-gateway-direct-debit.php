@@ -325,6 +325,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$order_query = new WP_Query( apply_filters( 'woocommerce_gzd_direct_debit_export_query_args', $query_args, $args ) );
 		$filename = apply_filters( 'woocommerce_germanized_direct_debit_export_filename', implode( '-', $parts ) . '.xml', $args );
 
+		$directDebit = false;
+
 		if ( $order_query->have_posts() ) {
 
 			$msg_id = apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_msg_id', $this->company_account_bic . '00' . date( 'YmdHis', time() ) );
@@ -378,19 +380,20 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 					), $this, $order ) );
                 }
             }
-
-			header( 'Content-Description: File Transfer' );
-			header( 'Content-Disposition: attachment; filename=' . $filename );
-			header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
-			header( 'Cache-Control: no-cache, no-store, must-revalidate' );
-			header( 'Pragma: no-cache' );
-			header( 'Expires: 0' );
-
-			echo $directDebit->asXML();
-			exit();
-
 		}
 
+		header( 'Content-Description: File Transfer' );
+		header( 'Content-Disposition: attachment; filename=' . $filename );
+		header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
+		header( 'Cache-Control: no-cache, no-store, must-revalidate' );
+		header( 'Pragma: no-cache' );
+		header( 'Expires: 0' );
+
+		if ( $directDebit ) {
+			echo $directDebit->asXML();
+        }
+
+		exit();
 	}
 
 	public function get_mandate_id( $order = false ) {
@@ -418,8 +421,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     }
 
 	public function get_mandate_sign_date( $order ) {
-	    $date = wc_gzd_get_crud_data( $order, 'direct_debit_mandate_date' ) ? wc_gzd_get_crud_data( $order, 'direct_debit_mandate_date' ) : wc_gzd_get_crud_data( $order, 'order_date' );
-		return strtotime( $date );
+		$date = wc_gzd_get_crud_data( $order, 'direct_debit_mandate_date' ) ? wc_gzd_get_crud_data( $order, 'direct_debit_mandate_date' ) : strtotime( wc_gzd_get_crud_data( $order, 'order_date' ) );
+		return $date;
 	}
 
 	public function get_mandate_type( $order ) {
@@ -586,6 +589,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function generate_mandate_text( $args = array() ) {
 
+		// temporarily reset global $post variable if available to ensure Pagebuilder compatibility
+		$tmp_post = isset( $GLOBALS['post'] ) ? $GLOBALS['post'] : false;
+		$GLOBALS['post'] = false;
+
 		$args = wp_parse_args( $args, array(
 			'company_info' => $this->company_info,
 			'company_identification_number' => $this->company_identification_number,
@@ -599,8 +606,12 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		foreach ( $args as $key => $val )
 			$text = str_replace( '[' . $key . ']', $val, $text );
 
-		return apply_filters( 'the_content', $text );
+		$content = apply_filters( 'the_content', $text );
 
+		// Enable $post again
+		$GLOBALS['post'] = $tmp_post;
+
+		return $content;
 	}
 
 	public function checkbox() {
@@ -847,7 +858,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		if ( ! $iban_validator->Verify() )
 			wc_add_notice( __( 'Your IBAN seems to be invalid.', 'woocommerce-germanized' ), 'error' );
-		else if ( $iban_validator->Country() != $country )
+		else if ( apply_filters( 'woocommerce_gzd_direct_debit_verify_iban_country', true ) && $iban_validator->Country() != $country )
 			wc_add_notice( __( 'Your IBAN\'s country code doesn’t match with your billing country.', 'woocommerce-germanized' ), 'error' );
 
 		// Validate BIC

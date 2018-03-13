@@ -84,7 +84,7 @@ $this->_loader->add_action('wp_ajax_render_total_cart', $this->_public, 'product
 $this->_loader->add_action('wp_ajax_nopriv_render_total_cart', $this->_public, 'product_render_total_cart');
 
 $this->_loader->add_action('woocommerce_before_shop_loop_item_title', $this->_public, 'product_header', 5);
-$this->_loader->add_action('woocommerce_before_shop_loop_item_title', $this->_public, 'product_add_to_cart', 5);
+//$this->_loader->add_action('woocommerce_before_shop_loop_item_title', $this->_public, 'product_add_to_cart', 5);
 $this->_loader->add_action('woocommerce_after_shop_loop_item_title', $this->_public, 'product_out_of_stock', 5);
 $this->_loader->add_action('woocommerce_after_shop_loop_item_title', $this->_public, 'product_header_close');
 $this->_loader->add_action('woocommerce_after_shop_loop_item', $this->_public, 'product_before_info');

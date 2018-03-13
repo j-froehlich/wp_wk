@@ -43,7 +43,7 @@ class WilokePublic
      * @since 1.0
      */
     public static $single_post_settings = 'single_post_settings';
-    
+
     public function __construct() {
         add_action('wp_ajax_nopriv_wiloke_pagination_with_ajax', array($this, 'wiloke_pagination_with_ajax'));
         add_action('wp_ajax_nopriv_wiloke_pagination_with_fajax', array($this, 'wiloke_pagination_with_fajax'));
@@ -910,7 +910,7 @@ class WilokePublic
         </div>
         <?php endif; ?>
 
-        <?php 
+        <?php
             $bgType = !isset($aProjectGeneral['project_bg_type']) || $aProjectGeneral['project_bg_type'] == 'inherit'  ? $wiloke->aThemeOptions['project_bg_type'] : $aProjectGeneral['project_bg_type'];
             $bgContentImg = '';
 
@@ -936,9 +936,9 @@ class WilokePublic
         ?>
 
         <div class="wil-work-detail-bg-content" style="background-image:url(<?php echo esc_url($bgContentImg); ?>)"></div>
-        
-        <?php 
-        if( $bgType == 'gradient' ) : 
+
+        <?php
+        if( $bgType == 'gradient' ) :
             if ( !empty($aProjectGeneral['project_bg_gradient_f']) || !empty($aProjectGeneral['project_bg_gradient_s']) ) {
                 $fColor = $aProjectGeneral['project_bg_gradient_f'];
                 $sColor = $aProjectGeneral['project_bg_gradient_s'];
@@ -948,7 +948,7 @@ class WilokePublic
             }
         ?>
         <div class="wil-work-detail-bg-color" style="background-image:linear-gradient(to top right, <?php echo esc_attr($fColor); ?> 40%, <?php echo esc_attr($sColor); ?> 80%); background-color: <?php echo esc_attr($fColor); ?>"></div>
-        <?php 
+        <?php
         else :
             $bgColor = '';
             if ( isset($aProjectGeneral['project_bg_color']) && !empty($aProjectGeneral['project_bg_color']) && ($aProjectGeneral['project_bg_type'] != 'inherit') ) {
@@ -958,7 +958,7 @@ class WilokePublic
             }
         ?>
         <div class="wil-work-detail-bg-color" style="background-color:<?php echo esc_attr($bgColor); ?>"></div>
-        <?php endif; 
+        <?php endif;
     }
 
     public function render_project_info_before_content_open($post, $aPostMeta, $wiloke){
@@ -998,7 +998,7 @@ class WilokePublic
         if ( $aPostMeta['project_style'] == 'inherit' ) {
             $aPostMeta['project_style'] = $wiloke->aThemeOptions['project_style'];
         }
-        
+
         ?>
         <div class="wil-work-detail__description">
             <?php
@@ -1329,7 +1329,7 @@ class WilokePublic
                 {
                     continue;
                 }
-                
+
                 foreach ( $aValues as $info )
                 {
                     $label = str_replace( array('wiloke_project_info_', '-'), array('', ' '), $key );
@@ -1743,7 +1743,7 @@ class WilokePublic
         {
             global $wp_query;
         }
-        
+
         if ( empty($wp_query) || ( isset($wp_query->max_num_pages) && $wp_query->max_num_pages < 1 ) ) {
             return false;
         }
@@ -1984,7 +1984,8 @@ class WilokePublic
                 <div class="wil-tb">
                     <div class="wil-tb__cell">
                         <nav class="wil-breadcrumb wil-animation">
-                                <ol class="breadcrumb">
+                            <?php do_action('wiloke/oz/breadcrumb');  ?>
+                               <?php /* <ol class="breadcrumb">
                                     <?php if ( is_tax('portfolio_category') && !empty($wiloke->aThemeOptions['portfolio_page']) ) : ?>
                                         <li><a href="<?php echo esc_url(get_permalink($wiloke->aThemeOptions['portfolio_page'])); ?>"><?php esc_html_e('Home', 'oz'); ?></a></li>
                                     <?php else : ?>
@@ -1996,6 +1997,7 @@ class WilokePublic
                                         <li class="active"><span><?php echo esc_html(get_option('blogname')); ?></span></li>
                                     <?php endif; ?>
                                 </ol>
+                               */ ?>
                             </nav>
                     </div>
                     <?php do_action('wiloke/oz/inside_breadcrumb');  ?>
@@ -2073,7 +2075,7 @@ class WilokePublic
      */
     public function render_before_footer_widget(){
         global $wiloke;
-       
+
         if ( !isset($wiloke->aThemeOptions['footer_toggle_before_widget']) || ($wiloke->aThemeOptions['footer_toggle_before_widget'] === 'disable') || !isset($wiloke->aThemeOptions['footer_boxes_content']) || (count($wiloke->aThemeOptions['footer_boxes_content']) < 1) ) {
             return;
         }
@@ -2588,7 +2590,7 @@ class WilokePublic
             }
         }
 
-        if ( ( (is_product_tag() || is_product_category() || is_shop()) ) && $loopName == 'recent_products' ) 
+        if ( ( (is_product_tag() || is_product_category() || is_shop()) ) && $loopName == 'recent_products' )
         {
             return $this->handle_woocommerce_args($args);
         }
@@ -2709,7 +2711,7 @@ class WilokePublic
      * @since 1.0
      */
     public function filter_post_gallery($html, $attr){
-        
+
         if ( !class_exists( 'Jetpack' ) || !(Jetpack::is_module_active( 'tiled-gallery' ) || Jetpack::is_module_active( 'carousel' )) ) {
 
             add_filter( 'gallery_style', function( $html ) use ( $attr ) {
@@ -2749,7 +2751,7 @@ class WilokePublic
         }else{
             $cssClass .= ' ' . $aPageSettings['header_skin'];
         }
-        
+
         if($aPageSettings['header_set_to_top'] === 'enable'){
             $cssClass .= ' wil-header--absolute';
         }

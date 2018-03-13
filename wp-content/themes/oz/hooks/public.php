@@ -8,6 +8,8 @@ $this->_loader->add_filter('wiloke/oz/header/css_class', $this->_public, 'filter
 
 // General
 $this->_loader->add_action('wiloke/oz/after_header', $this->_public, 'breadcrumb');
+add_action('wiloke/oz/breadcrumb', 'woocommerce_breadcrumb', 20);
+//$this->_loader->add_action('wiloke/oz/after_header', $this->_public, 'product_mini_cart');
 $this->_loader->add_action('wiloke/oz/inside_breadcrumb', $this->_public, 'product_mini_cart');
 $this->_loader->add_action('wiloke/oz/before_wil_wrapper', $this->_public, 'render_preloader');
 $this->_loader->add_action('wiloke/oz/set_header_animation', $this->_public, 'set_header_animation');

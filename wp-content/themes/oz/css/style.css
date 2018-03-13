@@ -104,11 +104,11 @@ textarea:focus {
 }
 
 .pt-4vw {
-  padding-top : 3vw;
+  padding-top : 2vw;
 }
 
 .pb-4vw {
-  padding-bottom : 3vw;
+  padding-bottom : 2vw;
 }
 
 .wil-bg--scroll {
@@ -447,15 +447,16 @@ textarea:focus {
 
 .wil-section,
 .vc_row {
-  padding-top    : 3vw;
-  padding-bottom : 3vw;
+  padding-top    : 2vw;
+  padding-bottom : 2vw;
 }
 
 @media (max-width : 767px) {
   .wil-section,
   .vc_row {
-    padding-top    : 6vw;
-    padding-bottom : 6vw;
+    padding-top    : 0.5vw;
+    padding-bottom : 0.5vw;
+
   }
 }
 
@@ -559,6 +560,58 @@ h5,
 h6 {
   margin-top    : 20px;
   margin-bottom : 10px;
+}
+
+@media (min-width : 1420px) {
+  h1 {
+    font-size : 3vw;
+  }
+
+  h2 {
+    font-size : 2.8vw;
+  }
+
+  h3 {
+    font-size : 2.6vw;
+  }
+
+  h4 {
+    font-size : 2.4vw;
+  }
+
+  h5 {
+    font-size : 2.2vw;
+  }
+
+  h6 {
+    font-size : 2vw;
+  }
+}
+
+@media (max-width : 480px) {
+  h1 {
+    font-size : 2em;
+  }
+
+  h2 {
+    font-size : 1.8em;
+  }
+
+  h3 {
+    font-size : 1.6em;
+  }
+
+  h4 {
+    font-size : 1.4em;
+  }
+
+  h5 {
+    font-size : 1.2em;
+  }
+
+  h6 {
+    font-size : 1em;
+  }
 }
 
 blockquote {
@@ -3711,7 +3764,7 @@ img {
   font-weight   : 400;
   margin-top    : 0;
   margin-bottom : 5px;
-  display: inline-block;
+  display       : inline-block;
 }
 
 .product__name a {
@@ -7368,11 +7421,11 @@ body .wil-header.wil-theme-light .wil-toggle-menu__item {
 
 .wil-header .wil-menu-list .current-menu-parent > a:after,
 .wil-header .wil-menu-list .current-menu-item > a:after {
-  content    : '';
-  position   : absolute;
-  left       : 18px;
-  right      : 18px;
-  top        : 15px;
+  content  : '';
+  position : absolute;
+  left     : 18px;
+  right    : 18px;
+  top      : 15px;
   /*border-top : 1px solid;*/
 }
 

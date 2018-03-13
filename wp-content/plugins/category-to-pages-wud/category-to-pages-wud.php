@@ -12,8 +12,8 @@ Plugin URI: https://wud-plugins.com
 Tags: category pages, categories page, category page, categories pages, category to page, page category, hatom, related post, page excerpts
 Requires at least: 3.6
 Tested up to: 4.9
-Stable tag: 2.3.7
-Version: 2.3.7
+Stable tag: 2.3.8
+Version: 2.3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: category-to-pages-wud
@@ -21,7 +21,7 @@ Domain Path: /languages
 */
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 //==============================================================================//
-$ctp_version='2.3.7';
+$ctp_version='2.3.8';
 // Store the latest version.
 if (get_option('pcwud_wud_version')!=$ctp_version) {cattopage_wud_update();}
 //==============================================================================//
@@ -166,6 +166,7 @@ function cattopage_wud_update(){
 			if (get_option('cattopage_wud_unique')=='') {update_option('cattopage_wud_unique', 0);}
 			if (get_option('cattopage_wud_title')=='') {update_option('cattopage_wud_title', 'none');}
 			if (get_option('cattopage_wud_title_size')=='') {update_option('cattopage_wud_title_size', 16);}
+			if (get_option('cattopage_wud_title_h1')=='') {update_option('cattopage_wud_title_h1', 'p');}
 			if (get_option('cattopage_wud_quantity')=='') {update_option('cattopage_wud_quantity', 5);}
 			if (get_option('cattopage_wud_title_font')=='') {update_option('cattopage_wud_title_font', 'inherit');}
 			if (get_option('cattopage_wud_index_pos')=='') {update_option('cattopage_wud_index_pos', 0);}
@@ -193,6 +194,7 @@ function cattopage_wud_activation( $plugin ) {
 			update_option('cattopage_wud_unique', 0);
 			update_option('cattopage_wud_title', 'none');
 			update_option('cattopage_wud_title_size', 16);
+			update_option('cattopage_wud_title_h1', 'p');
 			update_option('cattopage_wud_quantity', 5);
 			update_option('cattopage_wud_title_font', 'inherit');
 			update_option('cattopage_wud_index_pos', 0);

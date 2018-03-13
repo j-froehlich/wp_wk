@@ -1,10 +1,18 @@
 jQuery(function ($) {
 
+    $('.wpdm_hide.wpdm_remove_empty').remove();
+
     $('.input-group input').on('focus', function () {
         $(this).parent().find('.input-group-addon').addClass('input-group-addon-active');
     });
     $('.input-group input').on('blur', function () {
         $(this).parent().find('.input-group-addon').removeClass('input-group-addon-active');
+    });
+
+    $('body').on('click', '.wpdm-download-link.wpdm-download-locked', function (e) {
+        e.preventDefault();
+        hideLockFrame();
+        $('body').append("<iframe id='wpdm-lock-frame' style='left:0;top:0;width: 100%;height: 100%;z-index: 99999;position: fixed;background: rgba(255,255,255,0.3) url("+wpdm_home_url+"wp-content/plugins/download-manager/assets/images/loader.svg) center center no-repeat;background-size: 100px 100px;border: 0;' src='"+wpdm_home_url+"?__wpdmlo="+$(this).data('package')+"'></iframe>");
     });
 
     $('body').on('click', '.inddl', function () {
@@ -172,3 +180,7 @@ jQuery(function ($) {
     }
 
 });
+
+function hideLockFrame() {
+    jQuery('#wpdm-lock-frame').remove();
+}

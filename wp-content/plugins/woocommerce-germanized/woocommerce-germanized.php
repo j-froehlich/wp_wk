@@ -3,15 +3,15 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.9.6
+ * Version: 1.9.9
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
  * Tested up to: 4.9
  * WC requires at least: 2.4
- * WC tested up to: 3.2
+ * WC tested up to: 3.3
  * Requires at least WooCommerce: 2.4
- * Tested up to WooCommerce: 3.2
+ * Tested up to WooCommerce: 3.3
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -31,7 +31,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.9.6';
+	public $version = '1.9.9';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -138,6 +138,7 @@ final class WooCommerce_Germanized {
 
 		// Hooks
 		register_activation_hook( __FILE__, array( 'WC_GZD_Install', 'install' ) );
+		register_deactivation_hook( __FILE__, array( 'WC_GZD_Install', 'deactivate' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 12 );
 
@@ -355,6 +356,7 @@ final class WooCommerce_Germanized {
 		include_once( 'includes/class-wc-gzd-checkout.php' );
 		include_once( 'includes/class-wc-gzd-dhl-parcel-shops.php' );
 		include_once( 'includes/class-wc-gzd-customer-helper.php' );
+		include_once( 'includes/class-wc-gzd-cache-helper.php' );
 
 		// Only available for Woo 3.X
 		if ( WC_GZD_Dependencies::instance( $this )->woocommerce_version_supports_crud() ) {
@@ -376,7 +378,8 @@ final class WooCommerce_Germanized {
 				'polylang',
 				'woo-poly-integration',
 				'woocommerce-dynamic-pricing',
-				'woocommerce-role-based-prices'
+				'woocommerce-role-based-prices',
+				'woo-paypalplus'
 			)
 		);
 
@@ -590,13 +593,14 @@ final class WooCommerce_Germanized {
 	 * @param array $styles
 	 */
 	public function add_styles( $styles ) {
+
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		$styles['woocommerce-gzd-layout'] = array(
-		'src'     => str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/css/woocommerce-gzd-layout' . $suffix . '.css',
-		'deps'    => '',
-		'version' => WC_GERMANIZED_VERSION,
-		'media'   => 'all',
+			'src'     => str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/css/woocommerce-gzd-layout' . $suffix . '.css',
+			'deps'    => '',
+			'version' => WC_GERMANIZED_VERSION,
+			'media'   => 'all',
 		);
 
 		return $styles;

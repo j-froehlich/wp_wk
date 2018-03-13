@@ -41,7 +41,7 @@ Also, you may use WordPress Download Manager as a complete e-Commerce Solution f
 *   Full Featured User Dashboard ( use short-code [wpdm_user_dashboard] )
 *   Custom front-end login / signup form short-code
 *   Custom oEmbed template
-*	DataTable support ( use short-code [wpdm-all-packages jstable=1 items_per_page=20] )
+*	Responsive DataTable support ( use short-code [wpdm_all_packages jstable=1 items_per_page=20] )
 *	Searching and Sorting Option
 *	Custom link label
 *	Short-code for download link
@@ -150,8 +150,49 @@ Check download stats and get a push notification when someone downloads, install
 11. Order Details ( Admin )
 12. Invoice
 13. Video Player
+14. Shortcode Generator
+15. Quick Add Panel
 
 == Changelog ==
+
+= 2.9.70 =
+* Updated add-on manager
+* Added new fields ( author_name, author_pic ) for all downloads table
+* Fixed issue with master key reset
+
+= 2.9.69 =
+* Fixed the issue with reCaptcha lock
+
+= 2.9.68 =
+* Fixed the issue with autoloader
+
+= 2.9.67 =
+* Fixed the warning "Illegal string offset..." with class.DownloadStats.php
+* Improved the default page template
+
+= 2.9.66 =
+* Fixed the issue with stats class
+
+= 2.9.65 =
+* Added new file type icons
+* Fixed the issue with download popup
+* Fixed the issue with autoload class
+* Fixed deprecated function issue in widget.php
+
+= 2.9.64 =
+* Added missing media streaming class on last update
+
+= 2.9.63 =
+* Fixed download popup display issue in mobile devices
+* Fixed an issue with video streaming
+* Added missing translations in login form template
+* Fixed missing columns data issue with all downloads table
+
+= 2.9.62 =
+* Auto-clear file size field after uploading new file or deleting current file
+* Added new parameter with all downloads shortcode to customize columns
+* Improved lock option display
+* Fixed issue with multiple reCaptcha on same page
 
 = 2.9.61 =
 * Fixed a minor security issue with add-on installation

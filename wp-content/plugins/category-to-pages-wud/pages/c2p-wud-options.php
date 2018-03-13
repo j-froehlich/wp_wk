@@ -68,7 +68,7 @@ if(!function_exists('cattopage_wud_titles')){
 			global $post;
 		
 		$cats_title = NULL;
-		$tags_title = NULL;
+		$tags_title = NULL;		
 		//Font Size
 		$sizect = get_option('cattopage_wud_title_size');
 		if(empty($sizect)){$sizect="12";}
@@ -78,6 +78,17 @@ if(!function_exists('cattopage_wud_titles')){
 		$fontct = get_option('cattopage_wud_title_font');
 		if(empty($fontct)){$fontct="inherit";}
 
+		//p or h1 to h3
+		$pp = get_option('cattopage_wud_title_h1');
+		if($pp == 'p'){ 
+			$ppstyle = "style= 'font-family:".$fontct."; font-size: ".$sizect."px; line-height: ".$sizel."px; margin: 0px; margin-top: 4px;'"; 
+			$iconsize = "style='font-size: ".$sizect."px;'";
+		}
+		else{
+			$ppstyle = "";
+			$iconsize = "";			
+		}
+		
 		if(!empty($post)){	
 		//If UNIQUE Categories and Tags
 			if(get_option('cattopage_wud_unique')=="1"){
@@ -104,10 +115,10 @@ if(!function_exists('cattopage_wud_titles')){
 		//If Oké, display the Title('s)
 		 if(get_option('cattopage_wud_title')=='page'){
 				if(!empty($cats_title)){
-					$cats_title = "<p class='ctp-wud-title' style= 'font-family:".$fontct."; font-size: ".$sizect."px; line-height: ".$sizel."px; margin: 0px; margin-top: 4px;'><span class='wudicon wudicon-category' style='font-size: ".$sizect."px;'> </span>".$cats_title."</p>";
+					$cats_title = "<".$pp." class='ctp-wud-title' ".$ppstyle."><span class='wudicon wudicon-category' ".$iconsize."> </span>".$cats_title."</".$pp.">";
 				}
 				if(!empty($tags_title)){
-					$tags_title = "<p class='ctp-wud-title' style= 'font-family:".$fontct."; font-size: ".$sizect."px; line-height: ".$sizel."px; margin: 0px; margin-top: 4px;'><span class='wudicon wudicon-tag' style='font-size: ".$sizect."px;'> </span>".$tags_title."</p>";
+					$tags_title = "<".$pp." class='ctp-wud-title' ".$ppstyle."><span class='wudicon wudicon-tag' ".$iconsize."> </span>".$tags_title."</".$pp.">";
 				}
 			//Build the new Title ...
 			$title .= $cats_title.$tags_title;
@@ -124,7 +135,7 @@ if(!function_exists('cattopage_wud_titles_in_page')){
 			global $post;
 		
 		$cats_title = NULL;
-		$tags_title = NULL;
+		$tags_title = NULL;	
 		//Font Size
 		$sizect = get_option('cattopage_wud_title_size');
 		if(empty($sizect)){$sizect="12";}
@@ -134,6 +145,17 @@ if(!function_exists('cattopage_wud_titles_in_page')){
 		$fontct = get_option('cattopage_wud_title_font');
 		if(empty($fontct)){$fontct="inherit";}
 
+		//p or h1 to h3
+		$pp = get_option('cattopage_wud_title_h1');
+		if($pp == 'p'){ 
+			$ppstyle = "style= 'font-family:".$fontct."; font-size: ".$sizect."px; line-height: ".$sizel."px; margin: 0px; margin-top: 4px;'"; 
+			$iconsize = "style='font-size: ".$sizect."px;'";
+		}
+		else{
+			$ppstyle = "";
+			$iconsize = "";			
+		}
+		
 		if(!empty($post)){	
 		//If UNIQUE Categories and Tags
 			if(get_option('cattopage_wud_unique')=="1"){
@@ -158,10 +180,10 @@ if(!function_exists('cattopage_wud_titles_in_page')){
 		//If Oké, display the Title('s)
 		 if(get_option('cattopage_wud_title')=='page' ){ 
 				if(!empty($cats_title)){
-					$cats_title = "<p class='ctp-wud-title' style= 'font-family:".$fontct."; font-size: ".$sizect."px; line-height: ".$sizel."px; margin: 0px; margin-top: 4px;'><span class='wudicon wudicon-category' style='font-size: ".$sizect."px;'> </span>".$cats_title."</p>";
+					$cats_title = "<".$pp." class='ctp-wud-title' ".$ppstyle."><span class='wudicon wudicon-category' ".$iconsize."> </span>".$cats_title."</".$pp.">";
 				}
 				if(!empty($tags_title)){
-					$tags_title = "<p class='ctp-wud-title' style= 'font-family:".$fontct."; font-size: ".$sizect."px; line-height: ".$sizel."px; margin: 0px; margin-top: 4px;'><span class='wudicon wudicon-tag' style='font-size: ".$sizect."px;'> </span>".$tags_title."</p>";
+					$tags_title = "<".$pp." class='ctp-wud-title' ".$ppstyle."><span class='wudicon wudicon-tag' ".$iconsize."> </span>".$tags_title."</".$pp.">";
 				}
 			//Build the new Title ...
 			$catstags = '<div style="margin-bottom:20px;">'.$cats_title.$tags_title.'</div>';

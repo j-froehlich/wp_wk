@@ -1,12 +1,11 @@
 === Simple Custom CSS and JS ===
 Created: 06/12/2015
 Contributors: diana_burduja
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=diana.burduja@gmail.com&lc=AT&item_name=Diana%20Burduja&item_number=Simple%2dCustom%2dCSS%2dand%2dJS%2dplugin&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Email: diana@burduja.eu
 Tags: CSS, JS, javascript, custom CSS, custom JS, custom style, site css, add style, customize theme, custom code, external css, css3, style, styles, stylesheet, theme, editor, design, admin
 Requires at least: 3.0.1
 Tested up to: 4.9
-Stable tag: 3.12 
+Stable tag: 3.14 
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -114,6 +113,18 @@ The URL for the linked Codes is built just like the URL for other media (from Me
 $. Add/Edit HTML 
 
 == Changelog ==
+
+= 3.14 =
+* 02/04/2018
+* Feature: permalink slug for custom codes
+* Fix: set the footer scripts to a higher priority
+* Update the french translation
+* Fix: allow admin stylesheets from ACF plugin, otherwise it breaks the post.php page
+* Tweak: for post.php and post-new.php page show code's title in the page title
+
+= 3.13 =
+* 01/12/2018
+* Feature: add the "Keep the HTML entities, don't convert to its character" option
 
 = 3.12 =
 * 01/03/2018

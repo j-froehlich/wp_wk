@@ -57,16 +57,16 @@ add_action('after_setup_theme', 'wiloke_oz_add_theme_support');
  */
 function wiloke_oz_theme_add_editor_styles() {
     global $post;
- 
+
     $my_post_type = 'portfolio';
- 
+
     // New post (init hook).
     if ( false !== stristr( $_SERVER['REQUEST_URI'], 'post-new.php' )
             && ( isset( $_GET['post_type'] ) === true && $my_post_type == $_GET['post_type'] )
     ) {
         add_editor_style( get_stylesheet_directory_uri() . '/admin/source/css/portfolio-editor-style.css' );
     }
- 
+
     // Edit post (pre_get_posts hook).
     if ( stristr( $_SERVER['REQUEST_URI'], 'post.php' ) !== false
             && is_object( $post )
@@ -154,7 +154,7 @@ function wiloke_oz_post_classes($classes) {
             }
         }
     }
- 
+
     return $classes;
 }
 add_filter('body_class', 'wiloke_oz_post_classes', 10, 1);
@@ -171,7 +171,7 @@ function wiloke_oz_add_lazy_load_option_to_single_image(){
                 esc_html__('Disable', 'oz') => 'disable'
             ),
             'std'   => 'enable'
-        )); 
+        ));
     }
 }
 

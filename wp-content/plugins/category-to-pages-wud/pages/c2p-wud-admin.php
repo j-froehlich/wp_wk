@@ -39,6 +39,10 @@ function cattopage_wud_settings_page(){
 		if ( isset($_POST['cattopage_wud_title_size']) && $_POST['cattopage_wud_title_size']=='') {$cattopage_wud_title_size ='16';} else{$cattopage_wud_title_size=$_POST['cattopage_wud_title_size'];}
 		update_option('cattopage_wud_title_size', filter_var($cattopage_wud_title_size, FILTER_SANITIZE_STRING));
 
+		
+		if ( isset($_POST['cattopage_wud_title_h1']) && $_POST['cattopage_wud_title_h1']=='') {$cattopage_wud_title_h1 ='16';} else{$cattopage_wud_title_h1=$_POST['cattopage_wud_title_h1'];}
+		update_option('cattopage_wud_title_h1', filter_var($cattopage_wud_title_h1, FILTER_SANITIZE_STRING));
+		
 		if ( isset($_POST['cattopage_wud_quantity']) && $_POST['cattopage_wud_quantity']=='') {$cattopage_wud_quantity ='5';} else{$cattopage_wud_quantity=$_POST['cattopage_wud_quantity'];}
 		update_option('cattopage_wud_quantity', filter_var($cattopage_wud_quantity, FILTER_SANITIZE_STRING));
 		
@@ -115,6 +119,7 @@ function cattopage_wud_settings_page(){
 		$cattopage_wud_unique = get_option('cattopage_wud_unique');
 		$cattopage_wud_tag = get_option('cattopage_wud_tag');
 		$cattopage_wud_title = get_option('cattopage_wud_title');
+		$cattopage_wud_title_h1 = get_option('cattopage_wud_title_h1');
 		$cattopage_wud_title_size = get_option('cattopage_wud_title_size');
 		if(!get_option('cattopage_wud_title_size')){$cattopage_wud_title_size="16";}
 		$cattopage_wud_quantity = get_option('cattopage_wud_quantity');
@@ -171,11 +176,19 @@ function cattopage_wud_settings_page(){
 		echo '<select class="ctp-select" name="cattopage_wud_index_pos" style="float:right;">';
 		echo     '<option value="0"'; if ( $cattopage_wud_index_pos == "0" ){echo 'selected="selected"';} echo '>Below the Title</option>';
 		echo     '<option value="1"'; if ( $cattopage_wud_index_pos == "1" ){echo 'selected="selected"';} echo '>Above the Content</option>';
-		echo '</select><br>';
+		echo '</select><br><br>';
 
 
-		echo '<br><label>'.__("Font size", "category-to-pages-wud").' </label><input class="ctp-wud-right ctp-select" name="cattopage_wud_title_size" type="number"  min="12" max="34" value="'.$cattopage_wud_title_size.'"/><br><br>';
-		echo '<label>'.__("Font Family", "category-to-pages-wud").'</label> ';
+		
+		echo '<br><select class="ctp-select" name="cattopage_wud_title_h1" style="float:right;">';
+		echo     '<option value="p"'; if ( $cattopage_wud_title_h1 == "p" ){echo 'selected="selected"';} echo '>Use Font Size</option>';
+		echo     '<option value="h1"'; if ( $cattopage_wud_title_h1 == "h1" ){echo 'selected="selected"';} echo '>H1</option>';
+		echo     '<option value="h2"'; if ( $cattopage_wud_title_h1 == "h2" ){echo 'selected="selected"';} echo '>H2</option>';
+		echo     '<option value="h3"'; if ( $cattopage_wud_title_h1 == "h3" ){echo 'selected="selected"';} echo '>H3</option>';
+		echo '</select>';		
+		
+		echo '<br><label>'.__("Font size (if not H1,H2 or H3)", "category-to-pages-wud").' </label><input class="ctp-wud-right ctp-select" name="cattopage_wud_title_size" type="number"  min="12" max="34" value="'.$cattopage_wud_title_size.'"/><br><br>';
+		echo '<br><br><label>'.__("Font Family", "category-to-pages-wud").'</label> ';
 		echo '<select class="ctp-select" name="cattopage_wud_title_font" style="float:right;">';
 		echo     '<option value="inherit"'; if ( $cattopage_wud_title_font == "inherit" ){echo 'selected="selected"';} echo '>Inherit</option>';
 		echo     '<option value="initial"'; if ( $cattopage_wud_title_font == "initial" ){echo 'selected="selected"';} echo '>Initial</option>';

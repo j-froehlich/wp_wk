@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: https://www.wpdownloadmanager.com/purchases/
 Description: Manage, Protect and Track File Downloads from your WordPress site
 Author: Shaon
-Version: 2.9.61
+Version: 2.9.70
 Author URI: https://www.wpdownloadmanager.com/
 Text Domain: download-manager
 Domain Path: /languages
@@ -14,10 +14,10 @@ Domain Path: /languages
 namespace WPDM;
 
 
-if(!isset($_SESSION))
-@session_start();
+if(!isset($_SESSION) && !strstr($_SERVER['REQUEST_URI'], 'wpdm-media/') && !isset($_REQUEST['wpdmdl']))
+    @session_start();
 
-define('WPDM_Version','2.9.61');
+define('WPDM_Version','2.9.70');
 
 $content_dir = str_replace('\\','/',WP_CONTENT_DIR);
 
@@ -50,8 +50,6 @@ include(dirname(__FILE__)."/wpdm-core.php");
 
 ini_set('upload_tmp_dir',UPLOAD_DIR.'/cache/');
 
-if(!isset($_POST))    $_SESSION['download'] = 0;
-
 
 class WordPressDownloadManager{
 
@@ -72,7 +70,7 @@ class WordPressDownloadManager{
         new \WPDM\libs\UserDashboard();
         new \WPDM\libs\Apply();
         new \WPDM\admin\WordPressDownloadManagerAdmin();
-        new \WPDM\ShortCodes();
+        new \WPDM\libs\ShortCodes();
 
     }
 
@@ -230,7 +228,7 @@ class WordPressDownloadManager{
      */
     public static function setHtaccess()
     {
-        \WPDM\FileSystem::blockHTTPAccess(UPLOAD_DIR);
+        \WPDM\libs\FileSystem::blockHTTPAccess(UPLOAD_DIR);
     }
 
     /**
@@ -265,15 +263,19 @@ class WordPressDownloadManager{
         }
 
 
-        if (!in_array('wpdm-bootstrap-css', $wpdmss))
+        if (!in_array('wpdm-bootstrap-css', $wpdmss)) {
             wp_enqueue_style('wpdm-bootstrap', plugins_url('/download-manager/assets/bootstrap/css/bootstrap.css'));
+        }
 
 
-        wp_enqueue_style('wpdm-front', plugins_url() . '/download-manager/assets/css/front.css');
+        if (!in_array('wpdm-front', $wpdmss)) {
+            wp_enqueue_style('wpdm-front', plugins_url() . '/download-manager/assets/css/front.css', 9999999999);
+        }
 
 
-        if (!in_array('wpdm-bootstrap-js', $wpdmss))
+        if (!in_array('wpdm-bootstrap-js', $wpdmss)) {
             wp_enqueue_script('wpdm-bootstrap', plugins_url('/download-manager/assets/bootstrap/js/bootstrap.min.js'), array('jquery'));
+        }
 
         wp_enqueue_script('frontjs', plugins_url('/download-manager/assets/js/front.js'), array('jquery'));
 
@@ -322,16 +324,26 @@ class WordPressDownloadManager{
      * @param $name
      * @usage Class autoloader
      */
-    function AutoLoad($name) {
+    function autoLoad($name) {
+
+        $originClass = $name;
         $name = str_replace("WPDM_","", $name);
         $name = str_replace("WPDM\\","", $name);
-        $relative_path = str_replace("\\", "/", $name);
+        //$relative_path = str_replace("\\", "/", $name);
         $parts = explode("\\", $name);
         $class_file = end($parts);
-        if(file_exists(WPDM_BASE_DIR."libs/class.{$name}.php")){
-            require_once WPDM_BASE_DIR."libs/class.{$name}.php";
-        } else if(file_exists(WPDM_BASE_DIR.str_replace($class_file, 'class.'.$class_file.'.php', $relative_path))){
-            require_once WPDM_BASE_DIR.str_replace($class_file, 'class.'.$class_file.'.php', $relative_path);
+        $class_file = 'class.'.$class_file.'.php';
+        $parts[count($parts)-1] = $class_file;
+        $relative_path = implode("/", $parts);
+
+
+        $classPath = WPDM_BASE_DIR.$relative_path;
+        $x_classPath = WPDM_BASE_DIR.str_replace("class.", "libs/class.", $relative_path);
+
+        if(strlen($class_file) < 40 && file_exists($classPath)){
+            require_once $classPath;
+        } else if(strlen($class_file) < 40 && file_exists($x_classPath)){
+            require_once $x_classPath;
         }
     }
 

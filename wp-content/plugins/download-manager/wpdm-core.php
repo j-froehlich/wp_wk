@@ -1,5 +1,5 @@
 <?php
-
+if (!defined('ABSPATH')) die();
 /**
  * Warning!!!
  * Don't change any function from here
@@ -295,6 +295,22 @@ function wpdm_newversion_check(){
     </script>
     <?php
 }
+
+function wpdm_access_token(){
+    $at = get_option("__wpdm_access_token", false);
+    if($at)
+        return $at;
+    if(get_option('__wpdm_suname') != '') {
+        $access_token = remote_get('https://www.wpdownloadmanager.com/?wpdm_api_req=getAccessToken&user=' . urlencode(get_option('__wpdm_suname')) . '&pass=' . urlencode(get_option('__wpdm_supass')));
+        $access_token = json_decode($access_token);
+        if (isset($access_token->access_token)) {
+            update_option("__wpdm_access_token", $access_token->access_token);
+            return $access_token->access_token;
+        }
+    }
+    return '';
+}
+
 
 
 /**

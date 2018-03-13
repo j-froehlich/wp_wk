@@ -10,8 +10,8 @@ Plugin URI: https://wud-plugins.com
 Tags: category pages, categories page, category page, categories pages, category to page, page category, hatom, related post, page excerpts
 Requires at least: 3.6
 Tested up to: 4.9
-Stable tag: 2.3.7
-Version: 2.3.7
+Stable tag: 2.3.8
+Version: 2.3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,6 +72,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 * Discover and enjoy our free plugins [here](http://wud-plugins.com/).
 
 == Changelog ==
+= 2.3.8 =
+* Solved: Category/Tag title: font size or H1 to H3.
+
 = 2.3.7 =
 * Solved: URL does not match in menu.
 

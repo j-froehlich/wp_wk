@@ -5,12 +5,13 @@
  * Description: Take credit card payments on your store using Stripe.
  * Author: WooCommerce
  * Author URI: https://woocommerce.com/
- * Version: 4.0.0
+ * Version: 4.0.7
  * Requires at least: 4.4
  * Tested up to: 4.9
  * WC requires at least: 2.6
  * WC tested up to: 3.3
  * Text Domain: woocommerce-gateway-stripe
+ * Domain Path: /languages/
  *
  */
 
@@ -22,7 +23,7 @@ if ( ! class_exists( 'WC_Stripe' ) ) :
 	/**
 	 * Required minimums and constants
 	 */
-	define( 'WC_STRIPE_VERSION', '4.0.0' );
+	define( 'WC_STRIPE_VERSION', '4.0.7' );
 	define( 'WC_STRIPE_MIN_PHP_VER', '5.6.0' );
 	define( 'WC_STRIPE_MIN_WC_VER', '2.6.0' );
 	define( 'WC_STRIPE_MAIN_FILE', __FILE__ );
@@ -93,11 +94,12 @@ if ( ! class_exists( 'WC_Stripe' ) ) :
 		 * @version 4.0.0
 		 */
 		public function init() {
+			require_once( dirname( __FILE__ ) . '/includes/class-wc-stripe-exception.php' );
 			require_once( dirname( __FILE__ ) . '/includes/class-wc-stripe-logger.php' );
 			require_once( dirname( __FILE__ ) . '/includes/class-wc-stripe-helper.php' );
 			include_once( dirname( __FILE__ ) . '/includes/class-wc-stripe-api.php' );
 
-			// Don't hook anything else in the plugin if we're in an incompatible environment
+			// Don't hook anything else in the plugin if we're in an incompatible environment.
 			if ( self::get_environment_warning() ) {
 				return;
 			}
@@ -107,6 +109,7 @@ if ( ! class_exists( 'WC_Stripe' ) ) :
 			require_once( dirname( __FILE__ ) . '/includes/abstracts/abstract-wc-stripe-payment-gateway.php' );
 			require_once( dirname( __FILE__ ) . '/includes/class-wc-stripe-webhook-handler.php' );
 			require_once( dirname( __FILE__ ) . '/includes/class-wc-stripe-sepa-payment-token.php' );
+			require_once( dirname( __FILE__ ) . '/includes/class-wc-stripe-apple-pay-registration.php' );
 			require_once( dirname( __FILE__ ) . '/includes/class-wc-gateway-stripe.php' );
 			require_once( dirname( __FILE__ ) . '/includes/payment-methods/class-wc-gateway-stripe-bancontact.php' );
 			require_once( dirname( __FILE__ ) . '/includes/payment-methods/class-wc-gateway-stripe-sofort.php' );
@@ -122,6 +125,9 @@ if ( ! class_exists( 'WC_Stripe' ) ) :
 			require_once( dirname( __FILE__ ) . '/includes/class-wc-stripe-order-handler.php' );
 			require_once( dirname( __FILE__ ) . '/includes/class-wc-stripe-payment-tokens.php' );
 			require_once( dirname( __FILE__ ) . '/includes/class-wc-stripe-customer.php' );
+
+			// REMOVE IN THE FUTURE.
+			require_once( dirname( __FILE__ ) . '/includes/deprecated/class-wc-stripe-apple-pay.php' );
 
 			add_filter( 'woocommerce_payment_gateways', array( $this, 'add_gateways' ) );
 			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
@@ -268,6 +274,11 @@ if ( ! class_exists( 'WC_Stripe' ) ) :
 			$show_ssl_notice  = get_option( 'wc_stripe_show_ssl_notice' );
 			$show_keys_notice = get_option( 'wc_stripe_show_keys_notice' );
 			$options          = get_option( 'woocommerce_stripe_settings' );
+			$testmode         = ( isset( $options['testmode'] ) && 'yes' === $options['testmode'] ) ? true : false;
+			$test_pub_key     = isset( $options['test_publishable_key'] ) ? $options['test_publishable_key'] : '';
+			$test_secret_key  = isset( $options['test_secret_key'] ) ? $options['test_secret_key'] : '';
+			$live_pub_key     = isset( $options['publishable_key'] ) ? $options['publishable_key'] : '';
+			$live_secret_key  = isset( $options['secret_key'] ) ? $options['secret_key'] : '';
 
 			if ( isset( $options['enabled'] ) && 'yes' === $options['enabled'] && empty( $show_keys_notice ) ) {
 				$secret  = WC_Stripe_API::get_secret_key();
@@ -276,6 +287,29 @@ if ( ! class_exists( 'WC_Stripe' ) ) :
 					$setting_link = $this->get_setting_link();
 					/* translators: 1) link */
 					$this->add_admin_notice( 'keys', 'notice notice-warning', sprintf( __( 'Stripe is almost ready. To get started, <a href="%s">set your Stripe account keys</a>.', 'woocommerce-gateway-stripe' ), $setting_link ), true );
+				}
+
+				// Check if keys are entered properly per live/test mode.
+				if ( $testmode ) {
+					if (
+						! empty( $test_pub_key ) && ! preg_match( '/^pk_test_/', $test_pub_key )
+						|| ( ! empty( $test_secret_key ) && ! preg_match( '/^sk_test_/', $test_secret_key )
+						&& ! empty( $test_secret_key ) && ! preg_match( '/^rk_test_/', $test_secret_key ) ) )
+					{
+						$setting_link = $this->get_setting_link();
+						/* translators: 1) link */
+						$this->add_admin_notice( 'keys', 'notice notice-error', sprintf( __( 'Stripe is in test mode however your test keys may not be valid. Test keys start with pk_test and sk_test or rk_test. Please go to your settings and, <a href="%s">set your Stripe account keys</a>.', 'woocommerce-gateway-stripe' ), $setting_link ), true );
+					}
+				} else {
+					if (
+						! empty( $live_pub_key ) && ! preg_match( '/^pk_live_/', $live_pub_key )
+						|| ( ! empty( $live_secret_key ) && ! preg_match( '/^sk_live_/', $live_secret_key )
+						&& ! empty( $live_secret_key ) && ! preg_match( '/^rk_live_/', $live_secret_key ) ) )
+					{
+						$setting_link = $this->get_setting_link();
+						/* translators: 1) link */
+						$this->add_admin_notice( 'keys', 'notice notice-error', sprintf( __( 'Stripe is in live mode however your test keys may not be valid. Live keys start with pk_live and sk_live or rk_live. Please go to your settings and, <a href="%s">set your Stripe account keys</a>.', 'woocommerce-gateway-stripe' ), $setting_link ), true );
+					}
 				}
 			}
 

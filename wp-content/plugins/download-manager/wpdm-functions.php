@@ -1,4 +1,5 @@
 <?php
+if (!defined('ABSPATH')) die();
 global $wpdm_message, $btnclass;
 
 
@@ -14,7 +15,7 @@ function wpdm_zip_package($package){
  */
 function wpdm_download_data($filename, $content)
 {
-    \WPDM\FileSystem::downloadData($filename, $content);
+    \WPDM\libs\FileSystem::downloadData($filename, $content);
 }
 
 
@@ -26,7 +27,7 @@ function wpdm_download_data($filename, $content)
  */
 function wpdm_cache_remote_file($url, $filename = '')
 {
-    return \WPDM\FileSystem::copyURL($url, $filename);
+    return \WPDM\libs\FileSystem::copyURL($url, $filename);
 }
 
 /**
@@ -37,7 +38,7 @@ function wpdm_cache_remote_file($url, $filename = '')
  */
 function wpdm_zip_files($files, $zipname){
 
-    return \WPDM\FileSystem::zipFiles($files, $zipname);
+    return \WPDM\libs\FileSystem::zipFiles($files, $zipname);
 }
 
 /**
@@ -53,7 +54,7 @@ function wpdm_download_file($filepath, $filename, $speed = 0, $resume_support = 
 {
 
     if(isset($_GET['play'])) $extras['play'] = esc_attr($_GET['play']);
-     \WPDM\FileSystem::donwloadFile($filepath, $filename, $speed, $resume_support, $extras);
+     \WPDM\libs\FileSystem::donwloadFile($filepath, $filename, $speed, $resume_support, $extras);
 
 }
 
@@ -126,7 +127,7 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
 	$package['access'] = wpdm_allowed_roles($package['ID']);
 
     if ($package['download_url'] != '#')
-        $package['download_link'] = "<a class='wpdm-download-link wpdm-download-locked {$btnclass}' rel='nofollow' href='#' onclick=\"location.href='{$package['download_url']}';return false;\"><i class='$wpdm_download_icon'></i>{$link_label}</a>";
+        $package['download_link'] = "<a class='wpdm-download-link {$btnclass}' rel='nofollow' href='#' onclick=\"location.href='{$package['download_url']}';return false;\"><i class='$wpdm_download_icon'></i>{$link_label}</a>";
     else
         $package['download_link'] = "<div class='alert alert-warning'><b>" . __('Download:','download-manager') . "</b><br/>{$link_label}</div>";
     $caps = array_keys($current_user->caps);
@@ -161,7 +162,7 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
 
         if ( $package['password'] != '') {
             $lock = 'locked';
-            $data = \WPDM\PackageLocks::AskPassword($package);
+            $data = \WPDM\libs\PackageLocks::AskPassword($package);
         }
 
 
@@ -169,7 +170,7 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
 
         if (isset($package['captcha_lock']) && (int)$package['captcha_lock'] == 1) {
             $lock = 'locked';
-            $sociallock .=  \WPDM\PackageLocks::reCaptchaLock($package , true);
+            $sociallock .=  \WPDM\libs\PackageLocks::reCaptchaLock($package , true);
 
         }
 
@@ -191,16 +192,12 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
         }
 
         if ($lock === 'locked') {
-            $popstyle = isset($popstyle) && in_array($popstyle, array('popup', 'pop-over')) ? $popstyle : 'pop-over';
             if ($embed == 1)
                 $adata = "<div class='package-locks'>" . $data . "</div>";
             else {
-                $dataattrs = $popstyle == 'pop-over'? 'data-title="<button type=button id=\'close\' class=\'btn btn-link btn-xs pull-right po-close\' style=\'margin-top:-4px;margin-right:-10px\'><i class=\'fa fa-times text-danger\'></i></button> '.__('Download','download-manager').' ' . $package['title'] . '"' : 'data-toggle="modal" data-target="#pkg_' . $package['ID'] . "_" . $unqid . '"';
-                $adata = '<a href="#pkg_' . $package['ID'] . "_" . $unqid . '" '.$dataattrs.' class="wpdm-download-link wpdm-download-locked ' . $popstyle . ' ' . $btnclass . '"><i class=\'' . $wpdm_download_lock_icon . '\'></i>' . $package['link_label'] . '</a>';
-                if ($popstyle == 'pop-over')
-                    $adata .= '<div class="modal fade"><div class="row all-locks"  id="pkg_' . $package['ID'] . "_" . $unqid . '">' . $data . '</div></div>';
-                else
-                    $adata .= '<div class="modal fade" role="modal" id="pkg_' . $package['ID'] . "_" . $unqid . '"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><strong style="margin:0px;font-size:12pt">' . __('Download') . '</strong></div><div class="modal-body">' . $data . '</div><div class="modal-footer text-right"><button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button></div></div></div></div>';
+
+                $adata = '<a href="#pkg_' . $package['ID'] . "_" . $unqid . '" data-package="' . $package['ID'] . '"  class="wpdm-download-link wpdm-download-locked ' . ' ' . $btnclass . '"><i class=\'' . $wpdm_download_lock_icon . '\'></i>' . $package['link_label'] . '</a>';
+
             }
 
             $data = $adata;
@@ -249,8 +246,8 @@ function wpdm_verify_email($email){
 function wpdm_getlink()
 {
     global $wpdb;
-    if (!isset($_POST['id'])) return;
-    $id = (int)$_POST['id'];
+    if (!isset($_POST['__wpdm_ID'])) return;
+    $id = (int)$_POST['__wpdm_ID'];
     $password = isset($_POST['password']) ? addslashes($_POST['password']) : '';
     $file = get_post($id, ARRAY_A);
     //$file['ID'] = $file['ID'];
@@ -264,6 +261,13 @@ function wpdm_getlink()
 
     if(isset($_POST['reCaptchaVerify'])){
         $ret = wp_remote_post('https://www.google.com/recaptcha/api/siteverify', array('method' => 'POST', 'body' => array('secret' => get_option('_wpdm_recaptcha_secret_key'), 'response' => $_POST['reCaptchaVerify'], 'remoteip' => $_SERVER['REMOTE_ADDR'])));
+        if(is_wp_error($ret)){
+            header("Content-type: application/json");
+            $data['error'] = $ret->get_error_message();
+            $data['downloadurl'] = '';
+            echo json_encode($data);
+            die();
+        }
         $ret = json_decode($ret['body']);
         if($ret->success == 1){
             $_SESSION['_wpdm_unlocked_'.$file['ID']] = 1;
@@ -281,11 +285,11 @@ function wpdm_getlink()
 
 
     if ($plock == 1 && $password != $file['password'] && !strpos("__" . $file['password'], "[$password]")) {
-        $data['error'] = '<span class="color-red"><i class="fa fa-refresh"></i> '.__('Wrong Password! Try Again.','download-manager')."</span>";
+        $data['error'] = '<span class="color-red" style="font-size: 8pt"><i class="fa fa-refresh"></i> '.__('Wrong Password! Try Again.','download-manager')."</span>";
         $file = array();
     }
     if ($plock == 1 && $password == '') {
-        $data['error'] = '<span class="color-red"><i class="fa fa-refresh"></i> '.__('Wrong Password! Try Again.','download-manager')."</span>";
+        $data['error'] = '<span class="color-red" style="font-size: 8pt"><i class="fa fa-refresh"></i> '.__('Wrong Password! Try Again.','download-manager')."</span>";
         $file = array();
     }
     $ux = "";
@@ -728,7 +732,7 @@ function wpdm_basename($file){
 
 function wpdm_dynamic_thumb($path, $size)
 {
-    return \WPDM\FileSystem::imageThumbnail($path, $size[0], $size[1]);
+    return \WPDM\libs\FileSystem::imageThumbnail($path, $size[0], $size[1]);
 }
 
 
@@ -1152,7 +1156,7 @@ function wpdm_pdf_preview($pid, $w, $h, $echo = true){
  * @usage Generates thumbnail from PDF file. [ From v4.1.3 ]
  */
 function wpdm_pdf_thumbnail($pdf, $id){
-    return \WPDM\FileSystem::pdfThumbnail($pdf, $id);
+    return \WPDM\libs\FileSystem::pdfThumbnail($pdf, $id);
 }
 
 /**

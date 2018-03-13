@@ -18,12 +18,14 @@ class Apply {
 
     function FrontendActions(){
         if(is_admin()) return;
-        add_action("init", array($this, 'triggerDownload'));
+        add_action("init", array($this, 'playMedia'), 0);
+        add_action("init", array($this, 'triggerDownload'), 1);
         add_filter('widget_text', 'do_shortcode');
         add_action('query_vars', array( $this, 'dashboardPageVars' ));
         add_action('init', array( $this, 'addWriteRules' ), 1, 0 );
         add_action('init', array($this, 'Login'));
         add_action('init', array($this, 'Register'));
+        add_action('init', array($this, 'wpdmIframe'));
         add_action('wp', array($this, 'updateProfile'));
         add_action('wp', array($this, 'Logout'));
         add_action('request', array($this, 'rssFeed'));
@@ -157,7 +159,7 @@ class Apply {
         global $wp_query, $wpdb;
         if (!isset($_POST['wpdm_reg'])) return;
 
-        $shortcode_params = \WPDM_Crypt::Decrypt($_REQUEST['phash']);
+        $shortcode_params = \WPDM\libs\Crypt::Decrypt($_REQUEST['phash']);
 
         if(isset($shortcode_params['captcha']) && $shortcode_params['captcha'] == 'true') {
             if(isset($_REQUEST['g-recaptcha-response'])) {
@@ -329,6 +331,20 @@ class Apply {
         }
     }
 
+    function playMedia(){
+
+        if(strstr("!{$_SERVER['REQUEST_URI']}", "/wpdm-media/")){
+            $media = explode("wpdm-media/", $_SERVER['REQUEST_URI']);
+            $media = explode("/", $media[1]);
+            list($ID, $file) = $media;
+            $files = \WPDM\Package::getFiles($ID);
+            $file = \WPDM\libs\FileSystem::fullPath($file, $ID);
+            $stream = new \WPDM\libs\StreamMedia($file);
+            $stream->start();
+            die();
+        }
+    }
+
 
     /**
      * @usage Process Download Request
@@ -396,8 +412,13 @@ class Apply {
                         wpdm_download_data("invalid-link.txt", __("Download link is expired or not valid. Please get new download link.",'download-manager'));
                     die();
                 } else
-                    if ($package['ID'] > 0)
-                        include(WPDM_BASE_DIR."wpdm-start-download.php");
+                    if ($package['ID'] > 0) {
+                        if((int)$package['quota'] == 0 || $package['quota'] > $package['download_count'])
+                            include(WPDM_BASE_DIR . "wpdm-start-download.php");
+                        else
+                            wpdm_download_data("stock-limit-reached.txt", __("Stock Limit Reached", 'wpdmpro'));
+
+                    }
 
             }
         } else
@@ -506,6 +527,13 @@ class Apply {
         global $wpdb;
         $wpdb->query('truncate table '.$wpdb->prefix.'ahm_download_stats');
         die('ok');
+    }
+
+    function wpdmIframe(){
+        if(isset($_REQUEST['__wpdmlo'])){
+            include wpdm_tpl_path("lock-options-iframe.php");
+            die();
+        }
     }
 
 

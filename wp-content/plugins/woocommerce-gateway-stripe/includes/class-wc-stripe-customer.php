@@ -87,45 +87,12 @@ class WC_Stripe_Customer {
 	}
 
 	/**
-	 * Get data from the Stripe API about this customer
-	 */
-	public function get_customer_data() {
-		$this->customer_data = get_transient( 'stripe_customer_' . $this->get_id() );
-
-		if ( empty( $this->customer_data ) && $this->get_id() && false === $this->customer_data ) {
-			$response = WC_Stripe_API::request( array(), 'customers/' . $this->get_id() );
-
-			if ( empty( $response->error ) ) {
-				$this->set_customer_data( $response );
-				set_transient( 'stripe_customer_' . $this->get_id(), $response, HOUR_IN_SECONDS * 48 );
-			}
-		}
-
-		return $this->customer_data;
-	}
-
-	/**
-	 * Get default card/source
-	 * @return string
-	 */
-	public function get_default_source() {
-		$data   = $this->get_customer_data();
-		$source = '';
-
-		if ( $data ) {
-			$source = $data->default_source;
-		}
-
-		return $source;
-	}
-
-	/**
 	 * Create a customer via API.
 	 * @param array $args
 	 * @return WP_Error|int
 	 */
 	public function create_customer( $args = array() ) {
-		$billing_email = filter_var( $_POST['billing_email'], FILTER_SANITIZE_EMAIL );
+		$billing_email = isset( $_POST['billing_email'] ) ? filter_var( $_POST['billing_email'], FILTER_SANITIZE_EMAIL ) : '';
 		$user = $this->get_user();
 
 		if ( $user ) {
@@ -138,7 +105,7 @@ class WC_Stripe_Customer {
 			);
 		} else {
 			$defaults = array(
-				'email'       => ! empty( $billing_email ) ? $billing_email : '',
+				'email'       => $billing_email,
 				'description' => '',
 			);
 		}
@@ -151,7 +118,7 @@ class WC_Stripe_Customer {
 		$response = WC_Stripe_API::request( apply_filters( 'wc_stripe_create_customer_args', $args ), 'customers' );
 
 		if ( ! empty( $response->error ) ) {
-			throw new Exception( $response->error->message );
+			throw new WC_Stripe_Exception( print_r( $response, true ), $response->error->message );
 		}
 
 		$this->set_id( $response->id );
@@ -175,7 +142,7 @@ class WC_Stripe_Customer {
 	 */
 	public function add_source( $source_id, $retry = true ) {
 		if ( ! $this->get_id() ) {
-			$this->create_customer();
+			$this->set_id( $this->create_customer() );
 		}
 
 		$response = WC_Stripe_API::request( array(
@@ -244,28 +211,28 @@ class WC_Stripe_Customer {
 	}
 
 	/**
-	 * Get a customers saved sources using their Stripe ID. Cached.
+	 * Get a customers saved sources using their Stripe ID.
 	 *
 	 * @param  string $customer_id
 	 * @return array
 	 */
 	public function get_sources() {
+		if ( ! $this->get_id() ) {
+			return array();
+		}
+
 		$sources = get_transient( 'stripe_sources_' . $this->get_id() );
 
-		if ( false === $sources ) {
-			$response = WC_Stripe_API::request( array(
-				'limit'       => 100,
-			), 'customers/' . $this->get_id() . '/sources', 'GET' );
+		$response = WC_Stripe_API::request( array(
+			'limit'       => 100,
+		), 'customers/' . $this->get_id() . '/sources', 'GET' );
 
-			if ( ! empty( $response->error ) ) {
-				return array();
-			}
+		if ( ! empty( $response->error ) ) {
+			return array();
+		}
 
-			if ( is_array( $response->data ) ) {
-				$sources = $response->data;
-			}
-
-			set_transient( 'stripe_sources_' . $this->get_id(), $sources, HOUR_IN_SECONDS * 24 );
+		if ( is_array( $response->data ) ) {
+			$sources = $response->data;
 		}
 
 		return empty( $sources ) ? array() : $sources;
@@ -276,6 +243,10 @@ class WC_Stripe_Customer {
 	 * @param string $source_id
 	 */
 	public function delete_source( $source_id ) {
+		if ( ! $this->get_id() ) {
+			return false;
+		}
+
 		$response = WC_Stripe_API::request( array(), 'customers/' . $this->get_id() . '/sources/' . sanitize_text_field( $source_id ), 'DELETE' );
 
 		$this->clear_cache();

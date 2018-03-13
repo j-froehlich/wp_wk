@@ -51,6 +51,8 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
         add_action( 'load-edit.php', array( $this, 'export_listen' ) );
 
         add_action('admin_head', array( $this, 'hide_page_title_action' ) );
+
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
     }
 
     public function get_page_title()
@@ -66,6 +68,17 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
         // This section intentionally left blank.
     }
 
+	/**
+	 * enqueue scripts here
+	 */
+	public function enqueue_scripts() {
+		wp_enqueue_style( 'nf-admin-settings', Ninja_Forms::$url . 'assets/css/admin-settings.css' );
+
+		wp_register_script( 'ninja_forms_admin_submissions',
+			Ninja_Forms::$url . 'assets/js/admin-submissions.js', array( 'jquery' ), FALSE, TRUE );
+
+		wp_enqueue_script( 'ninja_forms_admin_submissions' );
+	}
     /**
      * Change Columns
      *
@@ -249,8 +262,8 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
             ?>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
-                    jQuery('<option>').val('export').text('<?php _e('Export')?>').appendTo("select[name='action']");
-                    jQuery('<option>').val('export').text('<?php _e('Export')?>').appendTo("select[name='action2']");
+                    jQuery('<option>').val('export').text('<?php _e('Export', 'ninja-forms')?>').appendTo("select[name='action']");
+                    jQuery('<option>').val('export').text('<?php _e('Export', 'ninja-forms')?>').appendTo("select[name='action2']");
                     <?php
                     if ( ( isset ( $_POST['action'] ) && $_POST['action'] == 'export' ) || ( isset ( $_POST['action2'] ) && $_POST['action2'] == 'export' ) ) {
                         ?>

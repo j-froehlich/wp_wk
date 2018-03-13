@@ -4,8 +4,8 @@ Tags: woocommerce, german, woocommerce-de, germany, deutsch, deutschland, de, de
 Requires at least: 3.8
 Tested up to: 4.9
 WC requires at least: 2.4
-WC tested up to: 3.2
-Stable tag: 1.9.6
+WC tested up to: 3.3
+Stable tag: 1.9.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -168,6 +168,32 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.9.9 =
+* Improvement: Adjusted payment gateway fee settings to only apply for COD for legal purposes
+* Improvement: Added Woo Paypal Plus checkout price manipulation compatibility
+* Fix: Stock update using wc_maybe_reduce_stock_levels
+* Fix: Added strtoupper to IBAN and BIC for direct debit
+
+= 1.9.8 =
+* Improvement: Extended type check to support services
+* Improvement: Cache helper for double opt in activation key
+* Improvement: Removed int_max from button text filter to allow overrides
+* Improvement: Further checks for double opt in user role (default: Customer)
+* Fix: OS platform shortcode link https replacement
+* Fix: is_ajax fallback function
+* Fix: Deactivate plugin hook to make sure no incomplete class error is thrown in cart
+
+= 1.9.7 =
+* Feature: Woo 3.3 compatibility
+* Improvement: Shopping costs for VAT exempts to show net prices instead of fixed gross prices
+* Improvement: Tax rounding for better shipping costs tax calculation
+* Improvement: Support tax exclusive mode for shipping tax calculation
+* Improvement: Added action firing before attaching email footers
+* Improvement: Better PolyLang compatibility
+* Fix: Parcel delivery checkbox and data storage
+* Fix: Check if cart object exists in email filter
+* Fix: Direct debit mandate sign date conversion
 
 = 1.9.6 =
 * Feature: Role Based Prices unit price recalculation support

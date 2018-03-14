@@ -191,7 +191,7 @@ if ( get_option( 'woocommerce_gzd_hide_order_success_details' ) == 'yes' )
  */
 if ( get_option( 'woocommerce_gzd_customer_account_checkbox' ) == 'yes' ) {
 	add_action( 'woocommerce_register_form', 'woocommerce_gzd_template_customer_account_checkbox', PHP_INT_MAX );
-	add_filter( 'woocommerce_process_registration_errors', 'woocommerce_gzd_template_customer_account_checkbox_error', 10, 4 ); 
+	add_filter( 'woocommerce_process_registration_errors', 'woocommerce_gzd_template_customer_account_checkbox_error', 10, 4 );
 }
 
 /**
